@@ -1,0 +1,46 @@
+.header{
+    border: 1px solid crimson;
+    position: fixed;
+    width: calc(100% - 2rem);
+    height: 80px;
+    background-color: var(--main-bg-color);
+    grid-area: header;
+    display: grid;
+    grid-template: 
+    "iconMainMenu logo userMenu" 80px / 20% 60% 20%;    
+}
+
+.mainMenu_icon_container{
+    grid-area: iconMainMenu; 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* border: 1px solid orange; */
+}
+
+.logo_container{
+    grid-area: logo;
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid blue; */
+}
+
+.userMenu_container{
+    grid-area: userMenu;    
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* border: 1px solid green; */
+}
+
+.mainMenu_container{
+    grid-area: mainMenu;
+    display: none;
+}
+
+.logo_principal{    
+    width: 90%;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+}
