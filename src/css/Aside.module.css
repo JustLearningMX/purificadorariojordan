@@ -1,0 +1,12 @@
+.aside {
+    border: 1px solid fuchsia;
+    grid-area: aside;
+    display: none;
+}
+
+/* Laptops*/
+@media screen and (min-width: 1024px) {
+    .aside {        
+        display: block;
+    }
+}

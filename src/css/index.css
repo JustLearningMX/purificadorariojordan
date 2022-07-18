@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
 }
 
 code {
@@ -13,14 +13,16 @@ code {
     monospace;
 }
 
-/* .header {
-  grid-area: header;
-} */
-
-.main {
-  grid-area: main;
+/* Tabletas y Laptops*/
+@media screen and (min-width: 600px) {
+  /* body {
+    padding: 0 2.5rem;
+  } */
 }
 
-.footer {
-  grid-area: footer;
+/* Laptops*/
+@media screen and (min-width: 1024px) {
+  /* body {
+    padding: 0 5rem;
+  } */
 }

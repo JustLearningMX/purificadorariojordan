@@ -85,6 +85,12 @@ body {
 	height: 100%;
 }
 
+/*A los links se le quitan el subrayado*/
+a {
+  text-decoration: none;
+  color: inherit;
+} 
+
 #root {
 	min-height: 100%;
 	display: grid;
@@ -95,4 +101,14 @@ body {
       "header" 80px
       "main" 1fr
       "footer" auto / 1fr;
+}
+
+/* Laptops*/
+@media screen and (min-width: 1024px) {
+  #root {
+      grid-template:
+        "header header" 110px
+        "aside main" 1fr
+        "footer footer" auto / .1fr 1fr;
+  }
 }

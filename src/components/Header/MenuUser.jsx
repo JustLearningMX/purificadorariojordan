@@ -1,14 +1,14 @@
 import { arrayMenu } from '../../data/arrayMenu.js';
 import { Menu } from '../Menu.jsx';
 
-export function Navbar(props) {
+export function MenuUser(props) {
     return(
-        <nav className={props.classContainer}>
+        <section className={props.classContainer}>
             <Menu 
-                opcionesMenu={arrayMenu.principal} 
+                opcionesMenu={arrayMenu.userGuest} 
                 classMenuItems={props.classMenuItems} 
                 classNavLink={props.classNavLink} 
             />
-        </nav>
+        </section>
     );    
 }

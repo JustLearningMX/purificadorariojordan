@@ -6,7 +6,7 @@ export function Icono(props) {
     const width = props.width ? props.width : '100%';
     const height = props.height ? props.height : '100%';
     const objFit = props.objFit ? props.objFit : 'cover';
-    console.log(props);
+    
     const handleClick = props.function ? props.function : null;
 
     const IconStyled = styled(props.icon)`
@@ -15,9 +15,22 @@ export function Icono(props) {
         height: ${height};
         object-fit:  ${objFit};
         cursor:  ${props.cursor ? 'pointer' : 'none'};
+        
+        /* Tabletas y Laptops*/
+        @media screen and (min-width: 600px) {
+            height: 70%;
+        }
+
+        /* Laptops*/
+        @media screen and (min-width: 1024px) {
+            height: 80%;
+        }
+
     `
 
     return(
-            <IconStyled onClick={handleClick} />
+            <IconStyled 
+                onClick={handleClick}
+            />
     );
 }
