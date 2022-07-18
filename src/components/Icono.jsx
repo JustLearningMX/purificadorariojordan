@@ -18,12 +18,12 @@ export function Icono(props) {
         
         /* Tabletas y Laptops*/
         @media screen and (min-width: 600px) {
-            height: 70%;
+            height: 60%;
         }
 
         /* Laptops*/
         @media screen and (min-width: 1024px) {
-            height: 80%;
+            height: 55%;
         }
 
     `

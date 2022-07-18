@@ -1,5 +1,4 @@
 .aside {
-    border: 1px solid fuchsia;
     grid-area: aside;
     display: none;
 }
@@ -8,5 +7,47 @@
 @media screen and (min-width: 1024px) {
     .aside {        
         display: block;
+        transition: 0.5s;
+        box-shadow: 3px 0 rgb(21 147 185 / 25%);
+    }
+
+    .aside_no_visible {
+        display: none;
+        transition: 0.5s;
+    }
+
+    .only_main {
+        grid-template:
+          "header header" 110px
+          "main main" 1fr
+          "footer footer" auto / .1fr 1fr;
+        transition: 0.5s;
+    }
+
+    .foldMenu_icon_container{ /*Icono Fold*/
+        height: 60px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: .5rem;
+    }
+
+    .userMenu_container {
+        background-color: var(--main-bg-color);
+        color: var(--main-a-text-color);
+    }
+
+    .menu_items {
+        width: 100%;
+        line-height: 40px;
+        font-size: 1.3rem;
+        padding: .5rem 1rem 0 1rem;
+    }
+
+    .nav_link:hover {
+        background-color: inherit;
+        color: var(--second-a-text-color);
+        font-weight: 400;
+        transition: 0.5s;
     }
 }

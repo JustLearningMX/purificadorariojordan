@@ -68,7 +68,7 @@ html {
     --third-text-color: #A6A6A6;
 
     --main-a-text-color: #023859;
-    --second-a-text-color: #1593B9;
+    --second-a-text-color: rgb(21, 147, 185);
 
     --button-main-bg: #77E2EA;
 
@@ -91,7 +91,7 @@ a {
   color: inherit;
 } 
 
-#root {
+.root {
 	min-height: 100%;
 	display: grid;
 
@@ -105,10 +105,10 @@ a {
 
 /* Laptops*/
 @media screen and (min-width: 1024px) {
-  #root {
+  .root {
       grid-template:
         "header header" 110px
         "aside main" 1fr
-        "footer footer" auto / .1fr 1fr;
+        "footer footer" auto / .13fr 1fr;
   }
 }

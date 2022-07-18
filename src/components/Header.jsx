@@ -5,12 +5,13 @@ import { Menu } from '@styled-icons/material';
 
 import img from '../assets/logo-principal.png';
 import styles from '../css/Header.module.css';
+import stylesAside from '../css/Aside.module.css';
 import { MenuUser } from "./Header/MenuUser";
 
 export function Header() {
     return (
         <header className={styles.header} >
-            <figure className={styles.logo_container} style={{height: '80px'}}>                            
+            <figure className={styles.logo_container} >                            
                 <img src={img} alt="Logo purificadora rio jordan" className={styles.logo_principal} />
             </figure>
             <figure className={`${styles.userMenu_icon_container}`} >
@@ -40,7 +41,13 @@ function handleClick(boton) {
         
     }
 
-    if(boton === 'menuUser'){
+    if(boton === 'menuUser') {
+
+        const root =  document.querySelector(`#root`);
+        const aside =  document.querySelector(`aside`);
+
+        root.classList.toggle(`${stylesAside.only_main}`);
+        aside.classList.toggle(`${stylesAside.aside_no_visible}`);
 
         userMain[0].classList.toggle(`${styles.nav_menu_visible}`);
 
