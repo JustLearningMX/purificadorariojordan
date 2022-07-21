@@ -1,4 +1,109 @@
 .footer {
-    border: 1px solid cornflowerblue;
-    grid-area: footer;
-  }
+  /* border: 1px solid cornflowerblue; */
+  background-color: var(--main-a-text-color); /* second-bg-color */
+  grid-area: footer;
+  display: grid;
+  grid-template: 
+  "logo" auto
+  "mapa" auto
+  "redes" auto
+  "direccion" auto
+  "derechos" auto; 
+  color: var(--second-text-color);
+}
+
+.containers {
+  /* border: 1px solid red; */
+  margin: 1.2rem 1rem;
+}
+
+/* .containers:first-child {
+  margin-top: 1rem;
+} */
+
+/*Logo.JSX*/
+
+.logoContainer {
+  grid-area: logo;
+  height: 80px;
+  text-align: center;
+}
+
+.logoImg {
+  height: 80px;
+  object-fit: cover;
+}
+
+/*MapaNavegacion.JSX & MapaMenu.jsx*/
+.title {
+  font-size: 1.3rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.contenedorMapa {
+  grid-area: mapa;
+  margin-top: .7rem;
+  line-height: 30px;
+}
+
+.subtitulo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: .2rem;
+  padding-left: .6rem;
+}
+
+.opcionMenu {
+  padding-left: .6rem;
+}
+
+/*RedesSociales.JSX*/
+.containerRedes {
+  grid-area: redes;
+}
+
+.containerRedes > div > .title, .containerDireccion > div > .title {
+  /* border: 1px solid yellow; */
+  margin-bottom: .8rem;
+}
+
+.icons_container {  
+  display: flex;
+  /* justify-content: center; */
+  gap: 1.2rem;
+}
+
+.figure {
+  /* border: 1px solid yellow; */
+  width: 35px;
+}
+
+/*Direccion.JSX*/
+.direccionDatos_container {
+  grid-area: direccion;
+  display: flex;
+}
+
+.containerDireccion > .direccionDatos_container > .figure {
+  /* border: 1px solid yellow; */
+  width: 10%;
+  text-align: center;
+}
+
+.direccionDatos {
+  /* border: 1px solid green;  */
+  width: 90%;
+  line-height: 25px;
+  padding-left: 1rem;
+}
+
+/*Derechos.JSX*/
+.containerDerechos {
+  grid-area: derechos;
+  margin: .5rem 0 0 0;
+  font-size: .8rem;
+  padding: 1.4rem .2rem;
+  background-color: var(--main-bg-color);
+  color: var(--main-a-text-color);
+}
