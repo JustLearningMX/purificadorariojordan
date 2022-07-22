@@ -15,7 +15,7 @@ export function Direccion() {
                 <div className={`${styles.direccionDatos}`}>
                     <p>Calle Necaxa #1705</p>
                     <p>Colonia Hidalgo, Poniente.</p>
-                    <p>Ciudad Maderto, Tamaulipas.</p>
+                    <p>Ciudad Madero, Tamaulipas.</p>
                     <p>C.P. 89570</p>
                 </div>
             </div>

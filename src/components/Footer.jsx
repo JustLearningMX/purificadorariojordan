@@ -3,6 +3,7 @@ import { Derechos } from './Footer/Derechos';
 import { Direccion } from './Footer/Direccion';
 import { Logo } from './Footer/Logo';
 import { MapaNavegacion } from './Footer/MapaNavegacion';
+import { PuntoMaps } from './Footer/PuntoMaps';
 import { RedesSociales } from './Footer/RedesSociales';
 
 export function Footer() {
@@ -12,6 +13,7 @@ export function Footer() {
             <MapaNavegacion />
             <RedesSociales />
             <Direccion />
+            <PuntoMaps />
             <Derechos />
         </footer>        
     );
