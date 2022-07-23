@@ -72,7 +72,8 @@
     padding: .2rem 15px;
 }
 
-.nav_link:hover {
+.nav_link:hover,
+.nav_link_active {
     background-color: var(--button-main-bg);
     color: var(--second-text-color);
     font-weight: 700;
@@ -161,7 +162,8 @@
         font-weight: 400;
     }
     
-    .nav_link:hover {
+    .nav_link:hover,
+    .nav_link_active {
         background-color: inherit;
         color: var(--second-a-text-color);
         font-weight: 400;

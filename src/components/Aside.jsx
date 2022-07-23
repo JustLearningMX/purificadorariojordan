@@ -7,14 +7,20 @@ export function Aside(){
     return (
         <aside className={styles.aside}>
             <figure className={`${styles.foldMenu_icon_container}`} >
-                <Icono icon={MenuFold} height='50%' width='auto' cursor={true} function={()=>handleClick('menuUser')} />
+                <Icono icon={MenuFold} height='50%' width='auto' cursor={true} function={()=>handleClick()} />
             </figure>            
-            <MenuUser classContainer={styles.userMenu_container} classMenuItems={styles.menu_items} classNavLink={styles.nav_link} />
+            <MenuUser 
+                classContainer={styles.userMenu_container} 
+                classMenuItems={styles.menu_items} 
+                classNavLink={styles.nav_link} 
+                classNavLinkActive={styles.nav_link_active}
+                menu_visible='aside'
+            />
         </aside>
     );
 }
 
-function handleClick(boton) {
+function handleClick() {
         const root =  document.querySelector(`#root`);
         const aside =  document.querySelector(`aside`);
 

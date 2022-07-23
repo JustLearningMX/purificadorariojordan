@@ -20,8 +20,20 @@ export function Header() {
             <figure className={`${styles.mainMenu_icon_container}`} >
                 <Icono icon={Menu} height='50%' width='auto' cursor={true} function={()=>handleClick('menuMain')} />
             </figure>
-            <Navbar classContainer={styles.mainMenu_container} classMenuItems={styles.menu_items} classNavLink={styles.nav_link} />
-            <MenuUser classContainer={styles.userMenu_container} classMenuItems={styles.menu_items} classNavLink={styles.nav_link} />
+            <Navbar 
+                classContainer={styles.mainMenu_container} 
+                classMenuItems={styles.menu_items} 
+                classNavLink={styles.nav_link}
+                classNavLinkActive={styles.nav_link_active}
+                menu_visible={styles.nav_menu_visible}
+            />
+            <MenuUser 
+                classContainer={styles.userMenu_container} 
+                classMenuItems={styles.menu_items} 
+                classNavLink={styles.nav_link} 
+                classNavLinkActive={styles.nav_link_active}
+                menu_visible={styles.nav_menu_visible}
+            />
         </header>
     );
 }
