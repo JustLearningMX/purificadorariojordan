@@ -24,4 +24,4 @@ npm install
 ```
 
 ## Link a la página en funcionamiento
-[Pendiente]()
+[riojordan-purificadoras](https://riojordan-purificadoras.herokuapp.)
