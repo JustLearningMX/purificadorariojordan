@@ -8,6 +8,7 @@
     "iconMainMenu logo iconUserMenu" 80px / 20% 60% 20%;
     padding: 0 1rem;
     box-shadow: 0 2px 0 rgb(21 147 185 / 60%);
+    z-index: 9;
 }
 
 .mainMenu_icon_container{ /*Menú hamburgusesa*/

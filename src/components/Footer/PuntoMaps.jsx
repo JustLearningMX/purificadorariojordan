@@ -10,7 +10,7 @@ export function PuntoMaps() {
           width="100%"
         //   height="auto"
           style={{border: "0"}}
-          allowFullscreen=""
+          allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>

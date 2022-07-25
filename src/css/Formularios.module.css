@@ -1,0 +1,118 @@
+.formularioContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ingresarDatos,
+.formularioImagenContainer {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+}
+
+.ingresarDatos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formularioImagenContainer {
+    height: 250px;
+}
+
+.formImage {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.tituloForm {
+    color: var(--second-a-text-color);
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 15px 0 3px 0;
+}
+
+.leyendaForm{
+    font-size: .85rem;
+    color: var(--third-text-color);
+    padding-bottom: 15px;
+}
+
+.solicitar_form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: .5rem 1.2rem;
+    gap: 1rem;
+}
+
+.submittButtonLogin,
+.submittButtonRegister {  
+  width: 100%;
+  color: var(--second-text-color);
+  padding: 0.6rem;
+  background-color: var(--button-main-bg);
+  border-color: var(--button-main-bg);
+  cursor: pointer;
+  font-size: 1rem;
+  border: none;
+  color: var(--main-a-text-color);
+  height: 50px;
+}
+
+.submittButtonLogin:hover,
+.submittButtonRegister:hover{
+  opacity: 0.9;
+  border-radius: 40px;
+}
+
+.pieForm{
+    font-size: .80rem;
+    color: var(--third-text-color);
+    margin: 2rem 0 1rem 0;
+}
+  
+.pieForm > span{
+    color: var(--second-a-text-color);
+    cursor: pointer;
+}
+
+/* Laptops*/
+@media screen and (min-width: 1024px) {    
+    .ingresarDatos,
+    .formularioImagenContainer {
+        height: 430px;
+    }
+    
+    .formularioImagenContainer {
+        height: 430px;
+    }
+    
+    .formImage {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .tituloForm {
+        font-size: 1.3rem;
+    }
+    
+    .leyendaForm{
+        font-size: .80rem;
+    }
+    
+    .submittButtonLogin,
+    .submittButtonRegister {
+      font-size: .9rem;
+      font-weight: 500;
+    }
+    
+    .submittButtonLogin:hover,
+    .submittButtonRegister:hover{
+      opacity: 0.9;
+      background-color: var(--button-main-bg);
+    }
+}

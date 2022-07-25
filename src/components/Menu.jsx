@@ -23,7 +23,7 @@ export function Menu(props){
 }
 
 function handleClick(props, e) {
-    console.log(props.menuVisible);
+    
     // if(props.menuVisible !== 'aside'){
         const menuContainer = e.target.parentElement.parentElement.parentElement;
         menuContainer.classList.toggle(props.menuVisible);
