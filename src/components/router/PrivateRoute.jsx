@@ -3,27 +3,13 @@
  * según sea el caso
  */
 
-import { Navigate, Route } from 'react-router-dom';
-import { LOGIN } from '../../config/router/paths';
-// import useAuthContext from '../../hooks/useauthContext';
+import { Navigate, Outlet } from 'react-router-dom';
+import { USUARIOS, LOGIN } from '../../config/router/paths';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
-export function PrivateRoute(props){
-    // const [isAuthenticated] = useAuthContent();
-    const isAuthenticated = false;
+export function PrivateRoute(){
+    
+    const isAuthenticated = useAuthContext();
 
-    if(!isAuthenticated) {
-        return <Navigate to={LOGIN} replace/>
-    }
-
-    return <Route {...props} />
+    return !isAuthenticated ? <Navigate replace to={(USUARIOS + LOGIN)} /> : <Outlet />;
 }
-
-/**OTRA FORMA DE HACER EL RETURN DE UNO U OTRO COMPONENT:
- * 
- * return (
-        <Route
-            {...rest}
-            render={props => (isAuthenticated ? <Component {...props} /> : <Redirect to={LOGIN} />)}
-        />
-    );
- */

@@ -1,5 +1,5 @@
 import { NavLink} from 'react-router-dom';
-import { NOSOTROS, SERVICIOS, CONTACTO, SIGNUP, LOGIN} from '../config/router/paths.js';
+import { USUARIOS, NOSOTROS, SERVICIOS, CONTACTO, SIGNUP, LOGIN} from '../config/router/paths.js';
 
 export function Menu(props){
 
@@ -10,10 +10,10 @@ export function Menu(props){
                     (opcion === 'Nosotros') ? NOSOTROS : 
                     (opcion === 'Servicios') ? SERVICIOS :
                     (opcion === 'Contacto') ? CONTACTO :
-                    (opcion === 'Login') ? LOGIN : SIGNUP;
+                    (opcion === 'Login') ? (USUARIOS + LOGIN) : (USUARIOS + SIGNUP);
 
                 return <li key={i} className={props.classMenuItems} onClick={(e)=>handleClick(props, e)}>
-                    <NavLink to={COMPONENTE} className={({isActive}) => activeLink(isActive, props)}  exact>
+                    <NavLink to={COMPONENTE} className={({isActive}) => activeLink(isActive, props)}>
                         {opcion}
                     </NavLink>
                 </li>

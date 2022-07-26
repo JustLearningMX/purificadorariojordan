@@ -3,17 +3,13 @@
  * al usuario cuando ya está autenticado
  */
 
- import { Navigate, Route } from 'react-router-dom';
+ import { Navigate, Outlet } from 'react-router-dom';
  import { DASHBOARD } from '../../config/router/paths';
- // import useAuthContext from '../../hooks/useauthContext';
+ import { useAuthContext } from '../../hooks/useAuthContext';
  
- export function PublicRoute(props){
-     // const [isAuthenticated] = useAuthContent();
-     const isAuthenticated = false;
- 
-     if(isAuthenticated) {
-         return <Navigate to={DASHBOARD} replace/>
-     }
- 
-     return <Route {...props} />
+ export function PublicRoute(){
+     
+    const isAuthenticated = useAuthContext();
+
+    return isAuthenticated ? <Navigate to={DASHBOARD}/> : <Outlet />;
  }
