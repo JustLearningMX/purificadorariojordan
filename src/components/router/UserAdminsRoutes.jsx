@@ -1,16 +1,18 @@
 /**
- * Componente que redirecciona al usuario invitado (cuando
- * no está autenticado): Login, Signup
+ * Componente para usuarios empleados y admins
  */
 
  import { Navigate, Outlet } from 'react-router-dom';
  import { useAuthContext } from '../../hooks/useAuthContext';
  
- export function UserGuestRoutes() {
+ export function UserAdminsRoutes() {
 
    const userToken = JSON.parse(window.localStorage.getItem("usuarioLogueadoPurificadora"));
+
+   const { admin } = userToken;
      
     const {isAuthenticated} = useAuthContext();
 
-    return isAuthenticated ? <Navigate to={`/usuario/${userToken.id}/`}/> : <Outlet />;
+    return (isAuthenticated && !admin) ? <Navigate to={`/usuario/${userToken.id}/`}/> : <Outlet />;
+          
  }

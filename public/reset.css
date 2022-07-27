@@ -107,7 +107,7 @@ a {
 @media screen and (min-width: 1024px) {
   .root {
       grid-template:
-        "header header" 110px
+        "header header" 90px
         "aside main" 1fr
         "footer footer" auto / .13fr 1fr;
   }

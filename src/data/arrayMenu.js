@@ -16,13 +16,15 @@ export const arrayMenu = {
     userEmpleado: [
         'Ventas',
         'Dashboard',
+        'Mis compras',
         'Salir'
     ],
     userAdmin: [
         'Ventas',
         'Dashboard',
-        'Catálagos',
+        'Catálogos',
         'Reportes',
+        'Mis compras',
         'Salir'
     ],
 }

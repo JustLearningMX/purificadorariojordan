@@ -13,6 +13,7 @@ export function Navbar(props) {
                 classNavLinkActive={props.classNavLinkActive} //Clase para cuando un link está activo
                 menu={props.menu} //Opciones del menú
                 menuVisible={props.menu_visible} //Si se muestra u oculta el menú
+                userGuest={true}
             />
         </nav>
     );    

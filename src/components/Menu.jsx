@@ -1,22 +1,45 @@
-import { NavLink} from 'react-router-dom';
-import { USUARIOS, NOSOTROS, SERVICIOS, CONTACTO, SIGNUP, LOGIN} from '../config/router/paths.js';
+import { generatePath, NavLink} from 'react-router-dom';
+import { NOSOTROS, SERVICIOS, CONTACTO, USUARIOS, SIGNUP, LOGIN,
+         COMPRAS, DASHBOARD, REPORTES, VENTAS, CATALOGOS, LOGOUT, 
+         EMPRESA, ADMIN} from '../config/router/paths.js';
 
-export function Menu(props){
+const generarLink = (isUserGuest, LinkOpt, props, opcion)=> {
+
+    if(isUserGuest) {         
+        return <NavLink to={LinkOpt} className={({isActive}) => activeLink(isActive, props)}>
+            {opcion}
+        </NavLink>
+    } else { //generatePath(USUARIO, {"id": props.userId})
+        return <NavLink to={LinkOpt} className={({isActive}) => activeLink(isActive, props)} >
+            {opcion}
+        </NavLink>
+    }
+}
+
+export function Menu(props) {
 
     return (
         <ul>
-            {props.opcionesMenu.map((opcion, i)=>{
-                const COMPONENTE = 
+            {props.opcionesMenu.map((opcion, i)=> {
+
+                const LinkOpt = 
                     (opcion === 'Nosotros') ? NOSOTROS : 
                     (opcion === 'Servicios') ? SERVICIOS :
                     (opcion === 'Contacto') ? CONTACTO :
-                    (opcion === 'Login') ? (USUARIOS + LOGIN) : (USUARIOS + SIGNUP);
+                    (opcion === 'Login') ? (USUARIOS + LOGIN) : 
+                    (opcion === 'Registro') ? (USUARIOS + SIGNUP) :
+                    (opcion === 'Mis compras') ? (`/usuario/${props.userId}/` + COMPRAS) :
+                    (opcion === 'Dashboard') ? (`/usuario/${props.userId}/` + DASHBOARD) :
+                    (opcion === 'Ventas') ? (EMPRESA + VENTAS) :
+                    (opcion === 'Catálogos') ? (ADMIN + CATALOGOS) :
+                    (opcion === 'Reportes') ? (ADMIN + REPORTES) : (`/usuario/${props.userId}/` + LOGOUT);
 
-                return <li key={i} className={props.classMenuItems} onClick={(e)=>handleClick(props, e)}>
-                    <NavLink to={COMPONENTE} className={({isActive}) => activeLink(isActive, props)}>
-                        {opcion}
-                    </NavLink>
-                </li>
+                return (
+                    <li key={i} className={props.classMenuItems} onClick={(e)=>handleClick(props, e)}>
+
+                        {generarLink(props.userGuest, LinkOpt, props, opcion)}
+                    </li>
+                )
             })}
         </ul> 
     )

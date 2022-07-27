@@ -4,12 +4,12 @@
  */
 
  import { Navigate, Outlet } from 'react-router-dom';
- import { DASHBOARD } from '../../config/router/paths';
+ import { USUARIO, DASHBOARD } from '../../config/router/paths';
  import { useAuthContext } from '../../hooks/useAuthContext';
  
  export function PublicRoute(){
      
     const isAuthenticated = useAuthContext();
 
-    return isAuthenticated ? <Navigate to={DASHBOARD}/> : <Outlet />;
+    return isAuthenticated ? <Navigate to={USUARIO + DASHBOARD}/> : <Outlet />;
  }

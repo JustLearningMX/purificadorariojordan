@@ -11,5 +11,5 @@ export function PrivateRoute(){
     
     const isAuthenticated = useAuthContext();
 
-    return !isAuthenticated ? <Navigate replace to={(USUARIOS + LOGIN)} /> : <Outlet />;
+    return !isAuthenticated ? <Navigate to={(USUARIOS + LOGIN)} /> : <Outlet />;
 }

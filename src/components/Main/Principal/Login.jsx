@@ -1,17 +1,20 @@
+import { useState } from 'react';
 import estilos from '../../../css/Formularios.module.css';
-import { TextField, Button } from '@mui/material';
-import login from '../../../assets/login.jpg';
+import { TextField } from '@mui/material';
+import { LoadingButton } from '@mui/lab'
+import loginImg from '../../../assets/login.jpg';
 import { inputsValidationSchema } from '../../../config/inputsValidationSchema';
 import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
 import { SIGNUP } from '../../../config/router/paths';
-// import { reCAPTCHA } from "react-google-recaptcha";
-// import { useRef } from 'react';
-
+import { loginDeUsuario } from '../../../data/peticionesMongo/loginUsuario';
+import { useAuthContext } from '../../../hooks/useAuthContext';
+import { localStorageObj } from '../../../data/localStorage';
 
 export function Login(){
     
-    // const captchaRef = useRef(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const { login } = useAuthContext();
 
     const formik = useFormik({
         initialValues: {
@@ -19,8 +22,20 @@ export function Login(){
         password: '',
         },
         validationSchema: inputsValidationSchema,
-        onSubmit: (values) => {
-        alert(JSON.stringify(values, null, 2));
+        onSubmit: async ({telefono, password}) => {
+                        
+            setIsLoading(true);
+            const data = await loginDeUsuario(telefono, password);
+            
+            if(data.error) {
+                const mensaje = data.servidor ? "Error en el servidor. Intente más tarde" : data.message + '. Verifique sus credenciales';
+                setIsLoading(false);
+                console.log(mensaje);
+            } else {
+                //Guardamos al USUARIO y su TOKEN en el localStorage
+                localStorageObj['usuarioLogueado'](data.user);
+                login();
+            }
         },
     });
 
@@ -55,12 +70,16 @@ export function Login(){
                             helperText={formik.touched.password && formik.errors.password}
                             className={estilos.input_form}
                         />
-
-                        {/* <reCAPTCHA 
-                            sitekey={process.env.REACT_APP_SITE_KEY}
-                            ref={captchaRef}
-                        /> */}
-                        <Button className={estilos.submittButtonLogin} variant="contained" type='submit'>Iniciar sesión</Button>
+                        
+                        <LoadingButton 
+                            loading={isLoading}
+                            variant="contained"
+                            type='submit'
+                            size="large"
+                            className={estilos.submittButtonLogin}
+                        >
+                            Iniciar sesión
+                        </LoadingButton>
                 </form>
                 <p className={estilos.pieForm}>¿No dispone de una cuenta?
                     <span className={estilos.linkRegistrar}> 
@@ -69,7 +88,7 @@ export function Login(){
                 </p>
             </div>        
             <div className={estilos.formularioImagenContainer}>
-                <img className={estilos.formImage} src={login} alt="Inicio de sesión" />
+                <img className={estilos.formImage} src={loginImg} alt="Inicio de sesión" />
             </div>
         </section>
     );
