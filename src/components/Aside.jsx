@@ -1,13 +1,13 @@
 import styles from '../css/Aside.module.css';
+import stylesIcons from '../css/varios/Icons.module.css';
 import { MenuUser } from './Header/MenuUser';
-import { Icono } from './Icono';
 import { MenuFold } from '@styled-icons/remix-fill';
 
 export function Aside(){
     return (
         <aside className={styles.aside}>
             <figure className={`${styles.foldMenu_icon_container}`} >
-                <Icono icon={MenuFold} height='50%' width='auto' cursor={true} function={()=>handleClick()} />
+                <MenuFold onClick={()=>handleClick()} className={stylesIcons.icono} />
             </figure>            
             <MenuUser 
                 classContainer={styles.userMenu_container} 

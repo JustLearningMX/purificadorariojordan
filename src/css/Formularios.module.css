@@ -32,7 +32,7 @@
     color: var(--second-a-text-color);
     font-size: 1.5rem;
     font-weight: 500;
-    padding: 15px 0 3px 0;
+    padding: 15px 0 5px 0;
 }
 
 .leyendaForm{
@@ -61,6 +61,7 @@
   border: none;
   color: var(--main-a-text-color);
   height: 50px;
+  margin-top: 1rem;
 }
 
 .submittButtonLogin:hover,
@@ -72,7 +73,7 @@
 .pieForm{
     font-size: .80rem;
     color: var(--third-text-color);
-    margin: 2rem 0 1rem 0;
+    margin: 2rem 0 1rem 0;    
 }
   
 .pieForm > span{
@@ -82,13 +83,17 @@
 
 /* Laptops*/
 @media screen and (min-width: 1024px) {    
+    .formularioContainer {
+        height: auto;
+    }
+
     .ingresarDatos,
     .formularioImagenContainer {
         height: 430px;
     }
-    
-    .formularioImagenContainer {
-        height: 430px;
+
+    .ingresarDatos {
+        padding-left: 2rem;
     }
     
     .formImage {
@@ -98,6 +103,7 @@
     
     .tituloForm {
         font-size: 1.3rem;
+        padding-bottom: 8px;
     }
     
     .leyendaForm{
@@ -107,12 +113,17 @@
     .submittButtonLogin,
     .submittButtonRegister {
       font-size: .9rem;
-      font-weight: 500;
+      font-weight: 600;
     }
     
     .submittButtonLogin:hover,
     .submittButtonRegister:hover{
       opacity: 0.9;
       background-color: var(--button-main-bg);
+    }
+    
+    /* Solo para el formulario de Registrar Usuario */
+    .containerRegistro {
+        height: 600px;
     }
 }

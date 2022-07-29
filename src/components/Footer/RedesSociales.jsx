@@ -1,5 +1,5 @@
 import styles from '../../css/Footer.module.css';
-import { Icono } from '../Icono';
+import stylesIcons from '../../css/varios/Icons.module.css';
 import { Facebook } from '@styled-icons/material';
 import { InstagramWithCircle } from '@styled-icons/entypo-social';
 import { Whatsapp } from '@styled-icons/bootstrap';
@@ -13,13 +13,13 @@ export function RedesSociales(){
             
             <div className={`${styles.icons_container}`} >
                 <figure className={`${styles.figure}`} >
-                    <Icono icon={Facebook} height='100%' color='var(--second-text-color)' width='auto' cursor={true} function={()=>handleClick('Facebook')} />
+                    <Facebook onClick={()=>handleClick('Facebook')} className={ `${stylesIcons.icono} ${stylesIcons.iconoFooter}`} />
                 </figure>
                 <figure className={`${styles.figure}`} >
-                    <Icono icon={InstagramWithCircle} height='100%' color='var(--second-text-color)' width='auto' cursor={true} function={()=>handleClick('Instagram')} />
+                    <InstagramWithCircle onClick={()=>handleClick('Instagram')} className={ `${stylesIcons.icono} ${stylesIcons.iconoFooter}` } />
                 </figure>
                 <figure className={`${styles.figure}`} >
-                    <Icono icon={Whatsapp} height='100%' color='var(--second-text-color)' width='auto' cursor={true} function={()=>handleClick('Whatsapp')} />
+                    <Whatsapp onClick={()=>handleClick('Whatsapp')} className={ `${stylesIcons.icono} ${stylesIcons.iconoFooter}` } />
                 </figure>
             </div>
             

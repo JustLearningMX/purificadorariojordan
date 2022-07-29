@@ -9,8 +9,8 @@ import { NOSOTROS, SERVICIOS, CONTACTO, USUARIOS, SIGNUP, LOGIN,
 import { Nosotros } from '../components/Main/Principal/Nosotros';
 import { Servicios } from '../components/Main/Principal/Servicios';
 import { Contacto } from '../components/Main/Principal/Contacto';
-import { Signup } from '../components/Main/Principal/Signup';
 import { Login } from '../components/Main/Principal/Login';
+import { Signup } from '../components/Main/Principal/Signup';
 import { Welcome } from './Main/Usuario/Welcome.jsx';
 import { Dashboard } from './Main/Usuario/Dashboard.jsx';
 import { Compras } from './Main/Usuario/Compras.jsx';

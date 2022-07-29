@@ -1,3 +1,7 @@
+/**FUNCIÓN QUE REALIZA UNA PETICIÓN HTTP DEL TIPO POST
+ * A LA API PARA GENERAR EL TOKEN DEL USUARIO (AUTENTICACIÓN)
+ */
+
 import { requestApi } from '../../utils/httpClient';
 
 export async function loginDeUsuario(telefono, password){

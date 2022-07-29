@@ -1,10 +1,10 @@
 import { Navbar } from "./Header/Navbar";
-import { Icono } from "./Icono";
 import { AccountCircle } from '@styled-icons/material';
 import { Menu } from '@styled-icons/material';
 
 import img from '../assets/logo-principal.png';
 import styles from '../css/Header.module.css';
+import stylesIcons from '../css/varios/Icons.module.css';
 import stylesAside from '../css/Aside.module.css';
 import { MenuUser } from "./Header/MenuUser";
 
@@ -15,10 +15,10 @@ export function Header() {
                 <img src={img} alt="Logo purificadora rio jordan" className={styles.logo_principal} />
             </figure>
             <figure className={`${styles.userMenu_icon_container}`} >
-                <Icono icon={AccountCircle} height='50%' width='auto' cursor={true} function={()=>handleClick('menuUser')} />
+                <AccountCircle onClick={()=>handleClick('menuUser')} className={stylesIcons.icono} />
             </figure>
             <figure className={`${styles.mainMenu_icon_container}`} >
-                <Icono icon={Menu} height='50%' width='auto' cursor={true} function={()=>handleClick('menuMain')} />
+                <Menu onClick={()=>handleClick('menuMain')} className={stylesIcons.icono} />
             </figure>
             <Navbar 
                 classContainer={styles.mainMenu_container} 

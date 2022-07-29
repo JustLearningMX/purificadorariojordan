@@ -1,0 +1,19 @@
+.spinner{
+    animation: spinner 1s linear infinite;
+    width: 15%;
+    color: var(--second-bg-color);
+}
+
+/*Animación*/
+@keyframes spinner{
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Laptops*/
+@media screen and (min-width: 1024px) { 
+    .spinner{
+        width: 7%;
+    }
+}

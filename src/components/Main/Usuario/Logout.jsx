@@ -7,6 +7,8 @@ import { Done } from '@styled-icons/material';
 import { Clear } from '@styled-icons/material';
 
 import { useAuthContext } from '../../../hooks/useAuthContext'
+import { Navigate } from 'react-router-dom';
+import { USUARIOS, LOGIN } from '../../../config/router/paths';
 
 const arrayBotones = [
     {nombre: 'Si', color: blue, icon: <Done />}, 
@@ -14,9 +16,10 @@ const arrayBotones = [
 ];
 
 export function Logout() {
+
+    const { isAuthenticated, logout } = useAuthContext();
     
     const navigate = useNavigate();
-    const { logout } = useAuthContext();
 
     const [open, setOpen] = useState(true);
     const [selectedValue, setSelectedValue] = useState('No');
@@ -25,15 +28,19 @@ export function Logout() {
         if(selectedValue === "Si") {
             logout();
         }
-    }, [selectedValue, logout]);
+    }, [selectedValue, logout, isAuthenticated]);
 
     const handleClose = (value) => {
         setOpen(false);
         value === "Si" ? setSelectedValue(value) : navigate(-1);
     }
 
+    if(!isAuthenticated) {
+        return <Navigate to={(USUARIOS + LOGIN)} />
+    }
+
     return (
-        <section style={{height: "calc(100vh - 140px)"}}>
+        <section style={{height: "calc(100vh - 110px)"}}>
             <Dialogs 
                 selectedValue={selectedValue}
                 open={open}

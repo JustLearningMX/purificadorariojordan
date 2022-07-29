@@ -1,5 +1,5 @@
 import styles from '../../css/Footer.module.css';
-import { Icono } from '../Icono';
+import stylesIcons from '../../css/varios/Icons.module.css';
 import { LocationOn } from '@styled-icons/material';
 
 export function Direccion() {
@@ -10,7 +10,7 @@ export function Direccion() {
             </div>
             <div className={`${styles.direccionDatos_container}`}>
                 <figure className={`${styles.figure}`} >
-                    <Icono icon={LocationOn} height='auto' color='var(--second-text-color)' width='auto' cursor={false} function={null} />
+                    <LocationOn className={ `${stylesIcons.icono} ${stylesIcons.iconoDireccion}` } />
                 </figure>
                 <div className={`${styles.direccionDatos}`}>
                     <p>Calle Necaxa #1705</p>

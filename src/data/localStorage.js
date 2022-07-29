@@ -4,4 +4,9 @@ export const localStorageObj = {
             "usuarioLogueadoPurificadora", JSON.stringify(userToken)
         );
     },
+    usuario: (Usuario)=>{
+        window.localStorage.setItem(
+            "UsuarioPurificadora", JSON.stringify(Usuario)
+        );
+    },
 };

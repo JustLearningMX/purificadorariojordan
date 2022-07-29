@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
-export function Icono(props) {
+function estilos (props){    
 
     const color = props.color ? props.color : 'var(--second-a-text-color)';
     const width = props.width ? props.width : '100%';
     const height = props.height ? props.height : '100%';
     const objFit = props.objFit ? props.objFit : 'cover';
-    
-    const handleClick = props.function ? props.function : null;
 
     const IconStyled = styled(props.icon)`
         color: ${color};
@@ -25,11 +23,18 @@ export function Icono(props) {
         @media screen and (min-width: 1024px) {
             height: 55%;
         }
-
     `
+    return IconStyled;
+}
+
+export function Icono(props) {
+
+    const Icono = estilos(props);
+    
+    const handleClick = props.function ? props.function : null;
 
     return(
-            <IconStyled 
+            <Icono 
                 onClick={handleClick}
             />
     );

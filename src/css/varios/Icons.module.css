@@ -1,0 +1,33 @@
+.icono {
+    color: var(--second-a-text-color);
+    width: auto;
+    height: 45%;
+    object-fit:  cover;
+    cursor:  pointer;
+}
+
+.iconoFooter {
+    color: var(--second-text-color);
+    height: 100%;
+}
+
+.iconoDireccion {
+    color: var(--second-text-color);
+    height: auto;
+    cursor: auto;
+}
+    
+        
+/* Tabletas y Laptops*/
+@media screen and (min-width: 600px) {
+    .icono {
+        height: 60%;
+    }
+}
+
+/* Laptops*/
+@media screen and (min-width: 1024px) {
+    .icono {
+        height: 55%;
+    }
+}

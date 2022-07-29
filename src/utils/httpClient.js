@@ -25,8 +25,7 @@ export async function requestApi(path, req, arrBody, token) {
     return await resultado.json();
   }
   else if(req === "POST")
-  {
-      // usuario: arrUsuario ? JSON.stringify(arrUsuario) : null,
+  {      
     const resultado = await fetch(API + path, {
       //Se concatena api y path
       mode: "cors",

@@ -11,6 +11,5 @@
    const userToken = JSON.parse(window.localStorage.getItem("usuarioLogueadoPurificadora"));
      
     const {isAuthenticated} = useAuthContext();
-
     return isAuthenticated ? <Navigate to={`/usuario/${userToken.id}/`}/> : <Outlet />;
  }

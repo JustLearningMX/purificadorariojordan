@@ -1,0 +1,221 @@
+.sectionContainer{
+    margin: -1rem;
+    width: auto;
+}
+
+.articleCabecera{
+    background: url('../../assets/landinPage/cabecera_fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+}
+
+.infoCabeceraContainer{
+    /* border: 1px solid blue; */
+    width: 125px;
+    font-size: .7rem;
+    margin-left: 1rem;
+}
+
+.subtitulo{
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.parrafo{
+    margin-top: 5px;
+}
+
+/*****########*****/
+.articlePensamos{
+    /* border: 1px solid green; */
+    margin: 2.5rem 0;
+    padding: .5rem;
+    display: flex;
+}
+
+.imagenesPensamosContainer{
+    /* border: 1px solid blue; */
+    width: 40%;
+    display: grid;
+    grid-template: 
+        "img1 img2" 70px
+        "img3 img4" 70px / 70px 70px;
+    gap: 5px; 
+    padding: 5px;
+    align-content: center;
+    justify-content: center;
+}
+
+.divImg1{
+    grid-area: img1;
+}
+
+.divImg2{
+    grid-area: img2;
+}
+
+.divImg3{
+    grid-area: img3;
+}
+
+.divImg4{
+    grid-area: img4;
+}
+
+.imagenesPensamos{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    border: 1px solid #f0f0f0;
+}
+
+.imagenesPensamos:hover{
+    filter: opacity(0.9);
+    transform: scale(1.04);    
+}
+
+.imagenesPensamos1{
+    border-radius: 0 25px 0 25px;
+}
+
+.imagenesPensamos2{
+    border-radius: 25px 0 25px 0;
+}
+
+.imagenesPensamos3{
+    border-radius: 25px 0 25px 0;
+}
+
+.imagenesPensamos4{
+    border-radius: 0 25px 0 25px;
+}
+
+.infoPensamosContainer{
+    /* border: 1px solid crimson; */
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.subtituloPensamos{
+    color: var(--second-a-text-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: .5rem;
+}
+
+.parrafoPensamos{
+    color: var(--main-a-text-color);
+    font-size: .7rem;
+}
+
+
+
+/***********************************
+************************************
+tablets --> 600px + 
+************************************
+************************************/
+@media screen and (min-width: 600px) and (max-width: 1023px) {
+    .articleCabecera{
+        min-height: 330px;
+    }
+    
+    .infoCabeceraContainer{
+        width: 250px;
+        font-size: 1.2rem;
+        margin-left: 40px;
+    }
+
+    /*****########*****/
+    .articlePensamos{
+        margin-top: 3.5rem;
+        padding: 1rem;
+    }
+
+    .imagenesPensamosContainer{
+        grid-template: 
+            "img1 img2" 130px
+            "img3 img4" 130px / 130px 130px;
+        gap: 10px; 
+        padding: 7px;
+    }
+
+    .infoPensamosContainer{
+        padding: 20px;
+    }
+
+    .subtituloPensamos{
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: .7rem;
+    }
+
+    .parrafoPensamos{
+        font-size: 1rem;
+    }
+}
+
+
+/***********************************
+************************************
+Laptops/Computadoras --> 1024px + 
+************************************
+************************************/
+@media screen and (min-width: 1024px){
+    
+    .articleCabecera{
+        min-height: 330px;
+    }
+    
+    .infoCabeceraContainer{
+        /* border: 1px solid blue; */
+        width: 280px;
+        font-size: 1.4rem;
+        margin-left: 100px;
+    }
+    
+    .subtitulo{
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
+    
+    .parrafo{
+        margin-top: 10px;
+    }
+
+
+    /*-------------------**/
+
+    .imagenesPensamosContainer{
+        width: 40%;
+        grid-template: 
+            "img1 img2" 180px
+            "img3 img4" 180px / 180px 180px;
+        gap: 15px; 
+        padding: 10px;
+    }
+
+    .infoPensamosContainer{
+        width: 60%;
+        padding: 20px;
+    }
+
+    .subtituloPensamos{
+        font-size: 1.7rem;
+        font-weight: 700;
+        margin-bottom: .9rem;
+    }
+
+    .parrafoPensamos{
+        font-size: 1.2rem;
+    }
+}

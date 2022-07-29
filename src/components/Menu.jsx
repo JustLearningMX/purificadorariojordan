@@ -1,4 +1,4 @@
-import { generatePath, NavLink} from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import { NOSOTROS, SERVICIOS, CONTACTO, USUARIOS, SIGNUP, LOGIN,
          COMPRAS, DASHBOARD, REPORTES, VENTAS, CATALOGOS, LOGOUT, 
          EMPRESA, ADMIN} from '../config/router/paths.js';
