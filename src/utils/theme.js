@@ -15,6 +15,15 @@ export const theme = createTheme({
 
 /**   Formas de usarlo en un componente
 
+- Importar 
+  import { theme }  from '../../utils/theme';
+  import { ThemeProvider } from '@mui/material/styles';
+
+- En el return del componente envolver todo con ThemeProvider y usar el theme creado
+  <ThemeProvider theme={theme}>
+    ...mi componente
+  </ThemeProvider>
+
 sx={{
     border: {xs: '1px solid blue', sm: '1px solid red'},
     height: {xs: '90px', sm: '70px'},

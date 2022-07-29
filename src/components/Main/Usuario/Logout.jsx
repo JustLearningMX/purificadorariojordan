@@ -5,6 +5,7 @@ import { blue } from '@mui/material/colors';
 import { red } from '@mui/material/colors';
 import { Done } from '@styled-icons/material';
 import { Clear } from '@styled-icons/material';
+import { CustomizedSnackbars } from '../../../components/Varios/SnackBar';
 
 import { useAuthContext } from '../../../hooks/useAuthContext'
 import { Navigate } from 'react-router-dom';
@@ -18,6 +19,12 @@ const arrayBotones = [
 export function Logout() {
 
     const { isAuthenticated, logout } = useAuthContext();
+
+    const [dataSnackBar, setDataSnackBar] = useState({
+        mensaje: null,
+        severity: null,
+        countOpens: 0
+    });
     
     const navigate = useNavigate();
 
@@ -26,9 +33,12 @@ export function Logout() {
 
     useEffect( ()=>{
         if(selectedValue === "Si") {
-            logout();
+            setDataSnackBar({mensaje: "Vuelva pronto.", severity: "info", countOpens: 1 });
+            setTimeout(()=>{
+                logout();
+            },1800);      
         }
-    }, [selectedValue, logout, isAuthenticated]);
+    }, [selectedValue, logout, isAuthenticated, dataSnackBar.countOpens]);
 
     const handleClose = (value) => {
         setOpen(false);
@@ -49,7 +59,13 @@ export function Logout() {
                 titulo='¿Desea cerrar la sesión?'
                 display='flex'
             />
+            {cargarSnackBar(dataSnackBar)}
         </section>
-    );
-    
+    );    
+}
+
+function cargarSnackBar({mensaje, severity, countOpens}){    
+    if(countOpens > 0 && countOpens < 2) {
+        return <CustomizedSnackbars mensaje={mensaje} severity={severity} countOpens={countOpens} />
+    }
 }

@@ -1,5 +1,7 @@
 import { useState, useEffect, forwardRef } from 'react';
 import {Stack, Snackbar, Alert as MuiAlert} from '@mui/material';
+import { theme }  from '../../utils/theme';
+import { ThemeProvider } from '@mui/material/styles';
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -21,13 +23,28 @@ export function CustomizedSnackbars({mensaje, severity, countOpens}) {
     };
 
     return (
-        <Stack spacing={2} sx={{ width: '100%' }}>
-            <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity={severity} sx={{ width: '100%', fontSize: '.7rem' }}>
-                    {mensaje}
-                </Alert>
-            </Snackbar>
-        </Stack>
+        <ThemeProvider theme={theme}>
+            <Stack 
+                spacing={2} 
+                sx={{
+                    width: '100%',
+                }}
+            >
+
+                <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+                    <Alert 
+                        onClose={handleClose} 
+                        severity={severity} 
+                        sx={{
+                            width: '100%',
+                            fontSize: {xs: '.8rem', sm: '.9rem', lg: '1rem'},
+                        }}
+                    >
+                        {mensaje}
+                    </Alert>
+                </Snackbar>
+            </Stack>
+        </ThemeProvider>
     );
 }
 

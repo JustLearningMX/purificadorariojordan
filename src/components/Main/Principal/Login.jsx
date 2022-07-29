@@ -10,7 +10,7 @@ import { USUARIOS, SIGNUP } from '../../../config/router/paths';
 import { loginDeUsuario } from '../../../data/peticionesMongo/loginUsuario';
 import { useAuthContext } from '../../../hooks/useAuthContext';
 import { localStorageObj } from '../../../data/localStorage';
-import { CustomizedSnackbars } from '../../../components/Varios/SnackBar'
+import { CustomizedSnackbars } from '../../../components/Varios/SnackBar';
 
 export function Login(){
     
@@ -44,7 +44,7 @@ export function Login(){
                 setDataSnackBar({mensaje: mensaje, severity: "success", countOpens: (dataSnackBar.countOpens+1) });
                 setTimeout(()=>{
                     login();
-                },2500);          
+                },1800);          
             }
         },
     });
@@ -109,8 +109,7 @@ export function Login(){
     );
 }
 
-function cargarSnackBar({mensaje, severity, countOpens}){
-    
+function cargarSnackBar({mensaje, severity, countOpens}){    
     if(countOpens > 0) {
         return <CustomizedSnackbars mensaje={mensaje} severity={severity} countOpens={countOpens} />
     }
