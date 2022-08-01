@@ -1,60 +1,76 @@
-import { useState } from 'react';
 import estilos from '../../../css/Formularios.module.css';
+import { useState, useEffect } from 'react';
 import { TextField } from '@mui/material';
-import { LoadingButton } from '@mui/lab'
-import registerImg from '../../../assets/register.jpg';
-import { inputsValidationSchemaSignup } from '../../../config/inputsValidationSchema';
+import { LoadingButton } from '@mui/lab';
+import { inputsValidationSchemaDashDatos } from '../../../config/inputsValidationSchema';
 import { useFormik } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
-import { USUARIOS, LOGIN } from '../../../config/router/paths';
-import { signupDeUsuario } from '../../../data/peticionesMongo/signupUsuario';
+import { updateUsuario } from '../../../data/peticionesMongo/updateUsuario';
 import { CustomizedSnackbars } from '../../../components/Varios/SnackBar';
+import { localStorageObj } from '../../../data/localStorage';
+import { useAuthContext } from '../../../hooks/useAuthContext';
 
-export function Signup() {
+export function DashDatos() {
+
+    const { isUserUpdate, setIsUserUpdate } = useAuthContext();
+
+    const user = JSON.parse(window.localStorage.getItem("UsuarioPurificadora"));
+    const userToken = JSON.parse(window.localStorage.getItem("usuarioLogueadoPurificadora"));
     
+    const [usuario, setUsuario] = useState(user);
+
+    useEffect(()=> {
+        if(isUserUpdate){
+            setUsuario(JSON.parse(window.localStorage.getItem("UsuarioPurificadora")));
+            setIsUserUpdate(false);
+        }
+    }, [isUserUpdate, setIsUserUpdate]);
+
     const [isLoading, setIsLoading] = useState(false);
     const [dataSnackBar, setDataSnackBar] = useState({
         mensaje: null,
         severity: null,
         countOpens: 0
     });
-    
-    let navigate = useNavigate();
 
     const formik = useFormik({
+        
         initialValues: {
-            nombre: '',
-            apellido: '',
-            telefono: '',
-            email: '',
-            password: '',
+            nombre: usuario.nombre ? usuario.nombre : '',
+            apellido: usuario.apellidos ? usuario.apellidos : '',
+            tipo: usuario.tipo ? usuario.tipo : '',
+            email: usuario.email ? usuario.email : '',
+            telefono: usuario.telefono ? usuario.telefono : '',
         },
-        validationSchema: inputsValidationSchemaSignup,
-        onSubmit: async ({nombre, apellido, telefono, email, password}) => { 
-            
-                        
+        validationSchema: inputsValidationSchemaDashDatos,
+        onSubmit: async ({nombre, apellido, tipo, email, telefono}) => {
+
             setIsLoading(true);
-            const data = await signupDeUsuario(nombre, apellido, telefono, email, password);
+            const body = {nombre, apellidos: apellido, tipo, email, telefono};
+
+            const data = await updateUsuario(body);
             
             if(data.error) {
                 const mensaje = data.servidor ? "Error en el servidor. Intente más tarde. " + data.message : data.message;
                 setDataSnackBar({mensaje: mensaje, severity: "error", countOpens: (dataSnackBar.countOpens+1) });                
                 setIsLoading(false);
-            } else { 
-                const mensaje = data.message + '. Inicie sesión con sus credenciales';                
+            } else {                
+                userToken.email = email;
+                userToken.telefono = telefono;
+                localStorageObj['usuario'](data.usuario);
+                localStorageObj['usuarioLogueado'](userToken);
+                setIsUserUpdate(true);
+                const mensaje = data.message;
                 setDataSnackBar({mensaje: mensaje, severity: "success", countOpens: (dataSnackBar.countOpens+1) });
-                setTimeout(()=>{
-                    navigate(`${USUARIOS}${LOGIN}`, { replace: true });
-                },1800);  
+                setIsLoading(false);
             }
         },
     });
 
-    return (
+    return(
         <section className={estilos.formularioContainer}>
             <div className={`${estilos.ingresarDatos} ${estilos.containerRegistro}`}>
-                <h3 className={estilos.tituloForm}>Regístrese</h3>
-                <p className={estilos.leyendaForm}>Y goce de los beneficios que tenemos para usted.</p>
+                <h3 className={estilos.tituloForm}>Datos personales</h3>
+                {/* <p className={estilos.leyendaForm}>Datos esenciales.</p> */}
                 <form className={estilos.solicitar_form} onSubmit={formik.handleSubmit}>
                     <TextField 
                         id="nombre" 
@@ -83,21 +99,22 @@ export function Signup() {
                         error={formik.touched.apellido && Boolean(formik.errors.apellido)}
                         helperText={formik.touched.apellido && formik.errors.apellido}
                         className={estilos.input_form}
-                    />                    
+                    />     
 
                     <TextField 
-                        id="telefono" 
-                        name="telefono"
-                        label="Telefono" 
+                        id="tipo" 
+                        name="tipo"
+                        label="Tipo de usuario" 
                         variant="filled"
-                        type='number'
+                        type='text'
                         size="small"
-                        value={formik.values.telefono}
+                        disabled
+                        value={formik.values.tipo}
                         onChange={formik.handleChange}
-                        error={formik.touched.telefono && Boolean(formik.errors.telefono)}
-                        helperText={formik.touched.telefono && formik.errors.telefono}
+                        error={formik.touched.tipo && Boolean(formik.errors.tipo)}
+                        helperText={formik.touched.tipo && formik.errors.tipo}
                         className={estilos.input_form}
-                    />                    
+                    />                  
 
                     <TextField 
                         id="email" 
@@ -111,35 +128,21 @@ export function Signup() {
                         error={formik.touched.email && Boolean(formik.errors.email)}
                         helperText={formik.touched.email && formik.errors.email}
                         className={estilos.input_form}
-                    />
+                    />         
 
                     <TextField 
-                        id="password" 
-                        name="password" 
-                        label="Contraseña" 
-                        type='password'
-                        variant="filled"                            
-                        value={formik.values.password}
-                        onChange={formik.handleChange}
-                        error={formik.touched.password && Boolean(formik.errors.password)}
-                        helperText={formik.touched.password && formik.errors.password}
-                        className={estilos.input_form}
+                        id="telefono" 
+                        name="telefono"
+                        label="Telefono" 
+                        variant="filled"
+                        type='number'
                         size="small"
-                    />
-
-                    <TextField 
-                        id="passwordConfirmation" 
-                        name="passwordConfirmation" 
-                        label="Repetir contraseña" 
-                        type='password'
-                        variant="filled"                            
-                        value={formik.values.passwordConfirmation}
+                        value={formik.values.telefono}
                         onChange={formik.handleChange}
-                        error={formik.touched.passwordConfirmation && Boolean(formik.errors.passwordConfirmation)}
-                        helperText={formik.touched.passwordConfirmation && formik.errors.passwordConfirmation}
+                        error={formik.touched.telefono && Boolean(formik.errors.telefono)}
+                        helperText={formik.touched.telefono && formik.errors.telefono}
                         className={estilos.input_form}
-                        size="small"
-                    />
+                    />  
                     
                     <LoadingButton 
                         loading={isLoading}
@@ -149,17 +152,9 @@ export function Signup() {
                         className={estilos.submittButtonRegister}
                         sx={{marginTop: '.7rem'}}
                     >
-                        Registrar
+                        Actualizar
                     </LoadingButton>
                 </form>
-                <p className={estilos.pieForm}>Ya dispone de una cuenta?
-                    <span className={estilos.linkRegistrar}> 
-                        <Link to={USUARIOS + LOGIN}> Inicie sesión aquí </Link>
-                    </span>
-                </p>
-            </div>        
-            <div className={`${estilos.formularioImagenContainer} ${estilos.containerRegistro}`}>
-                <img className={estilos.formImage} src={registerImg} alt="Registrar usuario nuevo" />
             </div>
             {cargarSnackBar(dataSnackBar)}
         </section>

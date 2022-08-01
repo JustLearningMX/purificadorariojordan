@@ -3,10 +3,12 @@ import spinner from '../../../css/varios/Spinner.module.css';
 import { Skeleton, Stack } from '@mui/material';
 
 import { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Spinner } from '@styled-icons/evil';
 import { getUsuario } from '../../../data/peticionesMongo/getUsuario';
 import { localStorageObj } from '../../../data/localStorage';
 import { crearUsuario } from '../../../utils/crearUsuario';
+import { EMPRESA, VENTAS, DASHBOARD } from '../../../config/router/paths';
 
 export function Welcome() {
 
@@ -14,6 +16,8 @@ export function Welcome() {
     const UsuarioPurificadora = JSON.parse(window.localStorage.getItem("UsuarioPurificadora"));
 
     const [ usuario, setUsuario ] = useState(UsuarioPurificadora);
+
+    let navigate = useNavigate();
 
     const fetchDataUser = useCallback( async ()=>{
         const data = await getUsuario(userToken.token);
@@ -31,12 +35,24 @@ export function Welcome() {
 
     }, [userToken.token]);
 
-    useEffect( ()=>{
-        if(!usuario) {
-            fetchDataUser();
-        }
-    }, [fetchDataUser, usuario]);
+    
 
+    const redireccionarUsuario = useCallback(()=> {        
+
+        //Una vez que se han traído los datos del usuario, se valida si es de la empresa o cliente
+        usuario && (userToken.admin || userToken.empleado) ? 
+        navigate(`${EMPRESA}${VENTAS}`, { replace: true }) : 
+        navigate((`/usuario/${usuario.id}/` + DASHBOARD), { replace: true });
+
+    }, [navigate, userToken.admin, userToken.empleado, usuario]);
+
+    useEffect( ()=>{
+
+        !usuario ? fetchDataUser() : redireccionarUsuario();
+
+    }, [fetchDataUser, usuario, redireccionarUsuario]);
+
+    //Si el usuario aún no se crea, se muestra una ventana de espera
     if(!usuario) {
         return (
             <section className={estilos.seccionSpinner}>
@@ -49,11 +65,4 @@ export function Welcome() {
             </section>
         )
     }
-
-    return (
-        <section className={estilos.seccionPrincipal} style={{height: "calc(100vh - 140px)"}}>
-            <h2>Bienvenido {`${usuario.nombre} ${usuario.apellidos}`}</h2>
-
-        </section>
-    );
 }

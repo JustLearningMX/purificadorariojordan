@@ -8,9 +8,9 @@ export const AuthContext = createContext(); // --> Tiene el objeto Provider
 
 export function AuthContextProvider( {children}) {
 
-    // const isLogueado = window.localStorage.getItem("usuarioLogueadoPurificadora") ? true : false;
+    const [isUserUpdate, setIsUserUpdate] = useState(false);
 
-    const [isAuthenticated, setIsAuthenticated] = useState(window.localStorage.getItem("usuarioLogueadoPurificadora"));    
+    const [isAuthenticated, setIsAuthenticated] = useState(window.localStorage.getItem("usuarioLogueadoPurificadora"));
 
     const login = useCallback(() => setIsAuthenticated(true), []);
 
@@ -24,9 +24,11 @@ export function AuthContextProvider( {children}) {
         {
             login,
             logout,
-            isAuthenticated
+            isAuthenticated,
+            isUserUpdate,
+            setIsUserUpdate
         }
-    ), [isAuthenticated, login, logout]);
+    ), [isAuthenticated, login, logout, isUserUpdate]);
 
     return (
         <AuthContext.Provider value={value}>

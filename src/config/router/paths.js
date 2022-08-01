@@ -12,6 +12,9 @@ export const LOGIN = 'login';
 export const USUARIO = '/usuario/:id';
 export const WELCOME = 'inicio';
 export const DASHBOARD = 'dashboard';
+export const DASHDATOS = 'datos';
+export const DASHDIRECCION = 'direccion';
+export const DASHMISCELANEOS = 'miscelaneos';
 export const COMPRAS = 'compras';
 export const LOGOUT = 'logout';
 

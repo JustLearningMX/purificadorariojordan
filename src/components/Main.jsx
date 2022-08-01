@@ -3,9 +3,13 @@ import { PrivateRoute } from './router/PrivateRoute'
 import { UserEmpresaRoutes } from './router/UserEmpresaRoutes';
 import { UserAdminsRoutes } from './router/UserAdminsRoutes';
 import { UserGuestRoutes } from './router/UserGuestRoutes';
+import { DashDatos } from './Main/Usuario/DashDatos';
+import { DashDireccion } from './Main/Usuario/DashDireccion';
+import { DashMiscelaneos } from './Main/Usuario/DashMiscelaneos';
 import { NOSOTROS, SERVICIOS, CONTACTO, USUARIOS, SIGNUP, LOGIN,
          USUARIO, WELCOME, DASHBOARD, COMPRAS, LOGOUT, 
-         EMPRESA, VENTAS, ADMIN, CATALOGOS, REPORTES } from '../config/router/paths.js';
+         EMPRESA, VENTAS, ADMIN, CATALOGOS, REPORTES,
+         DASHDATOS, DASHDIRECCION, DASHMISCELANEOS } from '../config/router/paths.js';
 import { Nosotros } from '../components/Main/Principal/Nosotros';
 import { Servicios } from '../components/Main/Principal/Servicios';
 import { Contacto } from '../components/Main/Principal/Contacto';
@@ -40,10 +44,15 @@ export function Main() {
           </Route>
 
           {/**MENÚ DE USUARIOS, OPCIONES PARA TODOS */}
-          <Route path={USUARIO} element={ <PrivateRoute/> }>           
+          <Route path={USUARIO} element={ <PrivateRoute/> }>
             <Route index element={<Welcome />} />
             <Route path={WELCOME} element={<Welcome />} />
-            <Route path={DASHBOARD} element={<Dashboard />} />
+            <Route path={DASHBOARD} element={<Dashboard />} >
+                <Route path={DASHBOARD} element={ <Navigate replace to={DASHDATOS} /> } />
+                <Route path={DASHDATOS} element={<DashDatos />} />
+                <Route path={DASHDIRECCION} element={<DashDireccion />} />
+                <Route path={DASHMISCELANEOS} element={<DashMiscelaneos />} />
+            </Route>
             <Route path={COMPRAS} element={<Compras />} />
             <Route path={LOGOUT} element={<Logout />} />
           </Route>
