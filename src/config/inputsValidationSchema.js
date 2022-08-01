@@ -1,7 +1,5 @@
 import * as yup from 'yup';
 
-const usuario = JSON.parse(window.localStorage.getItem("UsuarioPurificadora"));
-
 const phoneRegex = RegExp(
   /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
 );
@@ -91,4 +89,20 @@ export const inputsValidationSchemaSignup = yup.object({
       .email("Formato de email inválido."),
     telefonoRecuperacion: yup
       .string(),
+  });
+
+  export const inputsValidationSchemaDashPassword = yup.object({
+    viejoPassword: yup
+      .string()
+      .min(8, 'El password debe ser de mínimo 8 caracteres')
+      .required('El password es requerido'),
+    nuevoPassword: yup
+      .string()
+      .min(8, 'El password debe ser de mínimo 8 caracteres')
+      .required('El nuevo password es requerido'),
+    nuevoPasswordAgain: yup
+        .string()
+        .min(8, 'El password debe ser de mínimo 8 caracteres')
+        .oneOf([yup.ref('nuevoPassword'), null], 'El password nuevo debe coincidir')
+        .required('El password es requerido'),
   });

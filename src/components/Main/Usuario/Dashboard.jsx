@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { CardUser } from './CardUser';
+import { DashEliminarCuenta } from './DashEliminarCuenta';
 import { Outlet } from 'react-router-dom';
 import { Link} from 'react-router-dom';
-import { DASHBOARD, DASHDATOS, DASHDIRECCION, DASHMISCELANEOS } from '../../../config/router/paths.js';
+import { DASHBOARD, DASHDATOS, DASHDIRECCION, DASHMISCELANEOS, DASHPASSWORD } from '../../../config/router/paths.js';
 import styles from '../../../css/usuarios/Dashboard.module.css';
 import { useAuthContext } from '../../../hooks/useAuthContext';
 
@@ -29,7 +30,7 @@ export function Dashboard(){
             </article>
 
             <article className={styles.contenedorEliminar}>
-                Eliminar mi cuenta.
+                <DashEliminarCuenta />
             </article>
 
             <article className={styles.contenedorDatos}>
@@ -41,7 +42,10 @@ export function Dashboard(){
                         <Link to={`/usuario/${usuario.id}/` + DASHBOARD + '/' + DASHDIRECCION} onClick={()=>handleClick(1)}>Dirección</Link>
                     </div>
                     <div className={styles.links}>
-                        <Link to={`/usuario/${usuario.id}/` + DASHBOARD + '/' + DASHMISCELANEOS} onClick={()=>handleClick(2)}>Misceláneo</Link>
+                        <Link to={`/usuario/${usuario.id}/` + DASHBOARD + '/' + DASHPASSWORD} onClick={()=>handleClick(2)}>Contraseña</Link>
+                    </div>
+                    <div className={styles.links}>
+                        <Link to={`/usuario/${usuario.id}/` + DASHBOARD + '/' + DASHMISCELANEOS} onClick={()=>handleClick(3)}>Misceláneo</Link>
                     </div>
                 </div>
                 <div className={styles.formularios}>

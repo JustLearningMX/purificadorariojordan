@@ -1,4 +1,5 @@
 import estilos from '../../../css/Formularios.module.css';
+import stylesDashboard from '../../../css/usuarios/Dashboard.module.css';
 import { useState, useEffect } from 'react';
 import { TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
@@ -68,7 +69,7 @@ export function DashDatos() {
 
     return(
         <section className={estilos.formularioContainer}>
-            <div className={`${estilos.ingresarDatos} ${estilos.containerRegistro}`}>
+            <div className={`${estilos.ingresarDatos} ${estilos.containerRegistro} ${stylesDashboard.formularios_dashboard}`}>
                 <h3 className={estilos.tituloForm}>Datos personales</h3>
                 {/* <p className={estilos.leyendaForm}>Datos esenciales.</p> */}
                 <form className={estilos.solicitar_form} onSubmit={formik.handleSubmit}>
@@ -84,7 +85,6 @@ export function DashDatos() {
                         error={formik.touched.nombre && Boolean(formik.errors.nombre)}
                         helperText={formik.touched.nombre && formik.errors.nombre}
                         className={estilos.input_form}
-                        autoFocus
                     />
 
                     <TextField 

@@ -3,9 +3,8 @@
     grid-template: 
     "card" auto
     "datos" auto
-    "eliminar" 150px;
+    "eliminar" auto;
     gap: 1rem;
-    margin: 1rem 0;
 }
 
 .contenedorCard {
@@ -15,29 +14,36 @@
 .contenedorEliminar {
     grid-area: eliminar;
     box-shadow: 1px 1px 2px 1px rgb(166 166 166 / 60%);
+    padding: 1rem;
 }
 
 .contenedorDatos {
     grid-area: datos;
     box-shadow: 1px 1px 2px 1px rgb(166 166 166 / 60%);
-    min-height: 200px;
+    min-height: 100px;
 }
 
 .contenedorLinks {
     display: flex;
-    justify-content: space-around;
     padding: .3rem 0;
     color: var(--main-text-color);
+    font-size: .8rem;
 }
 
 .links {        
     padding-bottom: .2rem;
+    width: 100%;
+    text-align: center;    
+    border-bottom: 1px solid var(--third-text-color);
+    margin: 0 .2rem;
+    border-radius: 0 0 5px 0;
+    border-right: 1px solid var(--third-text-color); 
 }
 
 .links:hover,
 .link_selected {
-    color: var(--main-a-text-color);
-    border-bottom: .15rem solid var(--main-a-text-color);
+    color: var(--second-a-text-color);
+    font-weight: 600;
     opacity: 0.9;
     transition: .3s;
 }
@@ -46,13 +52,37 @@
     padding: .5rem 1rem;
 }
 
+.formularios_dashboard {
+    height: auto;
+}
+
+.eliminarCuentaContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eliminarCuenta_titulo {
+    color: var(--second-a-text-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.eliminarCuenta_leyenda {
+    font-size: .8rem;
+    color: var(--third-text-color);
+    margin: .5rem 0 1.2rem 0;
+}
+
 /* Tablets */
 @media screen and (min-width: 600px) {
     .contenedorPrincipal {
         grid-template: 
         "card datos" auto 
-        "eliminar datos" 150px / 275px 1fr;
+        "eliminar datos" minmax(100px, auto)
+        ". datos" auto / 275px 1fr;
         margin: 1.5rem 0;
+        align-content: start;        
     }
 }
 
@@ -60,9 +90,14 @@
 @media screen and (min-width: 1024px) {
     .contenedorPrincipal {
         grid-template: 
-        "card datos" auto 
-        "eliminar datos" 150px / 320px 450px;
+        "card datos" auto
+        "eliminar datos" minmax(100px, auto) 
+        ". datos" auto / 320px 450px;
         justify-content: center;
         margin: 2rem 0;
+    }
+
+    .contenedorLinks {
+        font-size: 1rem;
     }
 }

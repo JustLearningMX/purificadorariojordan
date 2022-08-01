@@ -6,10 +6,11 @@ import { UserGuestRoutes } from './router/UserGuestRoutes';
 import { DashDatos } from './Main/Usuario/DashDatos';
 import { DashDireccion } from './Main/Usuario/DashDireccion';
 import { DashMiscelaneos } from './Main/Usuario/DashMiscelaneos';
+import { DashPassword } from './Main/Usuario/DashPassword';
 import { NOSOTROS, SERVICIOS, CONTACTO, USUARIOS, SIGNUP, LOGIN,
          USUARIO, WELCOME, DASHBOARD, COMPRAS, LOGOUT, 
          EMPRESA, VENTAS, ADMIN, CATALOGOS, REPORTES,
-         DASHDATOS, DASHDIRECCION, DASHMISCELANEOS } from '../config/router/paths.js';
+         DASHDATOS, DASHDIRECCION, DASHPASSWORD, DASHMISCELANEOS } from '../config/router/paths.js';
 import { Nosotros } from '../components/Main/Principal/Nosotros';
 import { Servicios } from '../components/Main/Principal/Servicios';
 import { Contacto } from '../components/Main/Principal/Contacto';
@@ -51,6 +52,7 @@ export function Main() {
                 <Route path={DASHBOARD} element={ <Navigate replace to={DASHDATOS} /> } />
                 <Route path={DASHDATOS} element={<DashDatos />} />
                 <Route path={DASHDIRECCION} element={<DashDireccion />} />
+                <Route path={DASHPASSWORD} element={<DashPassword />} />
                 <Route path={DASHMISCELANEOS} element={<DashMiscelaneos />} />
             </Route>
             <Route path={COMPRAS} element={<Compras />} />

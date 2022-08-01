@@ -1,4 +1,5 @@
 import estilos from '../../../css/Formularios.module.css';
+import stylesDashboard from '../../../css/usuarios/Dashboard.module.css';
 import { useState, useEffect } from 'react';
 import { TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
@@ -69,8 +70,8 @@ export function DashMiscelaneos() {
 
     return(
         <section className={estilos.formularioContainer}>
-            <div className={`${estilos.ingresarDatos} ${estilos.containerRegistro}`}>
-                <h3 className={estilos.tituloForm}>Recuperación de Cuenta</h3>
+            <div className={`${estilos.ingresarDatos} ${estilos.containerRegistro} ${stylesDashboard.formularios_dashboard}`}>
+                <h3 className={estilos.tituloForm}>Varios</h3>
                 <form className={estilos.solicitar_form} onSubmit={formik.handleSubmit}>
                     <TextField 
                         id="emailRecuperacion" 
@@ -84,7 +85,6 @@ export function DashMiscelaneos() {
                         error={formik.touched.emailRecuperacion && Boolean(formik.errors.emailRecuperacion)}
                         helperText={formik.touched.emailRecuperacion && formik.errors.emailRecuperacion}
                         className={estilos.input_form}
-                        autoFocus
                     />    
 
                     <TextField 
