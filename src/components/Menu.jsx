@@ -1,7 +1,7 @@
 import { NavLink} from 'react-router-dom';
 import { NOSOTROS, SERVICIOS, CONTACTO, USUARIOS, SIGNUP, LOGIN,
          COMPRAS, DASHBOARD, REPORTES, VENTAS, CATALOGOS, LOGOUT, 
-         EMPRESA, ADMIN} from '../config/router/paths.js';
+         EMPRESA, ADMIN, USUARIO_} from '../config/router/paths.js';
 
 const generarLink = (isUserGuest, LinkOpt, props, opcion)=> {
 
@@ -28,11 +28,11 @@ export function Menu(props) {
                     (opcion === 'Contacto') ? CONTACTO :
                     (opcion === 'Login') ? (USUARIOS + LOGIN) : 
                     (opcion === 'Registro') ? (USUARIOS + SIGNUP) :
-                    (opcion === 'Mis compras') ? (`/usuario/${props.userId}/` + COMPRAS) :
-                    (opcion === 'Dashboard') ? (`/usuario/${props.userId}/` + DASHBOARD) :
+                    (opcion === 'Mis compras') ? (`/${USUARIO_}/${props.userId}/` + COMPRAS) :
+                    (opcion === 'Dashboard') ? (`/${USUARIO_}/${props.userId}/` + DASHBOARD) :
                     (opcion === 'Ventas') ? (EMPRESA + VENTAS) :
                     (opcion === 'Catálogos') ? (ADMIN + CATALOGOS) :
-                    (opcion === 'Reportes') ? (ADMIN + REPORTES) : (`/usuario/${props.userId}/` + LOGOUT);
+                    (opcion === 'Reportes') ? (ADMIN + REPORTES) : (`/${USUARIO_}/${props.userId}/` + LOGOUT);
 
                 return (
                     <li key={i} className={props.classMenuItems} onClick={(e)=>handleClick(props, e)}>

@@ -8,7 +8,7 @@ import { Spinner } from '@styled-icons/evil';
 import { getUsuario } from '../../../data/peticionesMongo/getUsuario';
 import { localStorageObj } from '../../../data/localStorage';
 import { crearUsuario } from '../../../utils/crearUsuario';
-import { EMPRESA, VENTAS, DASHBOARD } from '../../../config/router/paths';
+import { EMPRESA, VENTAS, DASHBOARD, USUARIO_ } from '../../../config/router/paths';
 
 export function Welcome() {
 
@@ -42,7 +42,7 @@ export function Welcome() {
         //Una vez que se han traído los datos del usuario, se valida si es de la empresa o cliente
         usuario && (userToken.admin || userToken.empleado) ? 
         navigate(`${EMPRESA}${VENTAS}`, { replace: true }) : 
-        navigate((`/usuario/${usuario.id}/` + DASHBOARD), { replace: true });
+        navigate((`/${USUARIO_}/${usuario.id}/` + DASHBOARD), { replace: true });
 
     }, [navigate, userToken.admin, userToken.empleado, usuario]);
 

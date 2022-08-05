@@ -1,9 +1,7 @@
-import { Avatar, Typography , Card, CardHeader, CardContent, Box } from '@mui/material';
+import { Avatar, Typography , Card, CardHeader, CardContent } from '@mui/material';
 import { stringAvatar } from '../../../utils/stringAvatar';
 import { theme }  from '../../../utils/theme';
 import { ThemeProvider } from '@mui/material/styles';
-// import { NavLink} from 'react-router-dom';
-// import { DASHBOARD, DASHDATOS, DASHDIRECCION, DASHMISCELANEOS } from '../../../config/router/paths.js';
 
 export function CardUser({usuarios}) {
     
@@ -58,12 +56,7 @@ export function CardUser({usuarios}) {
                         <Typography variant="h6" component="div" sx={{color: 'var(--second-a-text-color)', fontWeight: '600'}}>
                             Compras actuales:
                         </Typography>
-                    </CardContent>                 
-                    <Box>
-                        {/* <NavLink to={`/usuario/${usuario.id}/` + DASHBOARD + '/' + DASHDATOS}>Datos</NavLink>
-                        <NavLink to={`/usuario/${usuario.id}/` + DASHBOARD + '/' + DASHDIRECCION}>Dirección</NavLink>
-                        <NavLink to={`/usuario/${usuario.id}/` + DASHBOARD + '/' + DASHMISCELANEOS}>Misceláneo</NavLink> */}
-                    </Box>
+                    </CardContent>
                 </Card>
             </ThemeProvider>
         })

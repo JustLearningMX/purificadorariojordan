@@ -4,6 +4,7 @@
 
  import { Navigate, Outlet } from 'react-router-dom';
  import { useAuthContext } from '../../hooks/useAuthContext';
+ import { USUARIO_ } from '../../config/router/paths';
  
  export function UserAdminsRoutes() {
 
@@ -13,6 +14,6 @@
      
     const {isAuthenticated} = useAuthContext();
 
-    return (isAuthenticated && !admin) ? <Navigate to={`/usuario/${userToken.id}/`}/> : <Outlet />;
+    return (isAuthenticated && !admin) ? <Navigate to={`/${USUARIO_}/${userToken.id}/`}/> : <Outlet />;
           
  }

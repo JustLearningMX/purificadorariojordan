@@ -9,6 +9,7 @@ export const SIGNUP = 'signup';
 export const LOGIN = 'login';
 
 //LOS 3
+export const USUARIO_ = 'usuario';
 export const USUARIO = '/usuario/:id';
 export const WELCOME = 'inicio';
 export const DASHBOARD = 'dashboard';
@@ -26,4 +27,9 @@ export const VENTAS = 'ventas';
 //ADMINS
 export const ADMIN = '/administracion/';
 export const CATALOGOS = 'catalogos';
+export const CTL_CLIENTES = 'clientes';
+export const CTL_EMPLEADOS = 'empleados';
+export const CTL_PRODUCTOS = 'productos';
+export const CTL_PROVEEDORES = 'proveedores';
+export const CTL_SUCURSALES = 'sucursales';
 export const REPORTES = 'reportes';

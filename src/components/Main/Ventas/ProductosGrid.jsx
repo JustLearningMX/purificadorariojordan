@@ -4,8 +4,13 @@ import { ProductoCard } from './ProductoCard';
 export function ProductosGrid({arrayDeProductos, carrito, setCarrito}){
     return (
         <ul className={styles.productosContainer}>
-            {arrayDeProductos.map((producto, key)=>{
-                return <ProductoCard producto={producto} key={key} carrito={carrito} setCarrito={setCarrito}/>
+            {arrayDeProductos.map((producto)=>{
+                return <ProductoCard 
+                            producto={producto} 
+                            key={producto.id} 
+                            carrito={carrito} 
+                            setCarrito={setCarrito}
+                        />
             })}
         </ul>
     );

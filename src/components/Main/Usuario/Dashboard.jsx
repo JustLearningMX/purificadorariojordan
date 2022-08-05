@@ -3,7 +3,7 @@ import { CardUser } from './CardUser';
 import { DashEliminarCuenta } from './DashEliminarCuenta';
 import { Outlet } from 'react-router-dom';
 import { Link} from 'react-router-dom';
-import { DASHBOARD, DASHDATOS, DASHDIRECCION, DASHMISCELANEOS, DASHPASSWORD } from '../../../config/router/paths.js';
+import { DASHBOARD, DASHDATOS, DASHDIRECCION, DASHMISCELANEOS, DASHPASSWORD, USUARIO_ } from '../../../config/router/paths.js';
 import styles from '../../../css/usuarios/Dashboard.module.css';
 import { useAuthContext } from '../../../hooks/useAuthContext';
 
@@ -36,16 +36,16 @@ export function Dashboard(){
             <article className={styles.contenedorDatos}>
                 <div className={styles.contenedorLinks}>
                     <div className={styles.links}>
-                        <Link to={`/usuario/${usuario.id}/` + DASHBOARD + '/' + DASHDATOS} onClick={()=>handleClick(0)}>Datos</Link>
+                        <Link to={`/${USUARIO_}/${usuario.id}/` + DASHBOARD + '/' + DASHDATOS} onClick={()=>handleClick(0)}>Datos</Link>
                     </div>
                     <div className={styles.links}>
-                        <Link to={`/usuario/${usuario.id}/` + DASHBOARD + '/' + DASHDIRECCION} onClick={()=>handleClick(1)}>Dirección</Link>
+                        <Link to={`/${USUARIO_}/${usuario.id}/` + DASHBOARD + '/' + DASHDIRECCION} onClick={()=>handleClick(1)}>Dirección</Link>
                     </div>
                     <div className={styles.links}>
-                        <Link to={`/usuario/${usuario.id}/` + DASHBOARD + '/' + DASHPASSWORD} onClick={()=>handleClick(2)}>Contraseña</Link>
+                        <Link to={`/${USUARIO_}/${usuario.id}/` + DASHBOARD + '/' + DASHPASSWORD} onClick={()=>handleClick(2)}>Contraseña</Link>
                     </div>
                     <div className={styles.links}>
-                        <Link to={`/usuario/${usuario.id}/` + DASHBOARD + '/' + DASHMISCELANEOS} onClick={()=>handleClick(3)}>Misceláneo</Link>
+                        <Link to={`/${USUARIO_}/${usuario.id}/` + DASHBOARD + '/' + DASHMISCELANEOS} onClick={()=>handleClick(3)}>Misceláneo</Link>
                     </div>
                 </div>
                 <div className={styles.formularios}>

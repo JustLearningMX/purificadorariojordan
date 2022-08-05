@@ -23,7 +23,7 @@ export function ResumenDeCompras({productos}){
 
     const actualizarSubtotal = useCallback((precio, total)=>{
 
-        return parseInt(total) * precio;
+        return total * precio;
 
     },[]);
 
@@ -54,15 +54,15 @@ export function ResumenDeCompras({productos}){
     useEffect(()=>{            
         let suma = 0;
 
-        productos.map(([ [ {id, precio} ], total ])=>{
+        productos.map(([ [ {id, precio} ], total ])=>{            
             
             //SUBTOTAL
-            suma = suma + actualizarSubtotal(precio, total);
+            suma = suma + actualizarSubtotal(Number(precio.$numberDecimal), total);
 
             //DESCUENTO
             //Si es un garrafón de 20 lts
-            if(id === 1) {                                
-                actualizarDescuento(precio);                
+            if(id === '62758f71f313ddeef8859dae') {                                
+                actualizarDescuento(Number(precio.$numberDecimal));                
             }
 
             //TOTAL

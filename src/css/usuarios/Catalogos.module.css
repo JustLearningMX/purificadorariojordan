@@ -1,0 +1,126 @@
+.contenedorPrincipal {
+    /* border: 1px solid blue; */
+    display: grid;
+    grid-template: 
+    "menu" auto
+    "buscadorYagregar" auto
+    "items" minmax(350px, auto);
+    gap: .2rem;
+}
+
+.contenedorLinks {
+    /* border: 1px solid red; */
+    grid-area: menu;
+    display: flex;
+    padding: .3rem 0;
+    color: var(--main-text-color);
+    font-size: .7rem;
+}
+
+.links {        
+    padding-bottom: .2rem;
+    width: 100%;
+    text-align: center;    
+    border-bottom: 1px solid var(--third-text-color);
+    margin: 0 .2rem;
+    border-radius: 0 0 5px 0;
+    border-right: 1px solid var(--third-text-color); 
+}
+
+.links:hover,
+.link_selected {
+    color: var(--second-a-text-color);
+    font-weight: 600;
+    opacity: 0.9;
+    transition: .3s;
+}
+
+.contenedorBuscadorYagregar {
+    /* border: 1px solid green; */
+    grid-area: buscadorYagregar;
+}
+
+.contenedorOutlet {
+    /* border: 1px solid fuchsia; */
+    grid-area: items;
+}
+
+.seccionSpinner {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+
+.listaDeProductosContainer{
+    font-size: .6rem;
+    text-align: center;
+    padding: 10px 5px;
+    overflow-y: auto;
+}
+
+.productosContainer{
+    /* border: 1px solid blue; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 7px;    
+}
+
+.itemProductos{
+    list-style: none;
+    box-shadow: 1px 1px 2px 1px rgb(166 166 166 / 60%);
+    background-color: #f8f9fa;
+    padding: 5px 3px;  
+    color: var(--main-text-color);
+    border-radius: 5px;
+}
+
+.nombreProducto{
+    font-size: .75rem;
+}
+
+.icono {    
+    width: auto;
+    height: 1.3rem;
+    object-fit:  cover;
+    cursor:  pointer;
+}
+
+.iconoEditar {
+    color: var(--second-a-text-color);
+}
+
+.iconoEliminar {
+    color: #dc3545;
+}    
+        
+/* Tabletas y Laptops*/
+@media screen and (min-width: 600px) {
+    .icono {
+        height: 1.7rem;
+    }
+
+    .productosContainer{
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 10px;
+    }
+
+    .itemProductos{
+        font-size: 1rem;
+    }
+    
+    .nombreProducto{
+        font-size: 1.2rem;
+    }
+
+    .contenedorLinks {
+        font-size: 1rem;
+    }
+}
+
+/* Laptops*/
+@media screen and (min-width: 1024px) {
+    .icono {
+        height: 2rem;
+    }
+}

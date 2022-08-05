@@ -9,7 +9,7 @@ export function CarritoDeCompras({productos, carrito, setCarrito}){
             {productos.map(([ [ {id, nombre, medida, cantidad, precio} ], total ])=>{
                 return (
                     <li className={styles.listaItems} key={id}>
-                        {total} x {nombre} de {cantidad} {medida} -- ${precio.toFixed(2)}
+                        {total} x {nombre} de {cantidad} {medida} -- ${Number(precio.$numberDecimal).toFixed(2)}
                         <input                        
                             type="submit" 
                             className={`${styles.quitarProducto} ${styles.btnEnCarrito}`}

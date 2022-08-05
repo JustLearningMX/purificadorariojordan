@@ -10,7 +10,9 @@ import { DashPassword } from './Main/Usuario/DashPassword';
 import { NOSOTROS, SERVICIOS, CONTACTO, USUARIOS, SIGNUP, LOGIN,
          USUARIO, WELCOME, DASHBOARD, COMPRAS, LOGOUT, 
          EMPRESA, VENTAS, ADMIN, CATALOGOS, REPORTES,
-         DASHDATOS, DASHDIRECCION, DASHPASSWORD, DASHMISCELANEOS } from '../config/router/paths.js';
+         DASHDATOS, DASHDIRECCION, DASHPASSWORD, DASHMISCELANEOS,
+         CTL_CLIENTES, CTL_PRODUCTOS, CTL_EMPLEADOS, CTL_PROVEEDORES, 
+         CTL_SUCURSALES } from '../config/router/paths.js';
 import { Nosotros } from '../components/Main/Principal/Nosotros';
 import { Servicios } from '../components/Main/Principal/Servicios';
 import { Contacto } from '../components/Main/Principal/Contacto';
@@ -23,6 +25,11 @@ import { Logout } from './Main/Usuario/Logout.jsx';
 import { Ventas } from './Main/Usuario/Ventas.jsx';
 import { Catalogos } from './Main/Usuario/Catalogos.jsx';
 import { Reportes } from './Main/Usuario/Reportes.jsx';
+import { Clientes } from '../components/Main/Catalogos/Clientes';
+import { Empleados } from '../components/Main/Catalogos/Empleados';
+import { Productos } from '../components/Main/Catalogos/Productos';
+import { Proveedores } from '../components/Main/Catalogos/Proveedores';
+import { Sucursales } from '../components/Main/Catalogos/Sucursales';
 
 import styles from "../css/Main.module.css";
 
@@ -68,7 +75,14 @@ export function Main() {
           {/**MENÚ DE USUARIOS DE LA EMPRESA: SÓLO ADMINIS */}
           <Route path={ADMIN} element={ <UserAdminsRoutes/> }>
             <Route path={ADMIN} element={ <Navigate replace to={CATALOGOS} /> } />
-            <Route path={CATALOGOS} element={<Catalogos />} />
+            <Route path={CATALOGOS} element={<Catalogos />} >
+              <Route path={CATALOGOS} element={ <Navigate replace to={CTL_CLIENTES} /> } />
+              <Route path={CTL_CLIENTES} element={<Clientes />} />
+              <Route path={CTL_EMPLEADOS} element={<Empleados />} />
+              <Route path={CTL_PRODUCTOS} element={<Productos />} />
+              <Route path={CTL_PROVEEDORES} element={<Proveedores />} />
+              <Route path={CTL_SUCURSALES} element={<Sucursales />} />
+            </Route>
             <Route path={REPORTES} element={<Reportes />} />
           </Route>
 
