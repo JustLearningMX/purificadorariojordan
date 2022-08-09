@@ -24,8 +24,6 @@ export function Catalogos() {
                     <Link to={`${ADMIN}${CATALOGOS}/` + CTL_SUCURSALES} onClick={()=>handleClick(4)}>Sucursales</Link>
                 </div>
             </article >
-            <article className={styles.contenedorBuscadorYagregar}>
-            </article>
             <article className={styles.contenedorOutlet} >
                 <Outlet />
             </article>

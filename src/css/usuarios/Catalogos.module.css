@@ -3,7 +3,7 @@
     display: grid;
     grid-template: 
     "menu" auto
-    "buscadorYagregar" auto
+    /* "buscadorYagregar" auto */
     "items" minmax(350px, auto);
     gap: .2rem;
 }
@@ -37,7 +37,7 @@
 
 .contenedorBuscadorYagregar {
     /* border: 1px solid green; */
-    grid-area: buscadorYagregar;
+    /* grid-area: buscadorYagregar; */
 }
 
 .contenedorOutlet {
@@ -62,7 +62,7 @@
 .productosContainer{
     /* border: 1px solid blue; */
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
     gap: 7px;    
 }
 
@@ -75,8 +75,17 @@
     border-radius: 5px;
 }
 
+.divDatosContainer {
+    line-height: 13px;
+}
+
 .nombreProducto{
     font-size: .75rem;
+    font-weight: 600;
+}
+
+.divContarBotones {
+    margin-top: .5rem;
 }
 
 .icono {    
@@ -101,7 +110,7 @@
     }
 
     .productosContainer{
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         gap: 10px;
     }
 
@@ -109,6 +118,10 @@
         font-size: 1rem;
     }
     
+    .divDatosContainer {
+        line-height: 22px;
+    }
+
     .nombreProducto{
         font-size: 1.2rem;
     }

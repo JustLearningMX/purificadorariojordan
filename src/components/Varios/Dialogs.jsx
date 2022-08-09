@@ -6,6 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 
+/**Funcion que muestra una ventana de Dialogo Modal */
 export function Dialogs(props) {
 
     const { onClose, selectedValue, open } = props;

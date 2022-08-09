@@ -4,6 +4,8 @@ import { Spinner } from '@styled-icons/evil';
 import spinner from '../../../css/varios/Spinner.module.css';
 import { ProductoCard } from '../../../components/Main/Catalogos/ProductoCard';
 import styles from '../../../css/usuarios/Catalogos.module.css';
+import { green } from '@mui/material/colors';
+import { Clear } from '@styled-icons/material';
 
 export function Productos(){
 
@@ -14,7 +16,7 @@ export function Productos(){
         const data = await getProductos(userToken.token);
         if(data.error){
             console.log('Error al descargar la lista de productos...');
-          } else {  
+          } else {
             setProductos(data.productos);
           }
     }, [userToken.token]);
@@ -31,21 +33,18 @@ export function Productos(){
         </section>
     ) :
     (
-        <section className={`${styles.listaDeProductosContainer}`}>
-            {/* <ProductosGrid arrayDeProductos={productos} carrito={null} setCarrito={null} gestionarPeticion={gestionarPeticion} clases={clasesProductoCard}/> */}
+        <section className={`${styles.listaDeProductosContainer}`}>            
+            <article className={styles.contenedorBuscadorYagregar}>
+            </article>
             <ul className={styles.productosContainer}>
                 {productos.map((producto)=>{
                     return <ProductoCard 
                                 producto={producto} 
-                                key={producto.id} 
-                                gestionarPeticion={gestionarPeticion}
+                                key={producto.id}
+                                setProductos={setProductos}
                             />
                 })}
             </ul>
         </section>
     );
-}
-
-function gestionarPeticion(peticion, producto){
-    console.log(peticion, producto);
 }
