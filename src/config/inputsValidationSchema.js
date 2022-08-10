@@ -107,10 +107,9 @@ export const inputsValidationSchemaDashPassword = yup.object({
       .required('El password es requerido'),
 });
 
-export const inputsValidationSchemaAltasProductos = yup.object({
+export const inputsValidationSchemaModificarProductos = yup.object({
   id: yup
-    .string()
-    .required('El id es requerido'),
+    .string(),
   nombre: yup
     .string()
     .min(5, 'El nombre debe ser de mínimo 5 caracteres')
@@ -123,6 +122,25 @@ export const inputsValidationSchemaAltasProductos = yup.object({
     .number()
     .required('La cantidad es requerida'),
   precio_: yup
+      .number()
+      .required('El precio es requerido'),
+});
+
+export const inputsValidationSchemaCrearProductos = yup.object({
+  id: yup
+    .string(),
+  nombre: yup
+    .string()
+    .min(5, 'El nombre debe ser de mínimo 5 caracteres')
+    .required('El nombre es requerido'),
+  medida: yup
+      .string()
+      .min(3, 'La medida debe ser de mínimo 3 caracteres')
+      .required('La medida es requerida'),
+  cantidad: yup
+    .number()
+    .required('La cantidad es requerida'),
+  precio: yup
       .number()
       .required('El precio es requerido'),
 });

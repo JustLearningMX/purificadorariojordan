@@ -1,3 +1,4 @@
+/**Dibuja la pantalla principal del Area de Catalogos */
 import { Outlet } from 'react-router-dom';
 import { Link} from 'react-router-dom';
 import { ADMIN, CATALOGOS, CTL_CLIENTES, CTL_EMPLEADOS, CTL_PRODUCTOS, CTL_PROVEEDORES, CTL_SUCURSALES } from '../../../config/router/paths.js';
@@ -5,6 +6,7 @@ import styles from '../../../css/usuarios/Catalogos.module.css';
 
 export function Catalogos() {
 
+    //Va creando cada pestanha
     return (
         <section className={styles.contenedorPrincipal}>
             <article className={styles.contenedorLinks}>
@@ -24,13 +26,14 @@ export function Catalogos() {
                     <Link to={`${ADMIN}${CATALOGOS}/` + CTL_SUCURSALES} onClick={()=>handleClick(4)}>Sucursales</Link>
                 </div>
             </article >
-            <article className={styles.contenedorOutlet} >
+            <article className={styles.contenedorOutlet} > {/**Aqui se pinta la info de cada pestanha */}
                 <Outlet />
             </article>
         </section>
     );
 }
 
+/**Funcion que resalta la pestanha actual seleccionada */
 function handleClick(pos){
 
     const links = document.getElementsByClassName(`${styles.links}`);

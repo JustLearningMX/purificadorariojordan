@@ -37,6 +37,7 @@ export function ProductoCard({producto, setProductos}){
         setOpen(true);
     }
     const handleClose = (value) => {
+        console.log(value)
         setOpen(false);
         if(value === "Si") setSelectedValue(value);
     }
@@ -105,6 +106,7 @@ export function ProductoCard({producto, setProductos}){
             array={producto}
             peticion='updateProducto'
             setProductos={setProductos}
+            opcionBtn='Modificar'
         />
         <Dialogs 
             selectedValue={selectedValue_}
