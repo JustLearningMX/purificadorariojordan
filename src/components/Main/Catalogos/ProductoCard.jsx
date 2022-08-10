@@ -37,7 +37,6 @@ export function ProductoCard({producto, setProductos}){
         setOpen(true);
     }
     const handleClose = (value) => {
-        console.log(value)
         setOpen(false);
         if(value === "Si") setSelectedValue(value);
     }

@@ -1,14 +1,17 @@
 import { useEffect, useState, useCallback } from 'react';
 import styles from '../../../css/usuarios/Ventas.module.css'
 
+/**Componente que renderiza la seccion del subtotal, descto y total */
 export function ResumenDeCompras({productos}){
 
-    const [subTotal, setSubTotal] = useState('');
-    const [descuento, setDescuento] = useState('');
-    const [total, setTotal] = useState('');
-    let [garrafonesActuales, setGarrafonesActuales] = useState(0);
-    const [promo] = useState(10);
+    const [subTotal, setSubTotal] = useState(''); //A pagar antes del descuento 
+    const [descuento, setDescuento] = useState(''); //Descuento por programa 10x1 gratis
+    const [total, setTotal] = useState(''); //Total a pagar
+    let [garrafonesActuales, setGarrafonesActuales] = useState(0); //Total de garrafones previos del cliente
+    const [promo] = useState(10); //Numero de garrafones que debe tener para ganar uno gratis
+    const [ isGarrafon, setIsGarrafon] = useState(false); //Verifica si se ha comprado un Garrafon
 
+    //Eventos para cambios en los Input
     const cambiosEnSubtotal = (event)=>{
         setSubTotal(event.target.value);
     }
@@ -21,19 +24,21 @@ export function ResumenDeCompras({productos}){
         setTotal(event.target.value);
     }
 
+    /**Actualiza el subtotal */
     const actualizarSubtotal = useCallback((precio, total)=>{
 
         return total * precio;
 
     },[]);
 
+    /**Actualiza el descuento */
     const actualizarDescuento = useCallback((precio)=>{
 
-        if(garrafonesActuales < promo){
+        //Condicion: si llega a 11 garrafones, se asigna el descuento        
+        if(garrafonesActuales <= promo){
             setGarrafonesActuales(garrafonesActuales++);
-        }
-
-        if(garrafonesActuales === promo) {
+        } 
+        else if(garrafonesActuales > promo) {
 
             console.log(`Felicidades, ha ganado llenados gratis y estás ahorrando`);
             setGarrafonesActuales(0);
@@ -44,15 +49,19 @@ export function ResumenDeCompras({productos}){
     },[garrafonesActuales, promo, descuento]);
 
     const actualizarTotal = useCallback(()=>{
-
         if(descuento){
             setTotal( subTotal - descuento);
         }
 
-    }, [descuento, subTotal]);
+        if(!isGarrafon) {
+            setTotal( subTotal - 0);
+        }
+
+    }, [descuento, subTotal, isGarrafon]);
 
     useEffect(()=>{            
         let suma = 0;
+        let conteoGarrafones = 0;
 
         productos.map(([ [ {id, precio} ], total ])=>{            
             
@@ -61,19 +70,21 @@ export function ResumenDeCompras({productos}){
 
             //DESCUENTO
             //Si es un garrafón de 20 lts
-            if(id === '62758f71f313ddeef8859dae') {                                
-                actualizarDescuento(Number(precio.$numberDecimal));                
+            if(id === '62f2a17281de05ae2869feab') {                                
+                actualizarDescuento(Number(precio.$numberDecimal));
+                conteoGarrafones++;              
             }
 
             //TOTAL
             //Actualizar el total
-            actualizarTotal()
+            actualizarTotal();
             
 
             return null;
         });
 
         setSubTotal(suma);
+        setIsGarrafon(conteoGarrafones > 0 ? true : false);  
         
         if(productos.length <= 0) {
             setDescuento('');
@@ -81,7 +92,12 @@ export function ResumenDeCompras({productos}){
             setTotal('');
         }
 
-    },[productos, actualizarSubtotal, actualizarDescuento, actualizarTotal]);
+        if(!isGarrafon) {
+            setDescuento(0);
+            actualizarTotal();
+        }
+
+    },[productos, actualizarSubtotal, actualizarDescuento, actualizarTotal, isGarrafon]);
 
 
     return ( <>

@@ -77,27 +77,3 @@ export function Ventas() {
         </section>
     );
 }
-
-const arrayDeProductos = [
-    {
-        id: 1,
-        nombre: 'Garrafón',
-        medida: 'litros',
-        cantidad: 20,
-        precio: 18,
-    },
-    {
-        id: 2,
-        nombre: 'Galón',
-        medida: 'litros',
-        cantidad: 4,
-        precio: 5,
-    },
-    {
-        id: 3,
-        nombre: 'Litro',
-        medida: 'litros',
-        cantidad: 1,
-        precio: 1.5,
-    }
-];
