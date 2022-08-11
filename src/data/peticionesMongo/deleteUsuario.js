@@ -3,14 +3,16 @@
 
  import { requestApi } from '../../utils/httpClient';
 
-export async function deleteUsuario(){
+export async function deleteUsuario(body){
+
+   // body = body ? body : null;
      
-    const userToken = JSON.parse(window.localStorage.getItem("usuarioLogueadoPurificadora"));
+   const userToken = JSON.parse(window.localStorage.getItem("usuarioLogueadoPurificadora"));
 
    const tokenUsuario = userToken ? 'Bearer ' + userToken.token : '';
    
    try {
-      const data = await requestApi('/usuarios/delete', 'DELETE', null, tokenUsuario);
+      const data = await requestApi('/usuarios/delete', 'DELETE', body, tokenUsuario);
       
       return data;
 

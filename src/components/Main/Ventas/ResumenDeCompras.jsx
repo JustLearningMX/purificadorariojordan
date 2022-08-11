@@ -15,15 +15,13 @@ export function ResumenDeCompras({productos}){
     const cambiosEnSubtotal = (event)=>{
         setSubTotal(event.target.value);
     }
-
     const cambiosEnDescuento = (event)=>{
         setDescuento(event.target.value);
     }
-
     const cambiosEnTotal = (event)=>{
         setTotal(event.target.value);
     }
-
+    
     /**Actualiza el subtotal */
     const actualizarSubtotal = useCallback((precio, total)=>{
 

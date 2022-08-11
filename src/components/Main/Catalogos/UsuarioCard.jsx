@@ -22,7 +22,7 @@ const arrayBotonesEliminar = [
     {nombre: 'Cancelar', color: red, icon: <Clear />}
 ];
 
-export function ProductoCard({producto, setProductos}){
+export function UsuarioCard({usuario, setUsuarios}){
     
     const [dataSnackBar, setDataSnackBar] = useState({ //Despliega un mensaje temporal
         mensaje: null,
@@ -43,32 +43,33 @@ export function ProductoCard({producto, setProductos}){
 
     /**Opciones para la Modal Eliminar */
     const [open_, setOpen_] = useState(false);
-    const [selectedValue_, setSelectedValue_] = useState({opcion: 'Cancelar', producto: null});
+    const [selectedValue_, setSelectedValue_] = useState({opcion: 'Cancelar', usuario: null});
     const handleOpen_ = ()=>{
         setOpen_(true);
     }
-    const handleClose_ = (producto, value) => {
+    const handleClose_ = (usuario, value) => {
         setOpen_(false);
         if(value === "Eliminar") {
-            setSelectedValue_({opcion: 'Eliminar', producto: producto});
+            setSelectedValue_({opcion: 'Eliminar', usuario: usuario});
         }
     }
 
     const eliminarItem = useCallback( async ()=>{
-        const { id } = selectedValue_.producto;
-        const data = await Peticiones.deleteProducto(id);
+        const { id } = selectedValue_.usuario;
+        const body = { id };
+        const data = await Peticiones.deleteUsuario(body);
         if(data.error){
             const mensaje = data.servidor ? "Error en el servidor. Intente más tarde" + data.message : 'Error al eliminar el Item. ' + data.message;                
             setDataSnackBar({mensaje: mensaje, severity: "error", countOpens: (dataSnackBar.countOpens+1) });
         } else {
             const mensaje = "Item eliminado correctamente.";
             setDataSnackBar({mensaje: mensaje, severity: "success", countOpens: (dataSnackBar.countOpens+1) });
-            setSelectedValue_({opcion: 'Cancelar', producto: null});
+            setSelectedValue_({opcion: 'Cancelar', usuario: null});
             setTimeout(()=>{
-                setProductos(null);
-            },1200);
+                setUsuarios(null);
+            },1400);
         }
-    }, [selectedValue_.producto, setProductos, dataSnackBar.countOpens]);
+    }, [selectedValue_.usuario, setUsuarios, dataSnackBar.countOpens]);
 
     /**Si se desea eliminar un Item */
     useEffect(()=>{
@@ -78,45 +79,49 @@ export function ProductoCard({producto, setProductos}){
         }
     },[selectedValue_.opcion, eliminarItem]);
 
-    return (<li className={styles.itemProductos}>
-        
-        <div className={styles.divDatosContainer}>
-            <p className={styles.nombreProducto}>
-                {producto.nombre}
-            </p>
-            <p className={styles.cantidadProducto}>
-                {`${producto.cantidad} ${producto.medida}`}
-            </p>
-            <p className={styles.precioProducto}>
-                {producto.precio.$numberDecimal ? `$${Number(producto.precio.$numberDecimal).toFixed(2)}` : `$${Number(producto.precio).toFixed(2)}`}
-            </p>
-        </div>
-        <div className={styles.divContarBotones}>
-            <Edit className={`${styles.iconoEditar} ${styles.icono}`} onClick={handleOpen} />
-            <RemoveCircle className={`${styles.iconoEliminar} ${styles.icono}`} onClick={handleOpen_} />
-        </div>
-        <ModalForm 
-            selectedValue={selectedValue}
-            open={open}
-            onClose={handleClose}
-            botones={arrayBotones}
-            titulo='Modifique los datos.'
-            display='flex'
-            array={producto}
-            peticion='updateProducto'
-            setData={setProductos}
-            opcionBtn='Modificar'
-        />
-        <Dialogs 
-            selectedValue={selectedValue_}
-            open={open_}
-            onClose={(value)=>handleClose_(producto, value)}
-            botones={arrayBotonesEliminar}
-            titulo={`¿Confirma que desea eliminar el producto ${producto.nombre}?`}
-            display='flex'
-        />
-        {cargarSnackBar(dataSnackBar)} 
-    </li>);
+    return (
+        <li className={styles.itemProductos}>
+            
+            <div className={styles.divDatosContainer}>
+                <p className={styles.nombreProducto}>
+                    {usuario.nombre ? usuario.nombre : 'Desconocido'}
+                </p>
+                <p className={styles.cantidadProducto}>
+                    {usuario.apellidos ? usuario.apellidos : 'Desconocido'}
+                </p>
+                <p className={styles.precioProducto}>
+                    {`Tel. ${usuario.telefono}`}
+                </p>
+                <p className={styles.nombreProducto}>
+                    {usuario.tipo}
+                </p>
+            </div>
+            <div className={styles.divContarBotones}>
+                <Edit className={`${styles.iconoEditar} ${styles.icono}`} onClick={handleOpen} />
+                <RemoveCircle className={`${styles.iconoEliminar} ${styles.icono}`} onClick={handleOpen_} />
+            </div>
+            <ModalForm 
+                selectedValue={selectedValue}
+                open={open}
+                onClose={handleClose}
+                botones={arrayBotones}
+                titulo='Modifique los datos.'
+                display='flex'
+                array={usuario}
+                peticion='updateUsuario'
+                setData={setUsuarios}
+                opcionBtn='Modificar'
+            />
+            <Dialogs 
+                selectedValue={selectedValue_}
+                open={open_}
+                onClose={(value)=>handleClose_(usuario, value)}
+                botones={arrayBotonesEliminar}
+                titulo={`¿Confirma que desea eliminar el usuario ${usuario.nombre}?`}
+                display='flex'
+            />
+            {cargarSnackBar(dataSnackBar)} 
+        </li>);
 }
 
 

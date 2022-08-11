@@ -6,15 +6,16 @@ export class Usuario
     tipo;
     email;
     telefono;
-    rfc;
+    password;
+    direccion;
     ciudad;
     estado;
     cp;
-    telefonoRecuperacion;
-    direccion;
+    rfc;
     emailRecuperacion;
+    telefonoRecuperacion;
 
-    constructor(id, nombre, apellidos, tipo, email, telefono, rfc, ciudad, estado, cp, telefonoRecuperacion, direccion, emailRecuperacion){
+    constructor(id, nombre, apellidos, tipo, email, telefono, password, rfc, ciudad, estado, cp, telefonoRecuperacion, direccion, emailRecuperacion){
 
         this.id = id ? id : null;;
         this.nombre = nombre ? nombre : null;
@@ -22,6 +23,7 @@ export class Usuario
         this.tipo = tipo ? tipo : null;
         this.email = email ? email : null;
         this.telefono = telefono ? telefono : null;
+        this.password = password ? password : null;
         this.rfc = rfc ? rfc : null;
         this.ciudad = ciudad ? ciudad : null;
         this.estado = estado ? estado : null;

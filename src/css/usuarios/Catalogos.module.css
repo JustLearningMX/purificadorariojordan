@@ -78,7 +78,7 @@
 .productosContainer{
     /* border: 1px solid blue; */
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     gap: 10px;
 }
 
@@ -92,7 +92,7 @@
 }
 
 .divDatosContainer {
-    line-height: 13px;
+    line-height: 15px;
 }
 
 .nombreProducto{
@@ -126,7 +126,7 @@
     }
 
     .productosContainer{
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
         gap: 15px;
     }
 

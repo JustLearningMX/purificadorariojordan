@@ -144,3 +144,48 @@ export const inputsValidationSchemaCrearProductos = yup.object({
       .number()
       .required('El precio es requerido'),
 });
+
+export const inputsValidationSchemaCrearUsuario = yup.object({
+  id: yup
+    .string(),
+  nombre: yup
+    .string()
+    .min(3, 'El nombre debe ser de mínimo 3 caracteres')
+    .required('El nombre es requerido'),
+  apellidos: yup
+    .string()
+    .min(3, 'El apellido debe ser de mínimo 3 caracteres')
+    .required('El apellido es requerido'),
+  tipo: yup
+    .string()
+    .required('El tipo de usuario es requerido'),
+  email: yup
+    .string()
+    .email("Formato de email inválido."),
+  telefono: yup
+    .string()
+    .matches(phoneRegex, "Número de teléfono inválido. Deben ser 10 números")
+    .required('El teléfono es requerido'),
+  password: yup
+    .string()
+    .min(8, 'El password debe ser de mínimo 8 caracteres')
+    .required('El password es requerido'),
+  direccion: yup
+    .string(),
+  ciudad: yup
+    .string(),
+  estado: yup
+    .string(),
+  cp: yup
+    .string()
+    .min(5, 'El CP deben ser 5 números')
+    .max(5, 'El CP deben ser 5 números'),
+  rfc: yup
+    .string()
+    .matches(rfcRegex, "Ingrese un RFC completo, incluya homoclave"),
+  emailRecuperacion: yup
+    .string()
+    .email("Formato de email inválido."),
+  telefonoRecuperacion: yup
+    .string(),
+});

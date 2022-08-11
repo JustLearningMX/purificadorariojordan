@@ -10,8 +10,8 @@ import spinner from '../../../css/varios/Spinner.module.css';
 
 export function Ventas() {    
     const [carrito, setCarrito] = useState([]); //Array con los ID de los productos elegidos
-    const [productos, setProductos] = useState([]); //Array con productos y cantidades
-    const [productosBD, setProductosBD] = useState(null);
+    const [productos, setProductos] = useState([]); //Array de arrays con productos y cantidades
+    const [productosBD, setProductosBD] = useState(null); //Todos los productos de la BD
 
     const userToken = JSON.parse(window.localStorage.getItem("usuarioLogueadoPurificadora"));    
 

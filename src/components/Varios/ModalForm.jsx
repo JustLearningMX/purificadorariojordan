@@ -10,6 +10,7 @@ import { LoadingButton } from '@mui/lab';
 import { useFormik } from 'formik';
 import { inputsValidationSchemaModificarProductos } from '../../config/inputsValidationSchema';
 import { inputsValidationSchemaCrearProductos } from '../../config/inputsValidationSchema';
+import { inputsValidationSchemaCrearUsuario } from '../../config/inputsValidationSchema';
 import { useState, useEffect, useCallback } from 'react';
 import estilos from '../../css/Formularios.module.css';
 import { Peticiones } from '../../data/peticionesMongo/peticionesHTTP';
@@ -18,7 +19,11 @@ import { CustomizedSnackbars } from '../../components/Varios/SnackBar';
 /**Ventana Modal para realizar Actualizaciones del CRUD de una tabla */
 export function ModalForm(props) {
 
-    const schema = props.opcionBtn === 'Modificar' ? inputsValidationSchemaModificarProductos : inputsValidationSchemaCrearProductos;
+    const schema = (props.opcionBtn === 'Modificar' && props.peticion === 'updateProducto') ? inputsValidationSchemaModificarProductos : 
+                   (props.opcionBtn === 'Crear' && props.peticion === 'crearProducto') ? inputsValidationSchemaCrearProductos :
+                   (props.opcionBtn === 'Modificar' && props.peticion === 'updateUsuario') ? null :
+                   (props.opcionBtn === 'Crear' && props.peticion === 'signupUsuario') ? inputsValidationSchemaCrearUsuario : null;
+
     const { onClose, selectedValue, open, setOpen } = props; //Props de la ventana modal
     const [isLoading, setIsLoading] = useState(false); //Deshabilita el boton Actualizar
     const [arrayEntries, setArrayEntries] = useState(null); //Guarda un JSON en un array de arrays
@@ -91,14 +96,15 @@ export function ModalForm(props) {
                 const mensaje = data.servidor ? "Error en el servidor. Intente más tarde" + data.message : `No se pudo ${props.opcionBtn} los datos. ` + data.message;                
                 setDataSnackBar({mensaje: mensaje, severity: "error", countOpens: (dataSnackBar.countOpens+1) });
                 setIsLoading(false);
+                setOpen && setOpen(false);
             } else { //Si todo bien
                 const opcion = props.opcionBtn === 'Modificar' ? 'modificados' : 'creados';
                 const mensaje = `Datos ${opcion} exitosamente.`;
                 setDataSnackBar({mensaje: mensaje, severity: "success", countOpens: (dataSnackBar.countOpens+1) });
                 setTimeout(()=>{
                     setOpen && setOpen(false);
-                    props.setProductos(null);
-                },1200);
+                    props.setData(null);
+                },1400);
             }
         },
     });

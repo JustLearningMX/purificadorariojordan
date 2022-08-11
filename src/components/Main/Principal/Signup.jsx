@@ -30,11 +30,11 @@ export function Signup() {
             password: '',
         },
         validationSchema: inputsValidationSchemaSignup,
-        onSubmit: async ({nombre, apellido, telefono, email, password}) => { 
+        onSubmit: async (body) => { 
             
                         
             setIsLoading(true);
-            const data = await signupDeUsuario(nombre, apellido, telefono, email, password);
+            const data = await signupDeUsuario(body);
             
             if(data.error) {
                 const mensaje = data.servidor ? "Error en el servidor. Intente más tarde. " + data.message : data.message;
