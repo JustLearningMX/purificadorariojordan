@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { getUsuarios } from '../../../data/peticionesMongo/getUsuarios';
 
-export function BarraDeBusqueda({token}){
+export function BarraDeBusqueda({token, setTelefonoCliente}){
 
   const [users, setUsers] = useState(null) //Todos los usuarios a mostrar en el buscador
 
@@ -31,10 +31,16 @@ export function BarraDeBusqueda({token}){
       }
       fetchData();      
     }
-}, [users, token]);
+  }, [users, token]);
 
-    return (
-        <Autocomplete
+  const handleOnChange = (e) => {
+    
+    const telefonoCliente = e.target.textContent.split(' ')[0];
+    setTelefonoCliente(telefonoCliente);
+  }
+
+  return (
+      <Autocomplete
         disablePortal
         autoHighlight={true}
         id="combo-box-demo"
@@ -43,7 +49,8 @@ export function BarraDeBusqueda({token}){
         renderInput={(params) => <TextField {...params} label="Cliente" />}
         autoComplete={true}
         size='small'
-        />
-    );
+        onChange={handleOnChange}
+      />
+  );
    
 }

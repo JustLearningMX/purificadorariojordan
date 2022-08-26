@@ -12,6 +12,7 @@ export function Ventas() {
     const [carrito, setCarrito] = useState([]); //Array con los ID de los productos elegidos
     const [productos, setProductos] = useState([]); //Array de arrays con productos y cantidades
     const [productosBD, setProductosBD] = useState(null); //Todos los productos de la BD
+    const [telefonoCliente, setTelefonoCliente] = useState(null); //Usuario que va a comprar
 
     const userToken = JSON.parse(window.localStorage.getItem("usuarioLogueadoPurificadora"));    
 
@@ -63,13 +64,13 @@ export function Ventas() {
     return (
         <section className={styles.puntoDeVentaContainer}>
             <section className={`${styles.searchContainer} ${styles.containersVentas}`}>
-                <BarraDeBusqueda token={userToken.token} />
+                <BarraDeBusqueda token={userToken.token} setTelefonoCliente={setTelefonoCliente} />
             </section>
             <section className={`${styles.listaDeProductosContainer} ${styles.containersVentas}`}>
                 {seccion}
             </section>
             <section className={`${styles.resumenDeComprasContainer} ${styles.containersVentas}`}>
-                <ResumenDeCompras productos={productos} />
+                <ResumenDeCompras productos={productos} setProductos={setProductos} telefonoCliente={telefonoCliente} />
             </section>
             <section className={`${styles.carritoDeComprasContainer} ${styles.containersVentas}`}> 
                 <CarritoDeCompras productos={productos} carrito={carrito} setCarrito={setCarrito} />

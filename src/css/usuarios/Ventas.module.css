@@ -124,7 +124,7 @@
 
 .divSubtotal,
 .divDescuento,
-.divTotal{
+.divTotal {
     display: flex;
     justify-content: space-between;
     font-size: 1rem;
@@ -133,6 +133,28 @@
     border-radius: 5px;
     padding: 0 5px;
     margin-bottom: 12px;
+}
+
+.divResumenLlenados {
+    padding: 0.5rem 0.8rem;
+    text-align: right;
+    background-color: var(--bg_footer);
+    border-radius: 15px;
+    color: var(--main-a-text-color);
+}
+
+.divResumenLlenados p:not(:last-child) {
+    margin-bottom: .2rem;
+}
+
+.divResumenLlenados > p {
+    line-height: 20px;
+}
+
+.divResumenLlenados > p > span {
+    color: var(--second-a-text-color);
+    font-weight: 600;
+    font-size: 1.1rem;
 }
 
 .inputsCarrito{
@@ -144,7 +166,7 @@
 .botonPagar{
     width: 100%;
     color: var(--second-text-color);
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 0.9rem;
     background-color: var(--button-main-bg);
     border-color: var(--button-main-bg);

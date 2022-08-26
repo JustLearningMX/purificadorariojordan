@@ -32,8 +32,8 @@ export function DashEliminarCuenta() {
     const [selectedValue, setSelectedValue] = useState('No');
 
     const eliminarCuenta = useCallback( async ()=>{
-        const data = await deleteUsuario();
-        console.log(data)
+        const user = JSON.parse(window.localStorage.getItem("UsuarioPurificadora"));
+        const data = await deleteUsuario(user.id);
 
         if(data.error) {
             const mensaje = data.servidor ? "Error en el servidor. Intente más tarde. " + data.message : data.message;

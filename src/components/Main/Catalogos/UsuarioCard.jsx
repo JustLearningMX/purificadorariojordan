@@ -56,8 +56,7 @@ export function UsuarioCard({usuario, setUsuarios}){
 
     const eliminarItem = useCallback( async ()=>{
         const { id } = selectedValue_.usuario;
-        const body = { id };
-        const data = await Peticiones.deleteUsuario(body);
+        const data = await Peticiones.deleteUsuario(id);
         if(data.error){
             const mensaje = data.servidor ? "Error en el servidor. Intente más tarde" + data.message : 'Error al eliminar el Item. ' + data.message;                
             setDataSnackBar({mensaje: mensaje, severity: "error", countOpens: (dataSnackBar.countOpens+1) });
