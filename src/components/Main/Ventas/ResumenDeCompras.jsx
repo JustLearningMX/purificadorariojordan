@@ -5,12 +5,12 @@ import { CustomizedSnackbars } from '../../../components/Varios/SnackBar';
 import { crearVenta } from '../../../data/peticionesMongo/crearVenta';
 
 /**Componente que renderiza la seccion del subtotal, descto y total */
-export function ResumenDeCompras({productos, setProductos, telefonoCliente}){
+export function ResumenDeCompras({productos, setProductos, telefonoCliente, cantidadBD}){
 
     const [subTotal, setSubTotal] = useState(''); //A pagar antes del descuento 
     const [descuento, setDescuento] = useState(''); //Descuento por programa 10x1 gratis
     const [total, setTotal] = useState(''); //Total a pagar
-    let [garrafonesPrevios, setGarrafonesPrevios] = useState(0); //Total de garrafones previos del cliente
+    // let [garrafonesPrevios, setGarrafonesPrevios] = useState(cantidadBD); //Total de garrafones previos del cliente
     let [garrafonesActuales, setGarrafonesActuales] = useState(0); //Total de garrafones que el cliente esta llenando
     let [garrafonesGratis, setGarrafonesGratis] = useState(0); //Garrafones gratis por la compra
     const [promo] = useState(10); //Numero de garrafones que debe tener para ganar uno gratis
@@ -42,10 +42,11 @@ export function ResumenDeCompras({productos, setProductos, telefonoCliente}){
         } else {
             setTotal(subTotal)
         }
-    }, [descuento, subTotal]); 
+    }, [descuento, subTotal]);
 
     //Se calcula el pago basado en el array de productos recibidos
     useEffect(()=> {
+        
         let sumaSubtotal = 0;
         let sumaDescuento = (typeof descuento === 'string') ? 0 : descuento;
         let precioGarrafon = null;
@@ -71,7 +72,7 @@ export function ResumenDeCompras({productos, setProductos, telefonoCliente}){
 
             //Si existe un garrafon de 19 lts
             if(garrafones19lts[0]) {
-                const totalDeGarrafones = garrafonesPrevios + garrafones19lts[0].total; //BD + su compra actual
+                const totalDeGarrafones = cantidadBD + garrafones19lts[0].total; //BD + su compra actual
                 const residuo = totalDeGarrafones % (promo+1); //Garrafones que sobran ... o no
                 const division = totalDeGarrafones/(promo+1); //Si no hay residuo entonces es el total de garrafones gratis
                 precioGarrafon = garrafones19lts[0].precio;
@@ -88,7 +89,21 @@ export function ResumenDeCompras({productos, setProductos, telefonoCliente}){
             } else {
                 setIsGarrafon(false);
             }
+
+            //Si la lista viene con otros productos pero no garrafones de 20 lts
+            if(!isGarrafon) {
+                setDescuento(0);
+                actualizarTotal();
+                setGarrafonesActuales(0);
+                setGarrafonesGratis(0);
+            }
             
+        } else { //Si la lista de productos viene vacia
+            (cantidadBD > 0) ? setGarrafonesActuales(cantidadBD) : setGarrafonesActuales(0);            
+            setDescuento('');
+            setSubTotal('');
+            setTotal('');            
+            setGarrafonesGratis(0);
         }
 
         //Detalle de los productos de la venta
@@ -102,27 +117,8 @@ export function ResumenDeCompras({productos, setProductos, telefonoCliente}){
 
         // TOTAL: Actualiza el total
         actualizarTotal();
-        
-        //Si la lista de productos viene vacia
-        if(productos.length <= 0) {
-            setDescuento('');
-            setSubTotal('');
-            setTotal('');
-            setGarrafonesActuales(0);
-            setGarrafonesGratis(0);
-        }
 
-        //Si la lista viene con otros productos pero no garrafones de 20 lts
-        if(!isGarrafon) {
-            setDescuento(0);
-            actualizarTotal();
-            setGarrafonesActuales(0);
-            setGarrafonesGratis(0);
-        }
-
-    },[productos, garrafonesPrevios, actualizarTotal, isGarrafon, promo, descuento]);
-
-    
+    },[productos, cantidadBD, actualizarTotal, isGarrafon, promo, descuento, garrafonesActuales]);    
 
     async function handleClick() {
         const user = JSON.parse(window.localStorage.getItem('UsuarioPurificadora')); //Token del empleado

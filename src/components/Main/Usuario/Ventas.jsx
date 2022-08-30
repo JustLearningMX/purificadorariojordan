@@ -13,6 +13,7 @@ export function Ventas() {
     const [productos, setProductos] = useState([]); //Array de arrays con productos y cantidades
     const [productosBD, setProductosBD] = useState(null); //Todos los productos de la BD
     const [telefonoCliente, setTelefonoCliente] = useState(null); //Usuario que va a comprar
+    const [cantidadBD, setCantidadBD] = useState(0); //Cantidad actual de garrafones que tiene el cliente en la BD
 
     const userToken = JSON.parse(window.localStorage.getItem("usuarioLogueadoPurificadora"));    
 
@@ -64,13 +65,13 @@ export function Ventas() {
     return (
         <section className={styles.puntoDeVentaContainer}>
             <section className={`${styles.searchContainer} ${styles.containersVentas}`}>
-                <BarraDeBusqueda token={userToken.token} setTelefonoCliente={setTelefonoCliente} />
+                <BarraDeBusqueda token={userToken.token} setTelefonoCliente={setTelefonoCliente} setCantidadBD={setCantidadBD} />
             </section>
             <section className={`${styles.listaDeProductosContainer} ${styles.containersVentas}`}>
                 {seccion}
             </section>
             <section className={`${styles.resumenDeComprasContainer} ${styles.containersVentas}`}>
-                <ResumenDeCompras productos={productos} setProductos={setProductos} telefonoCliente={telefonoCliente} />
+                <ResumenDeCompras productos={productos} setProductos={setProductos} telefonoCliente={telefonoCliente} cantidadBD={cantidadBD} />
             </section>
             <section className={`${styles.carritoDeComprasContainer} ${styles.containersVentas}`}> 
                 <CarritoDeCompras productos={productos} carrito={carrito} setCarrito={setCarrito} />
