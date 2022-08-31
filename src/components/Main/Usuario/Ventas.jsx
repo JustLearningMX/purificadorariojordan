@@ -14,6 +14,9 @@ export function Ventas() {
     const [productosBD, setProductosBD] = useState(null); //Todos los productos de la BD
     const [telefonoCliente, setTelefonoCliente] = useState(null); //Usuario que va a comprar
     const [cantidadBD, setCantidadBD] = useState(0); //Cantidad actual de garrafones que tiene el cliente en la BD
+    const [listaInventario, setListaInventario] = useState(null); //El inventario de los clientes de la BD
+    const [users, setUsers] = useState(null) //Todos los usuarios a mostrar en el buscador
+    const [valueCliente, setValueCliente] = useState(''); //Cliente elegido en la barra de busqueda
 
     const userToken = JSON.parse(window.localStorage.getItem("usuarioLogueadoPurificadora"));    
 
@@ -65,16 +68,38 @@ export function Ventas() {
     return (
         <section className={styles.puntoDeVentaContainer}>
             <section className={`${styles.searchContainer} ${styles.containersVentas}`}>
-                <BarraDeBusqueda token={userToken.token} setTelefonoCliente={setTelefonoCliente} setCantidadBD={setCantidadBD} />
+                <BarraDeBusqueda 
+                    token={userToken.token} 
+                    setTelefonoCliente={setTelefonoCliente} 
+                    setCantidadBD={setCantidadBD} 
+                    setListaInventario={setListaInventario}
+                    listaInventario={listaInventario}
+                    setUsers={setUsers}
+                    users={users}
+                    setValueCliente={setValueCliente}
+                    valueCliente={valueCliente}
+                />
             </section>
             <section className={`${styles.listaDeProductosContainer} ${styles.containersVentas}`}>
                 {seccion}
             </section>
             <section className={`${styles.resumenDeComprasContainer} ${styles.containersVentas}`}>
-                <ResumenDeCompras productos={productos} setProductos={setProductos} telefonoCliente={telefonoCliente} cantidadBD={cantidadBD} />
+                <ResumenDeCompras 
+                    productos={productos} 
+                    setProductos={setProductos} 
+                    telefonoCliente={telefonoCliente} 
+                    cantidadBD={cantidadBD} 
+                    setUsers={setUsers}
+                    setValueCliente={setValueCliente}
+                    setCantidadBD={setCantidadBD} 
+                />
             </section>
             <section className={`${styles.carritoDeComprasContainer} ${styles.containersVentas}`}> 
-                <CarritoDeCompras productos={productos} carrito={carrito} setCarrito={setCarrito} />
+                <CarritoDeCompras 
+                    productos={productos} 
+                    carrito={carrito} 
+                    setCarrito={setCarrito}
+                />
             </section>
         </section>
     );

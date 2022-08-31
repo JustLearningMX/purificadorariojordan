@@ -5,16 +5,14 @@ import { CustomizedSnackbars } from '../../../components/Varios/SnackBar';
 import { crearVenta } from '../../../data/peticionesMongo/crearVenta';
 
 /**Componente que renderiza la seccion del subtotal, descto y total */
-export function ResumenDeCompras({productos, setProductos, telefonoCliente, cantidadBD}){
+export function ResumenDeCompras({productos, setProductos, telefonoCliente, cantidadBD, setUsers, setValueCliente, setCantidadBD}){
 
     const [subTotal, setSubTotal] = useState(''); //A pagar antes del descuento 
     const [descuento, setDescuento] = useState(''); //Descuento por programa 10x1 gratis
     const [total, setTotal] = useState(''); //Total a pagar
-    // let [garrafonesPrevios, setGarrafonesPrevios] = useState(cantidadBD); //Total de garrafones previos del cliente
     let [garrafonesActuales, setGarrafonesActuales] = useState(0); //Total de garrafones que el cliente esta llenando
     let [garrafonesGratis, setGarrafonesGratis] = useState(0); //Garrafones gratis por la compra
     const [promo] = useState(10); //Numero de garrafones que debe tener para ganar uno gratis
-    const [ isGarrafon, setIsGarrafon] = useState(false); //Verifica si se ha comprado un Garrafon
     const [sucursal] = useState('62f56937b841d5b06b7ac4b4');
     const [detalleVenta, setDetalleVenta] = useState([]); //Detalle de la venta
     const [isLoading, setIsLoading] = useState(false); //Estado del boton pagar    
@@ -46,11 +44,12 @@ export function ResumenDeCompras({productos, setProductos, telefonoCliente, cant
 
     //Se calcula el pago basado en el array de productos recibidos
     useEffect(()=> {
-        
         let sumaSubtotal = 0;
-        let sumaDescuento = (typeof descuento === 'string') ? 0 : descuento;
+        let sumaDescuento = 0; //(typeof descuento === 'string') ? 0 : descuento;
+        let garrafonGratis = 0;
         let precioGarrafon = null;
         let detalleVenta = [];
+        let es19lts = false;
         
         //Si el array de los productos no viene vacio
         if(productos.length > 0){
@@ -72,61 +71,65 @@ export function ResumenDeCompras({productos, setProductos, telefonoCliente, cant
 
             //Si existe un garrafon de 19 lts
             if(garrafones19lts[0]) {
+                es19lts = true;
                 const totalDeGarrafones = cantidadBD + garrafones19lts[0].total; //BD + su compra actual
-                const residuo = totalDeGarrafones % (promo+1); //Garrafones que sobran ... o no
-                const division = totalDeGarrafones/(promo+1); //Si no hay residuo entonces es el total de garrafones gratis
+                const garrafonSobrante = totalDeGarrafones % (promo+1); //Garrafones que sobran ... o no
+                garrafonGratis = totalDeGarrafones/(promo+1); //Si no hay residuo entonces es el total de garrafones gratis
                 precioGarrafon = garrafones19lts[0].precio;
+                
+                /*************A eliminar */
+                // console.log('cantidadBD', cantidadBD);
+                // console.log('totalDeGarrafones', totalDeGarrafones);
+                // console.log('garrafonSobrante', garrafonSobrante);
+                // console.log('garrafonGratis', garrafonGratis);
 
                 //Actualizacion de los garrafones que lleva
-                setGarrafonesActuales(residuo);
-                //Llenado gratis
-                if(division >= 1 && residuo === 0) {
-                    setGarrafonesGratis(division);
-                    sumaDescuento = division * parseFloat(precioGarrafon.$numberDecimal);
-                };
+                setGarrafonesActuales(garrafonSobrante);
                 
-                setIsGarrafon(true);
-            } else {
-                setIsGarrafon(false);
-            }
+                //Llenado gratis
+                if(garrafonGratis >= 1) {
+                    garrafonGratis = garrafonGratis >= 1 ? parseInt(garrafonGratis) : 0;
+                    sumaDescuento = garrafonGratis * parseFloat(precioGarrafon.$numberDecimal);
+                }
+                setGarrafonesGratis(parseInt(garrafonGratis));                
+            } 
 
             //Si la lista viene con otros productos pero no garrafones de 20 lts
-            if(!isGarrafon) {
+            if(!es19lts) {
                 setDescuento(0);
-                actualizarTotal();
-                setGarrafonesActuales(0);
-                setGarrafonesGratis(0);
+                setGarrafonesActuales(cantidadBD);
+                setGarrafonesGratis(garrafonGratis);
+            } else {
+                //Se manda a actualizar el descuento cada 11vo Botellon      
+                setDescuento(sumaDescuento);
             }
             
         } else { //Si la lista de productos viene vacia
-            (cantidadBD > 0) ? setGarrafonesActuales(cantidadBD) : setGarrafonesActuales(0);            
+            (cantidadBD > 0) ? setGarrafonesActuales(cantidadBD) : setGarrafonesActuales(0);  
+            setSubTotal('');          
             setDescuento('');
-            setSubTotal('');
             setTotal('');            
-            setGarrafonesGratis(0);
+            setGarrafonesGratis(garrafonGratis);
         }
 
         //Detalle de los productos de la venta
         setDetalleVenta(detalleVenta);
 
-        //SUBTOTAL: Actualiza el Subtotal
+        // SUBTOTAL: Actualiza el Subtotal
         setSubTotal(sumaSubtotal);
-
-        //Se manda a actualizar el descuento cada 11vo Botellon      
-        setDescuento(sumaDescuento);
 
         // TOTAL: Actualiza el total
         actualizarTotal();
 
-    },[productos, cantidadBD, actualizarTotal, isGarrafon, promo, descuento, garrafonesActuales]);    
+    },[productos, cantidadBD, actualizarTotal, promo, descuento, garrafonesActuales]);    
 
-    async function handleClick() {
+    async function handleClickPagar() {
         const user = JSON.parse(window.localStorage.getItem('UsuarioPurificadora')); //Token del empleado
 
         setIsLoading(true); //Se deshabilita boton pagar
 
         if(detalleVenta.length <= 0) { //Si no hay un producto
-            const mensaje = "Para cobrar primer ingrese uno o más productos.";
+            const mensaje = "Para cobrar primero ingrese uno o más productos.";
             setDataSnackBar({mensaje: mensaje, severity: "warning", countOpens: (dataSnackBar.countOpens+1) });                
             setIsLoading(false);
         } else { //Si hay productos
@@ -153,9 +156,12 @@ export function ResumenDeCompras({productos, setProductos, telefonoCliente, cant
                 const mensaje = data.message;
                 setDataSnackBar({mensaje: mensaje, severity: "success", countOpens: (dataSnackBar.countOpens+1) });
                 setProductos([]);
+
+                setValueCliente('');
+                setUsers([]);
+                setCantidadBD(0);
                 setIsLoading(false);
             }
-
         }
     }
 
@@ -211,7 +217,7 @@ export function ResumenDeCompras({productos, setProductos, telefonoCliente, cant
                 size="large"
                 className={styles.botonPagar}
                 sx={{marginTop: '.7rem'}}
-                onClick={handleClick}
+                onClick={handleClickPagar}
             >
                 Pagar
             </LoadingButton>
