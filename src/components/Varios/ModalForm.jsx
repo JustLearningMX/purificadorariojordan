@@ -11,18 +11,21 @@ import { useFormik } from 'formik';
 import { inputsValidationSchemaModificarProductos } from '../../config/inputsValidationSchema';
 import { inputsValidationSchemaCrearProductos } from '../../config/inputsValidationSchema';
 import { inputsValidationSchemaCrearUsuario } from '../../config/inputsValidationSchema';
+import { inputsValidationSchemaCrearModificarSucursal } from '../../config/inputsValidationSchema';
 import { useState, useEffect, useCallback } from 'react';
 import estilos from '../../css/Formularios.module.css';
 import { Peticiones } from '../../data/peticionesMongo/peticionesHTTP';
 import { CustomizedSnackbars } from '../../components/Varios/SnackBar';
 
-/**Ventana Modal para realizar Actualizaciones del CRUD de una tabla */
+/**Ventana Modal para realizar Creacion/Actualizacion del CRUD de una tabla */
 export function ModalForm(props) {
 
     const schema = (props.opcionBtn === 'Modificar' && props.peticion === 'updateProducto') ? inputsValidationSchemaModificarProductos : 
                    (props.opcionBtn === 'Crear' && props.peticion === 'crearProducto') ? inputsValidationSchemaCrearProductos :
                    (props.opcionBtn === 'Modificar' && props.peticion === 'updateUsuario') ? null :
-                   (props.opcionBtn === 'Crear' && props.peticion === 'signupUsuario') ? inputsValidationSchemaCrearUsuario : null;
+                   (props.opcionBtn === 'Crear' && props.peticion === 'signupUsuario') ? inputsValidationSchemaCrearUsuario : 
+                   (props.opcionBtn === 'Crear' && props.peticion === 'crearSucursal') ? inputsValidationSchemaCrearModificarSucursal : 
+                   (props.opcionBtn === 'Modificar' && props.peticion === 'updateSucursal') ? inputsValidationSchemaCrearModificarSucursal : null;
 
     const { onClose, selectedValue, open, setOpen } = props; //Props de la ventana modal
     const [isLoading, setIsLoading] = useState(false); //Deshabilita el boton Actualizar
@@ -36,20 +39,20 @@ export function ModalForm(props) {
 
     /**Toma un JSON y Crea un nuevo arreglo de arreglos con las Clave-Valor del JSON  */
     const nuevoArreglo = useCallback(()=>{
-        const newProduct = {...props.array};
+        const newItem = {...props.array};
 
-        if(newProduct.createdAt)
-                delete newProduct.createdAt;
+        if(newItem.createdAt)
+            delete newItem.createdAt;
 
-            if(newProduct.updatedAt)
-                delete newProduct.updatedAt;
-            
-            if(newProduct.precio){                
-                newProduct.precio_ = Number(newProduct.precio.$numberDecimal);
-                delete newProduct.precio
-            }
+        if(newItem.updatedAt)
+            delete newItem.updatedAt;
+        
+        if(newItem.precio){                
+            newItem.precio_ = Number(newItem.precio.$numberDecimal);
+            delete newItem.precio
+        }
 
-            return Object.entries(newProduct);
+        return Object.entries(newItem);
             
     },[props.array]);
 

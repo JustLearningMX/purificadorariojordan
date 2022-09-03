@@ -11,7 +11,7 @@ const generarLink = (isUserGuest, LinkOpt, props, opcion)=> {
         </NavLink>
     } else { //generatePath(USUARIO, {"id": props.userId})
         return <NavLink to={LinkOpt} className={({isActive}) => activeLink(isActive, props)} >
-            {opcion}
+            {opcion === 'Dashboard' ? 'Mi Cuenta' : opcion}
         </NavLink>
     }
 }

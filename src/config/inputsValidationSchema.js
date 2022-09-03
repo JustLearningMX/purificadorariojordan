@@ -189,3 +189,25 @@ export const inputsValidationSchemaCrearUsuario = yup.object({
   telefonoRecuperacion: yup
     .string(),
 });
+
+export const inputsValidationSchemaCrearModificarSucursal = yup.object({
+  id: yup
+    .string(),
+  nombre: yup
+    .string()
+    .min(5, 'El nombre debe ser de mínimo 5 caracteres')
+    .required('El nombre es requerido'),
+  telefono: yup
+    .string()
+    .matches(phoneRegex, "Número de teléfono inválido. Deben ser 10 números"),
+  direccion: yup
+    .string(),
+  ciudad: yup
+    .string(),
+  estado: yup
+    .string(),
+  cp: yup
+    .string()
+    .min(5, 'El CP deben ser 5 números')
+    .max(5, 'El CP deben ser 5 números'),
+});

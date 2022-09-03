@@ -20,10 +20,10 @@ export function Catalogos() {
                     <Link to={`${ADMIN}${CATALOGOS}/` + CTL_PRODUCTOS} onClick={()=>handleClick(2)}>Productos</Link>
                 </div>
                 <div className={styles.links}>
-                    <Link to={`${ADMIN}${CATALOGOS}/` + CTL_PROVEEDORES} onClick={()=>handleClick(3)}>Proveedores</Link>
+                    <Link to={`${ADMIN}${CATALOGOS}/` + CTL_SUCURSALES} onClick={()=>handleClick(3)}>Sucursales</Link>
                 </div>
                 <div className={styles.links}>
-                    <Link to={`${ADMIN}${CATALOGOS}/` + CTL_SUCURSALES} onClick={()=>handleClick(4)}>Sucursales</Link>
+                    <Link to={`${ADMIN}${CATALOGOS}/` + CTL_PROVEEDORES} onClick={()=>handleClick(4)}>Proveedores</Link>
                 </div>
             </article >
             <article className={styles.contenedorOutlet} > {/**Aqui se pinta la info de cada pestanha */}

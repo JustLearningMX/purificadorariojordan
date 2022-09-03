@@ -95,7 +95,7 @@ export function Usuarios({tipo_usuario}){
                 open={open}
                 onClose={handleClose}
                 botones={arrayBotones}
-                titulo='Agregue un usuario.'
+                titulo={tipo_usuario === "cliente" ? `Agregue un ${tipo_usuario}.` : `Agregue un empleado.`}
                 display='flex'
                 array={newUsuario}
                 peticion='signupUsuario'
