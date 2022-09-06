@@ -11,18 +11,23 @@ export async function requestApi(path, req, arrBody, token) {
 
   if(req === "GET"){
     
-  //path y tipo de solicitud
-    const resultado = await fetch(API + path, {
-      //Se concatena api y path
-      mode: "cors",
-      method: req, //tipo de petición
-      headers: new Headers({
-        "Content-Type": "application/json; charset=utf-8",
-        "Access-Control-Allow-Origin": "*",
-        "Authorization": token,
-      }),
-    }); //Si todo OK se retorna el JSON con los resultados, si no el error
-    return await resultado.json();
+    // try {
+      
+      //path y tipo de solicitud
+      const resultado = await fetch(API + path, {
+        //Se concatena api y path
+        mode: "cors",
+        method: req, //tipo de petición
+        headers: new Headers({
+          "Content-Type": "application/json; charset=utf-8",
+          "Access-Control-Allow-Origin": "*",
+          "Authorization": token,
+        }),
+      }); //Si todo OK se retorna el JSON con los resultados, si no el error
+      return await resultado.json();
+    // } catch (error) {
+    //   console.log(error);
+    // }
   }
   else if(req === "POST")
   {      

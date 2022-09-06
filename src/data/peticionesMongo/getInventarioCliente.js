@@ -5,14 +5,14 @@
 
  import { requestApi } from '../../utils/httpClient';
  
- export async function getInventarioCliente(telefono_cliente) {
+ export async function getInventarioCliente() {
 
    const userToken = JSON.parse(window.localStorage.getItem("usuarioLogueadoPurificadora"));
    const tokenUsuario = userToken ? 'Bearer ' + userToken.token : '';
 
    try {
 
-      const data = await requestApi(`/inventarioClientes/${telefono_cliente}`, 'GET', null, tokenUsuario);
+      const data = await requestApi(`/inventarioClientes/uno`, 'GET', null, tokenUsuario);
 
       return data;
       
