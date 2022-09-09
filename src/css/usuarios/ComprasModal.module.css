@@ -1,0 +1,65 @@
+.contenedorPrincipalModal {
+    border: 1px solid red;
+    width: 100%;
+}
+
+.tituloModal{
+    color: var(--second-a-text-color);
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.containerCuerpoModal{
+    /* border: 1px solid red; */
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--main-text-color);
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 2rem 0;
+}
+
+.contenedorBotones{
+    display: flex;
+    justify-content: center;
+}
+
+.botones{
+    width: 50%;
+}
+
+/*Seccion Historial*/
+.contenedorTransaccion { /*UL1: Fecha*/
+    /* border: 1px solid red; */
+    width: 85%;
+    margin: 0 .5rem;
+    line-height: 26px;
+    font-size: 1.1rem;
+}
+
+.fechaDeTransaccion:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+.fechaDeTransaccion {
+    /* border: 1px solid green;  */
+    text-align: right;
+    font-weight: 500;
+    color: var(--main-a-text-color);  
+    box-shadow: 1px 1px 2px 1px rgb(166 166 166 / 60%);
+    padding: .2rem .5rem;
+}
+
+.transaccion_itemsContenedor { /*UL2*/
+    color: var(--main-text-color);
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+/************************************************************/
+/**************Tablets --> 600px + *************/
+/************************************************************/
+/************************************************************/
+@media screen and (min-width: 600px) and (max-width: 1023px) {
+
+}
