@@ -33,3 +33,6 @@ export const CTL_PRODUCTOS = 'productos';
 export const CTL_PROVEEDORES = 'proveedores';
 export const CTL_SUCURSALES = 'sucursales';
 export const REPORTES = 'reportes';
+export const RPR_VENTAS = 'ventas';
+export const RPR_USUARIOS = 'usuarios';
+export const RPR_PRODUCTOS = 'productos';

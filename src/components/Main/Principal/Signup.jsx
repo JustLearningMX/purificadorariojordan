@@ -24,7 +24,7 @@ export function Signup() {
     const formik = useFormik({
         initialValues: {
             nombre: '',
-            apellido: '',
+            apellidos: '',
             telefono: '',
             email: '',
             password: '',
@@ -34,16 +34,18 @@ export function Signup() {
             
                         
             setIsLoading(true);
+            //Peticion a la API
             const data = await signupDeUsuario(body);
             
+            //Si la peticion retorno un error
             if(data.error) {
                 const mensaje = data.servidor ? "Error en el servidor. Intente más tarde. " + data.message : data.message;
                 setDataSnackBar({mensaje: mensaje, severity: "error", countOpens: (dataSnackBar.countOpens+1) });                
                 setIsLoading(false);
-            } else { 
+            } else { //Si la peticion fue correcta y se dio de alta al usuario
                 const mensaje = data.message + '. Inicie sesión con sus credenciales';                
                 setDataSnackBar({mensaje: mensaje, severity: "success", countOpens: (dataSnackBar.countOpens+1) });
-                setTimeout(()=>{
+                setTimeout(()=>{ //Redirigir a login
                     navigate(`${USUARIOS}${LOGIN}`, { replace: true });
                 },1800);  
             }
@@ -72,16 +74,16 @@ export function Signup() {
                     />
 
                     <TextField 
-                        id="apellido" 
-                        name="apellido"
-                        label="Apellido" 
+                        id="apellidos" 
+                        name="apellidos"
+                        label="Apellidos" 
                         variant="filled"
                         type='text'
                         size="small"
-                        value={formik.values.apellido}
+                        value={formik.values.apellidos}
                         onChange={formik.handleChange}
-                        error={formik.touched.apellido && Boolean(formik.errors.apellido)}
-                        helperText={formik.touched.apellido && formik.errors.apellido}
+                        error={formik.touched.apellidos && Boolean(formik.errors.apellidos)}
+                        helperText={formik.touched.apellidos && formik.errors.apellidos}
                         className={estilos.input_form}
                     />                    
 

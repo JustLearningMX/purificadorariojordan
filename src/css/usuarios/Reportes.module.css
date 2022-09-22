@@ -1,0 +1,70 @@
+.contenedorOutlet {
+    /* border: 1px solid fuchsia; */
+    grid-area: items;
+    position: relative;
+    /* padding-top: 7px; */
+    height: 100%;
+}
+
+.contenedorReporte {
+    display: grid;
+    grid-template: 
+    "cuerpoReporte" 1fr
+    "botonesReporte" auto;
+    min-height: 100%;
+}
+
+.contenedorIntervaloFecha {
+    grid-area: fechasReporte;
+    margin-top: .2rem;
+}
+
+.contenedorFechas {
+    display: flex;
+}
+
+.contenedorLeyenda {
+    padding-top: .4rem;
+    text-align: center;
+    font-weight: 500;
+    color: var(--main-a-text-color);
+}
+
+.contenedorCuerpoReporte {
+    grid-area: cuerpoReporte;
+    /* border: 1px solid blue; */
+    padding: .3rem .5rem;
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.contenedorCuerpoReporte > ul :not(:last-child) {
+    margin-bottom: .8rem;
+}
+
+.contenedorBotonesReporte {
+    grid-area: botonesReporte;
+    border: 1px solid red;
+}
+
+.contenedorFecha {
+    display: flex;
+    width: auto;
+}
+
+.contenedorFecha:not(:last-child) {
+    margin-right: 10px;
+}
+
+.contenedorFecha > p {
+    line-height: 30px;
+    margin-right: 10px;
+    color: var(--main-a-text-color);
+}
+
+.contenedorFecha > input { 
+    border: 1px solid var(--third-text-color);
+    font-size: .9rem;
+    text-align: center;
+}

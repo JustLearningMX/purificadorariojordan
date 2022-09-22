@@ -12,7 +12,7 @@ import { NOSOTROS, SERVICIOS, CONTACTO, USUARIOS, SIGNUP, LOGIN,
          EMPRESA, VENTAS, ADMIN, CATALOGOS, REPORTES,
          DASHDATOS, DASHDIRECCION, DASHPASSWORD, DASHMISCELANEOS,
          CTL_CLIENTES, CTL_PRODUCTOS, CTL_EMPLEADOS, CTL_PROVEEDORES, 
-         CTL_SUCURSALES } from '../config/router/paths.js';
+         CTL_SUCURSALES, RPR_VENTAS, RPR_USUARIOS, RPR_PRODUCTOS} from '../config/router/paths.js';
 import { Nosotros } from '../components/Main/Principal/Nosotros';
 import { Servicios } from '../components/Main/Principal/Servicios';
 import { Contacto } from '../components/Main/Principal/Contacto';
@@ -30,6 +30,9 @@ import { Empleados } from '../components/Main/Catalogos/Empleados';
 import { Productos } from '../components/Main/Catalogos/Productos';
 import { Proveedores } from '../components/Main/Catalogos/Proveedores';
 import { Sucursales } from '../components/Main/Catalogos/Sucursales';
+import { ReporteVentas } from '../components/Main/Reportes/ReporteVentas';
+import { ReporteUsuarios } from '../components/Main/Reportes/ReporteUsuarios';
+import { ReporteProductos } from '../components/Main/Reportes/ReporteProductos';
 
 import styles from "../css/Main.module.css";
 
@@ -83,7 +86,12 @@ export function Main() {
               <Route path={CTL_PROVEEDORES} element={<Proveedores />} />
               <Route path={CTL_SUCURSALES} element={<Sucursales />} />
             </Route>
-            <Route path={REPORTES} element={<Reportes />} />
+            <Route path={REPORTES} element={<Reportes />}>
+              <Route path={REPORTES} element={ <Navigate replace to={RPR_VENTAS} /> } />
+              <Route path={RPR_VENTAS} element={<ReporteVentas />} />
+              <Route path={RPR_USUARIOS} element={<ReporteUsuarios />} />
+              <Route path={RPR_PRODUCTOS} element={<ReporteProductos />} />
+            </Route>
           </Route>
 
           <Route path="*" element={<Navigate replace to={NOSOTROS} />} />

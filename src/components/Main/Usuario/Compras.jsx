@@ -19,7 +19,7 @@ export function Compras() {
     const [historialDeLlenadosGratisCliente, setHistorialDeLlenadosGratisCliente] = useState(null); //Datos de la API
     const [dataHistorial, setDataHistorial] = useState(null); //Datos segun boton elegido
     const [tituloModal, setTituloModal] = useState('');
-
+    
     //Mostrar mensajes de alerta
     const [dataSnackBar, setDataSnackBar] = useState({
         mensaje: null,
@@ -54,7 +54,7 @@ export function Compras() {
                     dataInventarioCliente, 
                     dataHistorialComprasCliente, 
                     dataHistorialDeLlenadosGratisCliente
-                ] = await Promise.all(
+                ] = await Promise.allSettled(
                     [  //Llamadas a la API
                         await getInventarioCliente(), 
                         await getHistorialComprasUsuario(),
@@ -93,7 +93,7 @@ export function Compras() {
         if(!ultimaCompraCliente) fetchData(); //Si no esta el dato, se conecta a la BD para obtenerlo
     }, [fetchData, ultimaCompraCliente]);
 
-    return (ultimaCompraCliente && ultimaCompraCliente >= 0) ? (
+    return typeof ultimaCompraCliente === 'number' ? (
         <section className={styles.contenedorPrincipal}>
 
             <p className={styles.tituloCompras}>Llenado gratis:</p>

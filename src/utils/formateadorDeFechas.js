@@ -12,6 +12,18 @@ export function hora(fecha) {
     return `${hour}:${minutes}`;
 }
 
+export function removeTime(date) {
+    return new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+    );
+}
+
+export function dividirFecha(fecha){
+    return fecha.split('-');
+}
+
 const mesesCorto = {
     0: 'ene',
     1: 'feb',

@@ -32,7 +32,7 @@ export const inputsValidationSchemaSignup = yup.object({
       .string()
       .min(3, 'El nombre debe ser de mínimo 3 caracteres')
       .required('El nombre es requerido'),
-    apellido: yup
+    apellidos: yup
       .string()
       .min(3, 'El apellido debe ser de mínimo 3 caracteres')
       .required('El apellido es requerido'),
