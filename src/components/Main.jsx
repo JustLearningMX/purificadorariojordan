@@ -31,7 +31,7 @@ import { Productos } from '../components/Main/Catalogos/Productos';
 import { Proveedores } from '../components/Main/Catalogos/Proveedores';
 import { Sucursales } from '../components/Main/Catalogos/Sucursales';
 import { ReporteVentas } from '../components/Main/Reportes/ReporteVentas';
-import { ReporteUsuarios } from '../components/Main/Reportes/ReporteUsuarios';
+import { ReporteDeClientes } from '../components/Main/Reportes/ReporteDeClientes';
 import { ReporteProductos } from '../components/Main/Reportes/ReporteProductos';
 
 import styles from "../css/Main.module.css";
@@ -89,7 +89,7 @@ export function Main() {
             <Route path={REPORTES} element={<Reportes />}>
               <Route path={REPORTES} element={ <Navigate replace to={RPR_VENTAS} /> } />
               <Route path={RPR_VENTAS} element={<ReporteVentas />} />
-              <Route path={RPR_USUARIOS} element={<ReporteUsuarios />} />
+              <Route path={RPR_USUARIOS} element={<ReporteDeClientes />} />
               <Route path={RPR_PRODUCTOS} element={<ReporteProductos />} />
             </Route>
           </Route>

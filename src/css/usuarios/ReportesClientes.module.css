@@ -1,0 +1,25 @@
+.contenedorReportePorCliente {
+    display: grid;
+    grid-template: 
+    "barraBusqueda" auto
+    "cuerpoReporte" 1fr
+    "botonesReporte" auto;
+    min-height: 100%;
+}
+
+.searchContainer{
+    grid-area: barraBusqueda;
+}
+
+.contenedorCuerpoReporte {
+    grid-area: cuerpoReporte;
+    /* border: 1px solid blue; */
+    padding: .3rem .5rem;
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.contenedorCuerpoReporte > ul :not(:last-child) {
+    margin-bottom: .8rem;
+}

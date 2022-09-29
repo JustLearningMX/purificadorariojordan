@@ -1,0 +1,42 @@
+.contenedorDatosProductos {
+    border: .05rem solid var(--third-text-color);
+    width: 100%;
+    padding: .3rem;
+    margin: 0;
+    border-radius: 10px;
+}
+
+.labelDataProductos > p {
+    text-align: right;
+    width: 100%;
+}
+
+.labelDataProductos > p > span { 
+    color: var(--second-a-text-color);
+}
+
+.contenedorDatosRegistro {
+    padding: 0;
+    text-align: left;
+    /* border: 1px solid red; */
+}
+
+.contenedorDatosRegistro > ul {
+    width: 100%;
+}
+
+.contenedorDatosRegistro > ul > li {
+    margin: 0;
+}
+
+.contenedorResumenClientes {
+    margin: 0;
+    line-height: auto;
+    /* border: 1px solid red; */
+}
+
+.contenedorDatosCliente > p  {
+    /* border: 1px solid green; */
+    padding: 0;
+    margin: 0;
+}

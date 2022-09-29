@@ -57,18 +57,6 @@ export function VentaCompleta({venta}) {
                 </div>
                 <div className={styles.contenedorDatos}>
                     <p>
-                        <span className={styles.labelData}>Cliente:</span>
-                        <span className={styles.inputData}> {venta.Cliente[0].nombre} {venta.Cliente[0].apellidos}</span>
-                    </p>
-                </div>                
-                <div className={styles.contenedorDatos}>
-                    <p>
-                        <span className={styles.labelData}>Telefono:</span>
-                        <span className={styles.inputData}> {venta.Cliente[0].telefono}</span>
-                    </p>
-                </div>
-                <div className={styles.contenedorDatos}>
-                    <p>
                         <span className={styles.labelData}>Sucursal:</span>
                         <span className={styles.inputData}> {venta.Sucursal[0].nombre}</span>
                     </p>
@@ -77,6 +65,18 @@ export function VentaCompleta({venta}) {
                     <p>
                         <span className={styles.labelData}>Atendio:</span>
                         <span className={styles.inputData}> {venta.Empleado[0].nombre} {venta.Empleado[0].apellidos}</span>
+                    </p>
+                </div>
+                <div className={styles.contenedorDatos}>
+                    <p>
+                        <span className={styles.labelData}>Cliente:</span>
+                        <span className={styles.inputData}> {venta.Cliente[0].nombre} {venta.Cliente[0].apellidos}</span>
+                    </p>
+                </div>                
+                <div className={styles.contenedorDatos}>
+                    <p>
+                        <span className={styles.labelData}>Telefono:</span>
+                        <span className={styles.inputData}> {venta.Cliente[0].telefono}</span>
                     </p>
                 </div>
             </div>

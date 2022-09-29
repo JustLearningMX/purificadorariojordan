@@ -51,9 +51,9 @@ export function Compras() {
             
             if(dataSnackBar.countOpens < 1) {
                 const [
-                    dataInventarioCliente, 
-                    dataHistorialComprasCliente, 
-                    dataHistorialDeLlenadosGratisCliente
+                    {value: dataInventarioCliente}, 
+                    {value: dataHistorialComprasCliente}, 
+                    {value: dataHistorialDeLlenadosGratisCliente}
                 ] = await Promise.allSettled(
                     [  //Llamadas a la API
                         await getInventarioCliente(), 
@@ -62,8 +62,9 @@ export function Compras() {
                     ]
                 );
 
-                // console.log('dataHistorialComprasCliente', dataHistorialComprasCliente);
-                // console.log('dataHistorialDeLlenadosGratisCliente', dataHistorialDeLlenadosGratisCliente);
+                console.log('dataInventarioCliente', dataInventarioCliente);
+                console.log('dataHistorialComprasCliente', dataHistorialComprasCliente);
+                console.log('dataHistorialDeLlenadosGratisCliente', dataHistorialDeLlenadosGratisCliente);
 
                 if(dataInventarioCliente.error){ //Error por autenticacion
                     setUltimaCompraCliente(-1);

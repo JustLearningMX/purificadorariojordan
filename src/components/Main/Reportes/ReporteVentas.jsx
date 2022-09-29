@@ -24,14 +24,12 @@ export function ReporteVentas() {
         //Para verificar si existe un periodo valido
         const fechaIniEpoch = fechaIni ? fechaIni.getTime() : 0;
         const fechaFinEpoch = fechaFin ? fechaFin.getTime() : 0;
-        
+
         // Si existe o no un periodo valido
         if( (fechaIniEpoch > fechaFinEpoch) ){
-            setLeyendaReportes('La fecha inicial debe ser igual o menor que la fecha final');
+            setLeyendaReportes(`Ingrese un periodo valido. Reporte de ventas`);
             setVentasFiltradas(todasLasVentas.data);
-        } 
-        
-        if (fechaIni && fechaFin) {            
+        } else if (fechaIni && fechaFin) {        
             const nuevasVentas = todasLasVentas.data.filter( venta => {
                 const fechaVenta = removeTime(new Date(venta.createdAt)); //Remover horas, segundos, etc.
               

@@ -18,14 +18,18 @@ export function Reportes() {
         try {
 
             //Peticion a la API
-            const data = await getVentasTodos();
+            const [
+                {value: dataTodasLasVentas},
+            ] = await Promise.allSettled(
+                [getVentasTodos(),]                
+            );
             
-            if(data.error){ //Si error es en la peticion del cliente
-                setLeyendaReportes('Error al traer las ventas', data.message);
-            } else if(data.tieneDatos) { //Si hay ventas
-                setTodasLasVentas(data);
+            if(dataTodasLasVentas.error){ //Si error es en la peticion del cliente
+                setLeyendaReportes('Error al traer las ventas', dataTodasLasVentas.message);
+            } else if(dataTodasLasVentas.tieneDatos) { //Si hay ventas
+                setTodasLasVentas(dataTodasLasVentas);
             } else { //Si no hay ventas
-                console.log('Sin ventas', data);
+                setLeyendaReportes('Sin ventas');
             }
 
         } catch (error) { //Si hay error con MongoDB
