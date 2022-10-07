@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { BarraBusquedaCliente } from '../Reportes/BarraBusquedaCliente';
+import { BarraBusquedaReportes } from './BarraBusquedaReportes';
 import stylesBarraBusqueda from '../../../css/usuarios/Ventas.module.css';
 import styles from '../../../css/usuarios/ReportesClientes.module.css';
-import stylesReportes from '../../../css/usuarios/Reportes.module.css';
 import { removeTime } from '../../../utils/formateadorDeFechas';
 import { VentaPorCliente } from './VentaPorCliente';
 
@@ -15,15 +14,19 @@ export function ReporteDeClientes() {
         fechaIni, //Fecha inicial del periodo
         fechaFin, //Fecha final del periodo
         setLeyendaReportes,
+        setDatosReporte, //Para generar el archivo del reporte, ya sea excel o pdf
+        setDatoBarraDeBusqueda,
+        datoBarraDeBusqueda
     } = useOutletContext();
 
+    //Estados del componente
     const [mensaje, setMensaje] = useState(null); //Ventas ordenadas por cliente
     const [ ventasFiltradas, setVentasFiltradas ] = useState(null); //Ventas  ordenadas por cliente y filtradas por fecha/cliente
-    const [telefonoCliente, setTelefonoCliente] = useState(null); //Telefono del cliente de la barra de busqueda
+    // const [datosCliente, setDatosCliente] = useState(null); //Telefono/Nombre del cliente de la barra de busqueda
 
     //Tomamos todas las ventas y se ordenan por Cliente -> Ventas
     const ordenarPorClientes = useCallback((arrayDeVentas)=>{
-
+        
         setLeyendaReportes('Ventas ordenadas por clientes');
 
         // Array vacio para guardar el nuevo arreglo
@@ -61,16 +64,30 @@ export function ReporteDeClientes() {
             return null;
         });
 
-        // setVentasPorClientes(ventasOrdenadasPorCliente);
-        setVentasFiltradas(ventasOrdenadasPorCliente);
-        setLeyendaReportes(`Total de clientes: ${ventasOrdenadasPorCliente.length}`);
+        if(datoBarraDeBusqueda && datoBarraDeBusqueda.identificador){
+            const ventasOrdenadasPorClienteYTelefono = ventasOrdenadasPorCliente.filter( venta => venta.telefono === datoBarraDeBusqueda.identificador)
+            if(ventasOrdenadasPorClienteYTelefono.length > 0) {
+                setVentasFiltradas(ventasOrdenadasPorClienteYTelefono); //Guardamos las ventas ya filtradas
+                setDatosReporte(ventasOrdenadasPorClienteYTelefono);
+                setLeyendaReportes(`Total de compras: ${ventasOrdenadasPorClienteYTelefono.length}`);
+            } else {
+                setVentasFiltradas(null);
+                setDatosReporte(null);
+                setMensaje(`El cliente ${datoBarraDeBusqueda.nombre} no tiene ventas en ese periodo.`)
+            }
+        } else {
+            setVentasFiltradas(ventasOrdenadasPorCliente); //Guardamos las ventas ya filtradas
+            setDatosReporte(ventasOrdenadasPorCliente);
+            setLeyendaReportes(`Total de clientes: ${ventasOrdenadasPorCliente.length}`);
+        }
 
-    },[setLeyendaReportes]);
+    },[setLeyendaReportes, datoBarraDeBusqueda, setDatosReporte]);
 
     //Cambios en los estados
     useEffect( ()=> {
+        setDatosReporte(null);
 
-        //Para verificar si existe un periodo valido
+        //Para verificar si existe un periodo de fechas valido
         const fechaIniEpoch = fechaIni ? fechaIni.getTime() : 0;
         const fechaFinEpoch = fechaFin ? fechaFin.getTime() : 0;
         
@@ -79,7 +96,10 @@ export function ReporteDeClientes() {
             setMensaje(`Ingrese un periodo de fechas valido.`);
             setLeyendaReportes('Ventas ordenadas por clientes');
             setVentasFiltradas(null);
+            setDatosReporte(null);
         } else if (fechaIni && fechaFin) { 
+
+            //Filtramos las ventas
             const nuevasVentas = todasLasVentas.data.filter( venta => {
                 const fechaVenta = removeTime(new Date(venta.createdAt)); //Remover horas, segundos, etc.
             
@@ -92,19 +112,20 @@ export function ReporteDeClientes() {
                 setMensaje(`Sin ventas en ese periodo`);
                 setLeyendaReportes('Ventas ordenadas por clientes');
                 setVentasFiltradas(null);
+                setDatosReporte(null);
             }
         } else {
             ordenarPorClientes(todasLasVentas.data);
         }
 
-    },[ordenarPorClientes, setLeyendaReportes, fechaIni, fechaFin, todasLasVentas]);
+    },[ordenarPorClientes, setLeyendaReportes, fechaIni, fechaFin, todasLasVentas, setDatosReporte]);
 
     return ventasFiltradas ? (
         <section className={styles.contenedorReportePorCliente}>
             <article className={`${stylesBarraBusqueda.searchContainer} ${stylesBarraBusqueda.containersVentas} ${styles.searchContainer}`}>
-                <BarraBusquedaCliente
-                    telefonoCliente={telefonoCliente}
-                    setTelefonoCliente={setTelefonoCliente}
+                <BarraBusquedaReportes
+                    setDatos={setDatoBarraDeBusqueda}
+                    tabla='clientes'
                 />
             </article>
             
@@ -119,17 +140,23 @@ export function ReporteDeClientes() {
                 </ul>
             </article>
             
-            <article className={stylesReportes.contenedorBotonesReporte}>
+            {/* <article className={stylesReportes.contenedorBotonesReporte}>
                 botones
-            </article>
+            </article> */}
         </section>
     ) :
     (
-        <section style={{display: 'flex', marginTop: '2rem', justifyContent: 'center', alignItems: 'center', fontSize: '1.2rem'}}>
-            <p style={{color: 'var(--second-a-text-color)', fontWeight: '500'}}>
-                {mensaje}
-            </p>
+        <section className={styles.contenedorReportePorCliente}>
+            <article className={`${stylesBarraBusqueda.searchContainer} ${stylesBarraBusqueda.containersVentas} ${styles.searchContainer}`}>
+                <BarraBusquedaReportes
+                    setDatos={setDatoBarraDeBusqueda}
+                />
+            </article>
+            <article className={styles.contenedorCuerpoReporte} style={{display: 'flex', justifyContent: 'center', marginTop: '2rem'}}>
+                <p style={{color: 'var(--second-a-text-color)', fontWeight: '500'}}>
+                    {mensaje}
+                </p>
+            </article>
         </section>
     );
-    
 }

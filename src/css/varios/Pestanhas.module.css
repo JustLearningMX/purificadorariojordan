@@ -4,7 +4,8 @@
     "titulo" auto
     "menu" auto
     "fechasReporte" auto
-    "items" minmax(400px, auto);
+    "items" minmax(400px, auto)
+    "botonesReporte" auto;
     gap: .4rem;
     /* border: 1px solid green; */
 }
@@ -15,11 +16,12 @@
     margin: .3rem 0 .5rem 0;
     color: var(--second-a-text-color);
     font-size: 1.3rem;
-    font-weight: 500;
+    font-weight: 500;    
+    /* border: 1px solid green; */
 }
 
 .contenedorLinks {
-    /* border: 1px solid green; */
+    /* border: 1px solid blue; */
     grid-area: menu;
     display: flex;
     flex-wrap: wrap;
@@ -46,4 +48,34 @@
     font-weight: 600;
     opacity: 0.9;
     transition: .3s;
+}
+
+/* Tablets y Laptops*/
+@media screen and (min-width: 600px) {
+
+    .contenedorPrincipal {
+        /* display: grid; */
+        grid-template: 
+        "titulo" 45px
+        "menu" 25px
+        "fechasReporte" 75px
+        "items" calc(100% - 170px)
+        "botonesReporte" 35px;
+        gap: 0;
+        padding: 0 4rem;
+        /* border: 1px solid green; */
+    }
+    
+    .tituloSeccion {
+        font-size: 1.5rem;
+    }
+    
+    .contenedorLinks {
+        gap: 1.2rem;
+        font-size: 1rem;
+    }
+    
+    .links {        
+        width: 100px;
+    }
 }

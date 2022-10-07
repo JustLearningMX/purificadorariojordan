@@ -2,9 +2,8 @@
     display: grid;
     grid-template: 
     "barraBusqueda" auto
-    "cuerpoReporte" 1fr
-    "botonesReporte" auto;
-    min-height: 100%;
+    "cuerpoReporte" 1fr;
+    max-height: 400px;
 }
 
 .searchContainer{
@@ -13,13 +12,30 @@
 
 .contenedorCuerpoReporte {
     grid-area: cuerpoReporte;
-    /* border: 1px solid blue; */
     padding: .3rem .5rem;
-    max-height: 400px;
     overflow: hidden;
     overflow-y: auto;
 }
 
 .contenedorCuerpoReporte > ul :not(:last-child) {
     margin-bottom: .8rem;
+}
+
+/* Tablets y Laptops*/
+@media screen and (min-width: 600px) { 
+    .contenedorReportePorCliente {
+        grid-template: 
+        "barraBusqueda" auto
+        "cuerpoReporte" 220px;
+    }
+
+    .searchContainer {
+        width: 100%;
+    }
+
+    .contenedorCuerpoReporte > ul { 
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: .7rem;        
+    }
 }

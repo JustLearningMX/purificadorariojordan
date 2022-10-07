@@ -5,13 +5,18 @@ import { getVentasTodos } from '../../../data/peticionesMongo/reportes/getVentas
 import pestanasStyles from '../../../css/varios/Pestanhas.module.css';
 import styles from '../../../css/usuarios/Reportes.module.css';
 import { dividirFecha } from '../../../utils/formateadorDeFechas';
+import { FileExcel2 } from '@styled-icons/remix-fill';
+import { FileEarmarkPdfFill } from '@styled-icons/bootstrap';
+import { Peticiones } from '../../../data/peticionesMongo/peticionesHTTP';
 
 export function Reportes() {
-    // const userToken = JSON.parse(window.localStorage.getItem("usuarioLogueadoPurificadora"));
+    const userToken = JSON.parse(window.localStorage.getItem("usuarioLogueadoPurificadora"));
     const [ fechaIni, setFechaIni ] = useState(null); //Fecha inicial del reporte de ventas
     const [ fechaFin, setFechaFin ] = useState(null); //Fecha final del reporte de ventas
     const [todasLasVentas, setTodasLasVentas] = useState(null); //Todas las ventas traidas de la BD
     const [ leyendaReportes, setLeyendaReportes ] = useState('Reporte por ventas');
+    const [datosReporte, setDatosReporte] = useState(null);
+    const [datoBarraDeBusqueda, setDatoBarraDeBusqueda] = useState(null); //Item de la barra de busqueda
 
     //Funcion que trae info de la BD
     const fetchDataBD = useCallback( async()=>{
@@ -93,9 +98,21 @@ export function Reportes() {
                             fechaFin,
                             todasLasVentas,
                             setLeyendaReportes,
+                            setDatosReporte,
+                            setDatoBarraDeBusqueda,
+                            datoBarraDeBusqueda
                         }
                     }
                 />
+            </article>
+
+            <article className={styles.contenedorBotonesReporte}>
+                <figure className={`${styles.icons_container}`} > 
+                    <FileExcel2 onClick={() => handleClickGenerate('excel', datosReporte, fechaIni, fechaFin, datoBarraDeBusqueda, userToken.token)} />
+                </figure>
+                <figure className={`${styles.icons_container}`} > 
+                    <FileEarmarkPdfFill onClick={() => handleClickGenerate('pdf', datosReporte, fechaIni, fechaFin, datoBarraDeBusqueda, userToken.token)} />
+                </figure>
             </article>
 
         </section>
@@ -133,4 +150,35 @@ function handleFechaFin(e, setFechaFin) {
     const fecha = new Date(year, month-1, day);
     //Actualizar la fecha inicial
     setFechaFin(fecha);
+}
+
+async function handleClickGenerate(tipoReporte, datosReporte, fechaIni, fechaFin, datoBarraDeBusqueda, token) {
+    
+    //Nombre de la pestana actual
+    const links = document.getElementsByClassName(`${pestanasStyles.links}`);
+    let pestana = null;
+    const identificador = datoBarraDeBusqueda ? datoBarraDeBusqueda.identificador : null;
+    const nombre = datoBarraDeBusqueda ? datoBarraDeBusqueda.nombre : null;
+
+    for(let i=0; i < links.length; i++){
+        if(links[i].classList.contains(`${pestanasStyles.link_selected}`))
+            pestana = links[i].textContent;
+    }
+
+    //Generamos un cuerpo para la peticion a la API
+    if(!pestana || !tipoReporte || !datosReporte) {
+        console.log('Seleccione un tipo de informacion para generar el reporte')
+    } else {
+        
+        const nombreDeArchivo = `reporteDe${pestana}`;
+
+        // if(pestana === 'Ventas') {
+            try {
+                await Peticiones.crearVentasEnExcel(pestana, tipoReporte, fechaIni, fechaFin, nombre, identificador, token, nombreDeArchivo);
+
+            } catch (error) {
+                console.log(error);
+            }
+        // }
+    }
 }

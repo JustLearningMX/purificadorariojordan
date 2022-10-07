@@ -12,6 +12,8 @@ export function ReporteVentas() {
         fechaIni, //Fecha inicial del periodo
         fechaFin, //Fecha final del periodo
         setLeyendaReportes,
+        setDatosReporte, //Para generar el archivo del reporte, ya sea excel o pdf
+        setDatoBarraDeBusqueda,
     } = useOutletContext();
 
     //Ventas a mostrar en el componente. Si no se 
@@ -20,7 +22,8 @@ export function ReporteVentas() {
 
     //Cambios en los estados
     useEffect( ()=> {
-
+        setDatosReporte(null);
+        setDatoBarraDeBusqueda(null);
         //Para verificar si existe un periodo valido
         const fechaIniEpoch = fechaIni ? fechaIni.getTime() : 0;
         const fechaFinEpoch = fechaFin ? fechaFin.getTime() : 0;
@@ -29,6 +32,7 @@ export function ReporteVentas() {
         if( (fechaIniEpoch > fechaFinEpoch) ){
             setLeyendaReportes(`Ingrese un periodo valido. Reporte de ventas`);
             setVentasFiltradas(todasLasVentas.data);
+            setDatosReporte(todasLasVentas.data);
         } else if (fechaIni && fechaFin) {        
             const nuevasVentas = todasLasVentas.data.filter( venta => {
                 const fechaVenta = removeTime(new Date(venta.createdAt)); //Remover horas, segundos, etc.
@@ -37,13 +41,15 @@ export function ReporteVentas() {
             })
             
             setVentasFiltradas(nuevasVentas);
+            setDatosReporte(nuevasVentas);
             setLeyendaReportes(`Total de ventas: ${nuevasVentas.length}`);
         } else {
             setVentasFiltradas(todasLasVentas.data);
+            setDatosReporte(todasLasVentas.data);
             setLeyendaReportes(`Total de ventas: ${todasLasVentas.data.length}`);
         }
 
-    },[todasLasVentas, fechaIni, fechaFin, setLeyendaReportes]);
+    },[todasLasVentas, fechaIni, fechaFin, setLeyendaReportes, setDatosReporte, setDatoBarraDeBusqueda]);
 
     return (ventasFiltradas && ventasFiltradas.length > 0) ? (
         <section className={styles.contenedorReporte}>
@@ -55,9 +61,9 @@ export function ReporteVentas() {
                 </ul>
             </article>
             
-            <article className={styles.contenedorBotonesReporte}>
+            {/* <article className={styles.contenedorBotonesReporte}>
                 botones
-            </article>
+            </article> */}
         </section>
     ) :
     (

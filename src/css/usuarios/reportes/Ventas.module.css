@@ -60,3 +60,19 @@
     line-height: 1rem;
     text-align: right;
 }
+
+/* Tablets y Laptops*/
+@media screen and (min-width: 600px) { 
+
+    .contenedorVentaReporte {
+        line-height: 11px;
+    }
+
+    .contenedorVentaReporte > div > ul {
+        line-height: 8px;
+    }
+    
+    .headProducts {
+        font-size: 1rem;
+    }  
+}
