@@ -81,6 +81,10 @@
     cursor: pointer;
 }
 
+.reCaptcha__container{
+    height: 80px;
+}
+
 /* Laptops*/
 @media screen and (min-width: 1024px) {    
     .formularioContainer {

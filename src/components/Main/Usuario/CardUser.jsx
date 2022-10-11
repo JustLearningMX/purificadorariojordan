@@ -53,9 +53,9 @@ export function CardUser({usuarios}) {
                         <Typography variant="h6" component="div" color="text.secondary" gutterBottom>
                             {usuario.email ? usuario.email : 'Sin correo electrónico'}
                         </Typography>
-                        <Typography variant="h6" component="div" sx={{color: 'var(--second-a-text-color)', fontWeight: '600'}}>
+                        {/* <Typography variant="h6" component="div" sx={{color: 'var(--second-a-text-color)', fontWeight: '600'}}>
                             Compras actuales:
-                        </Typography>
+                        </Typography> */}
                     </CardContent>
                 </Card>
             </ThemeProvider>

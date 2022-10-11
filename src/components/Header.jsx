@@ -1,21 +1,39 @@
 import { Navbar } from "./Header/Navbar";
 import { AccountCircle } from '@styled-icons/material';
 import { Menu } from '@styled-icons/material';
-
 import img from '../assets/logo-principal.png';
 import styles from '../css/Header.module.css';
 import stylesIcons from '../css/varios/Icons.module.css';
 import stylesAside from '../css/Aside.module.css';
 import { MenuUser } from "./Header/MenuUser";
+import { useAuthContext } from '../hooks/useAuthContext';
+import { Avatar } from '@mui/material';
+import { useEffect, useState } from "react";
+import { stringAvatar } from '../utils/stringAvatar';
 
 export function Header() {
+
+    const { usuario } = useAuthContext();
+    const [user, setUser] = useState(null);
+
+    useEffect(()=>{
+        if(usuario) {
+            setUser(`${JSON.parse(usuario).nombre} ${JSON.parse(usuario).apellidos}`);
+        } else {
+            setUser(null);
+        }
+    },[usuario])
+
     return (
         <header className={styles.header} >
             <figure className={styles.logo_container} >                            
                 <img src={img} alt="Logo purificadora rio jordan" className={styles.logo_principal} />
             </figure>
             <figure className={`${styles.userMenu_icon_container}`} >
-                <AccountCircle onClick={()=>handleClick('menuUser')} className={stylesIcons.icono} />
+
+                {user ? <Avatar {...stringAvatar({nombre: `${user}`})} onClick={()=>handleClick('menuUser')} className={stylesIcons.icono} /> : 
+                <AccountCircle onClick={()=>handleClick('menuUser')} className={stylesIcons.icono} />                
+                }
             </figure>
             <figure className={`${styles.mainMenu_icon_container}`} >
                 <Menu onClick={()=>handleClick('menuMain')} className={stylesIcons.icono} />

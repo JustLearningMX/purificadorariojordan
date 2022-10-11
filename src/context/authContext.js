@@ -11,13 +11,16 @@ export function AuthContextProvider( {children}) {
     const [isUserUpdate, setIsUserUpdate] = useState(false);
 
     const [isAuthenticated, setIsAuthenticated] = useState(window.localStorage.getItem("usuarioLogueadoPurificadora"));
-
-    const login = useCallback(() => setIsAuthenticated(true), []);
+    const [usuario, setUsuario] = useState(window.localStorage.getItem("UsuarioPurificadora"));
+    const login = useCallback(() => {
+        setIsAuthenticated(true);
+    }, []);
 
     const logout = useCallback( () => {
             window.localStorage.removeItem("usuarioLogueadoPurificadora", true);
             window.localStorage.removeItem("UsuarioPurificadora", true);
             setIsAuthenticated(false);
+            setUsuario(null);
         }, []);
 
     const value = useMemo( ()=> (
@@ -26,9 +29,11 @@ export function AuthContextProvider( {children}) {
             logout,
             isAuthenticated,
             isUserUpdate,
-            setIsUserUpdate
+            setIsUserUpdate,
+            usuario,
+            setUsuario
         }
-    ), [isAuthenticated, login, logout, isUserUpdate]);
+    ), [isAuthenticated, login, logout, isUserUpdate, usuario, setUsuario]);
 
     return (
         <AuthContext.Provider value={value}>

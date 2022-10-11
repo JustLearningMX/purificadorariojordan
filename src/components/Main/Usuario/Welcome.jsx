@@ -9,8 +9,11 @@ import { getUsuario } from '../../../data/peticionesMongo/getUsuario';
 import { localStorageObj } from '../../../data/localStorage';
 import { crearUsuario } from '../../../utils/crearUsuario';
 import { EMPRESA, VENTAS, DASHBOARD, USUARIO_ } from '../../../config/router/paths';
+import { useAuthContext } from '../../../hooks/useAuthContext';
 
 export function Welcome() {
+
+    const { setUsuario: setUsers } = useAuthContext();
 
     const userToken = JSON.parse(window.localStorage.getItem("usuarioLogueadoPurificadora"));
     const UsuarioPurificadora = JSON.parse(window.localStorage.getItem("UsuarioPurificadora"));
@@ -31,9 +34,10 @@ export function Welcome() {
             //Guardamos al USUARIO y sus Datos en el localStorage
             localStorageObj['usuario'](Usuario);
             setUsuario(Usuario);
+            setUsers(JSON.stringify(Usuario));
         }
 
-    }, [userToken.token]);
+    }, [userToken.token, setUsers]);
 
     
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import estilos from '../../../css/Formularios.module.css';
 import { TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab'
@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { USUARIOS, LOGIN } from '../../../config/router/paths';
 import { signupDeUsuario } from '../../../data/peticionesMongo/signupUsuario';
 import { CustomizedSnackbars } from '../../../components/Varios/SnackBar';
+import ReCAPTCHA from "react-google-recaptcha";
 
 export function Signup() {
     
@@ -20,6 +21,7 @@ export function Signup() {
     });
     
     let navigate = useNavigate();
+    const captchaRef = useRef(null);
 
     const formik = useFormik({
         initialValues: {
@@ -28,10 +30,19 @@ export function Signup() {
             telefono: '',
             email: '',
             password: '',
+            recaptcha: ''
         },
         validationSchema: inputsValidationSchemaSignup,
-        onSubmit: async (body) => { 
-            
+        onSubmit: async (datosForm) => { 
+            const body = {
+                nombre: datosForm.nombre,
+                apellidos: datosForm.apellidos,
+                telefono: datosForm.telefono,
+                email: datosForm.email,
+                password: datosForm.password,
+            };
+
+            console.log(datosForm)
                         
             setIsLoading(true);
             //Peticion a la API
@@ -142,6 +153,13 @@ export function Signup() {
                         className={estilos.input_form}
                         size="small"
                     />
+
+                    <div className={estilos.reCaptcha__container}>
+                        < ReCAPTCHA 
+                            sitekey={process.env.REACT_APP_SITE_KEY}
+                            ref={captchaRef}
+                        />
+                    </div>
                     
                     <LoadingButton 
                         loading={isLoading}

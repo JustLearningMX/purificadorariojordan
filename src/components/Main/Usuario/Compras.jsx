@@ -62,10 +62,6 @@ export function Compras() {
                     ]
                 );
 
-                console.log('dataInventarioCliente', dataInventarioCliente);
-                console.log('dataHistorialComprasCliente', dataHistorialComprasCliente);
-                console.log('dataHistorialDeLlenadosGratisCliente', dataHistorialDeLlenadosGratisCliente);
-
                 if(dataInventarioCliente.error){ //Error por autenticacion
                     setUltimaCompraCliente(-1);
                     setDataSnackBar({mensaje: dataInventarioCliente.message, severity: "error", countOpens: 1 });    
