@@ -12,8 +12,8 @@
 
    try {
 
-      const data = await requestApi(`/reportes/ventas/todos`, 'GET', null, tokenUsuario);
-
+      const data = await requestApi(`/reportes/ventas/todos`, 'GET', null, tokenUsuario, null);
+      
       return data;
       
    } catch (e) {

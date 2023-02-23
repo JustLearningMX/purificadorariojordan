@@ -1,8 +1,9 @@
 export const arrayMenu = {
     principal: [
+        'Inicio',
         'Nosotros',
-        // 'Servicios',
-        // 'Contacto'
+        'Servicios',
+        'Contacto'
     ],
     userGuest: [
         'Login',

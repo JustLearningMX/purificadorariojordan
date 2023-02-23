@@ -28,7 +28,7 @@ export function Reportes() {
             ] = await Promise.allSettled(
                 [getVentasTodos(),]                
             );
-            
+            // console.log(dataTodasLasVentas)
             if(dataTodasLasVentas.error){ //Si error es en la peticion del cliente
                 setLeyendaReportes('Error al traer las ventas', dataTodasLasVentas.message);
             } else if(dataTodasLasVentas.tieneDatos) { //Si hay ventas

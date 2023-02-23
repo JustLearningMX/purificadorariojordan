@@ -4,7 +4,7 @@ import { fechaCorta, hora } from '../../../utils/formateadorDeFechas';
 import styles from '../../../css/usuarios/reportes/Ventas.module.css';
 
 export function VentaCompleta({venta}) {
-
+    // console.log(venta)
     //Para guardar fecha y hora de la venta
     const [ fechaVenta, setFechaVenta ] = useState(null);
     const [ horaVenta, setHoraVenta ] = useState(null);
@@ -41,7 +41,8 @@ export function VentaCompleta({venta}) {
 
     return (fechaVenta && horaVenta && resumenCuentas) ? (
         <li className={styles.contenedorVentaReporte}>
-            
+            {/* {console.log(venta)} */}
+            {/* {const clienteActual = (venta.Cliente.length > 0) ? venta.Cliente[0].nombre : 'Cliente eliminado'} */}
             <div>
                 <div className={styles.contenedorDatos}>                                        
                     <p>
@@ -64,19 +65,21 @@ export function VentaCompleta({venta}) {
                 <div className={styles.contenedorDatos}>
                     <p>
                         <span className={styles.labelData}>Atendio:</span>
-                        <span className={styles.inputData}> {venta.Empleado[0].nombre} {venta.Empleado[0].apellidos}</span>
+                        <span className={styles.inputData}> {venta.Empleado.length > 0 ? `${venta.Empleado[0].nombre} ${venta.Empleado[0].apellidos}` :
+                        'Empleado eliminado'}</span>
                     </p>
                 </div>
                 <div className={styles.contenedorDatos}>
                     <p>
-                        <span className={styles.labelData}>Cliente:</span>
-                        <span className={styles.inputData}> {venta.Cliente[0].nombre} {venta.Cliente[0].apellidos}</span>
+                        <span className={styles.labelData}>Cliente:</span>                        
+                        <span className={styles.inputData}> { venta.Cliente.length > 0 ? `${venta.Cliente[0].nombre} ${venta.Cliente[0].apellidos}` :
+                        'Cliente eliminado' }</span>
                     </p>
                 </div>                
                 <div className={styles.contenedorDatos}>
                     <p>
                         <span className={styles.labelData}>Telefono:</span>
-                        <span className={styles.inputData}> {venta.Cliente[0].telefono}</span>
+                        <span className={styles.inputData}> {venta.Cliente.length > 0 ? `${venta.Cliente[0].telefono}` : '000000000' }</span>
                     </p>
                 </div>
             </div>

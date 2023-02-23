@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import estilos from '../../../css/Formularios.module.css';
 import { TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab'
@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { USUARIOS, LOGIN } from '../../../config/router/paths';
 import { signupDeUsuario } from '../../../data/peticionesMongo/signupUsuario';
 import { CustomizedSnackbars } from '../../../components/Varios/SnackBar';
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 export function Signup() {
     
@@ -21,7 +21,7 @@ export function Signup() {
     });
     
     let navigate = useNavigate();
-    const captchaRef = useRef(null);
+    // const captchaRef = useRef(null);
 
     const formik = useFormik({
         initialValues: {
@@ -154,12 +154,12 @@ export function Signup() {
                         size="small"
                     />
 
-                    <div className={estilos.reCaptcha__container}>
+                    {/* <div className={estilos.reCaptcha__container}>
                         < ReCAPTCHA 
                             sitekey={process.env.REACT_APP_SITE_KEY}
                             ref={captchaRef}
                         />
-                    </div>
+                    </div> */}
                     
                     <LoadingButton 
                         loading={isLoading}

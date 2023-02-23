@@ -7,12 +7,13 @@ import { DashDatos } from './Main/Usuario/DashDatos';
 import { DashDireccion } from './Main/Usuario/DashDireccion';
 import { DashMiscelaneos } from './Main/Usuario/DashMiscelaneos';
 import { DashPassword } from './Main/Usuario/DashPassword';
-import { NOSOTROS, SERVICIOS, CONTACTO, USUARIOS, SIGNUP, LOGIN,
+import { INICIO, NOSOTROS, SERVICIOS, CONTACTO, USUARIOS, SIGNUP, LOGIN,
          USUARIO, WELCOME, DASHBOARD, COMPRAS, LOGOUT, 
          EMPRESA, VENTAS, ADMIN, CATALOGOS, REPORTES,
          DASHDATOS, DASHDIRECCION, DASHPASSWORD, DASHMISCELANEOS,
          CTL_CLIENTES, CTL_PRODUCTOS, CTL_EMPLEADOS, CTL_PROVEEDORES, 
          CTL_SUCURSALES, RPR_VENTAS, RPR_USUARIOS, RPR_PRODUCTOS} from '../config/router/paths.js';
+import { LandingPage } from '../components/LandingPage';
 import { Nosotros } from '../components/Main/Principal/Nosotros';
 import { Servicios } from '../components/Main/Principal/Servicios';
 import { Contacto } from '../components/Main/Principal/Contacto';
@@ -43,7 +44,8 @@ export function Main() {
         <Routes>
 
           {/**MENÚ PRINCIPAL */}
-          <Route path={NOSOTROS} element={<Nosotros />} />                      
+          <Route path={INICIO} element={<LandingPage />} />
+          <Route path={NOSOTROS} element={<Nosotros />} />                          
           <Route path={SERVICIOS} element={<Servicios />} />                      
           <Route path={CONTACTO} element={<Contacto />} />
 

@@ -1,0 +1,117 @@
+.mainSection {
+    /* background-color: aqua; */
+    margin: -20px -15px;
+    width: 100%;
+    height: calc(100vh - 80px);
+    display: grid;
+    grid-template:
+        "background information" 100% / .6fr .4fr;
+}
+
+.mainSection__backgroundContainer {
+    grid-area: "background";
+    /* border: 1px solid red; */
+}
+
+.backgroundContainer_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mainSection__information {
+    /* border: 1px solid blue; */
+    grid-area: "information";
+    /* height: 100vh; */
+    display: grid;
+    grid-template:
+        "information_slogan" 20%
+        "information_iconoWP" 60%
+        "information_footer" 10% / 1fr;
+}
+
+.information_slogan{
+    grid-area: "information_slogan";
+    margin-top: 1rem;
+    /* border: 1px solid green; */
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--main-text-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-end;
+    /* text-align: center; */
+}
+
+.information_iconoWP {
+    /* border: 1px solid red; */
+    grid-area: "information_iconoWP";
+    display: flex;
+}
+
+.information_iconoWP > div {
+    /* border: 1px solid green; */
+    padding: .5rem;
+    width: 60%;
+    /* display: flex;
+    align-items: center; */
+    line-height: 20px;
+}
+
+.information_iconoWP span {
+    font-weight: 700;
+    color: var(--second-a-text-color);
+}
+
+.information_iconoWP > figure {
+    padding: .5rem;
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    width: 40%;
+}
+
+.information_iconoWP > figure a {
+    color: var(--second-a-text-color);
+    text-decoration: none;
+    transition: all .25s ease;
+    touch-action: manipulation;
+}
+
+.information_iconoWP > figure img {
+    -webkit-filter: drop-shadow(0 1px 18px #dcdcdc80);
+    filter: drop-shadow(0 1px 18px #dcdcdc80);
+    margin-bottom: 5px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+.information_iconoWP > figure p {
+    font-weight: 900;
+    color: var(--main-text-color);
+}
+
+.information_iconoWP > figure a:hover {
+    opacity: 0.8;
+    transform: scale(1.2);
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+.information_footer {
+    grid-area: "information_footer";
+    width: 100%;
+}
+
+.footer_img {
+    width: 100%;
+    /* height: 100%; */
+    object-fit: cover;
+}
+
+.mainSection__information_carousel {
+    border: 1px solid green;
+    width: 150px;
+}

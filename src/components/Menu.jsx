@@ -1,5 +1,5 @@
 import { NavLink} from 'react-router-dom';
-import { NOSOTROS, SERVICIOS, CONTACTO, USUARIOS, SIGNUP, LOGIN,
+import { INICIO, NOSOTROS, SERVICIOS, CONTACTO, USUARIOS, SIGNUP, LOGIN,
          COMPRAS, DASHBOARD, REPORTES, VENTAS, CATALOGOS, LOGOUT, 
          EMPRESA, ADMIN, USUARIO_} from '../config/router/paths.js';
 
@@ -23,6 +23,7 @@ export function Menu(props) {
             {props.opcionesMenu.map((opcion, i)=> {
 
                 const LinkOpt = 
+                    (opcion === 'Inicio') ? INICIO :    
                     (opcion === 'Nosotros') ? NOSOTROS : 
                     (opcion === 'Servicios') ? SERVICIOS :
                     (opcion === 'Contacto') ? CONTACTO :

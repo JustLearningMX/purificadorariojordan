@@ -4,8 +4,8 @@
 //función asíncrona
 export async function requestApi(path, req, arrBody, token, isFile) {
 
-  const API = "https://purificadora-rio-jordan-api.herokuapp.com/v1"; //Base de la API a consumir
-  // const API = "http://localhost:4005/v1";
+  // const API = "https://purificadora-rio-jordan-api.herokuapp.com/v1"; //Base de la API a consumir
+  const API = "http://localhost:4005/v1";
 
   const body = (req === "POST" || req === "PUT") ? arrBody : {};
 
@@ -24,7 +24,9 @@ export async function requestApi(path, req, arrBody, token, isFile) {
           "Authorization": token,
         }),
       }); //Si todo OK se retorna el JSON con los resultados, si no el error
+      // console.log(await resultado.json())
       return !isFile ? await resultado.json() : await resultado.blob();
+      // return await resultado.json();
     // } catch (error) {
     //   console.log(error);
     // }

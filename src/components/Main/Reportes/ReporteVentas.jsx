@@ -53,6 +53,7 @@ export function ReporteVentas() {
 
     return (ventasFiltradas && ventasFiltradas.length > 0) ? (
         <section className={styles.contenedorReporte}>
+            {/* {console.log(ventasFiltradas)} */}
             <article className={styles.contenedorCuerpoReporte}>
                 <ul>
                     {ventasFiltradas.map( (venta) => {

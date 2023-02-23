@@ -1,5 +1,6 @@
-//MENÚ PRINCIPAL: LOS 3
-export const NOSOTROS = "/";
+//MENÚ PRINCIPAL: LOS 4
+export const INICIO = "/";
+export const NOSOTROS = "/nosotros";
 export const SERVICIOS = '/servicios';
 export const CONTACTO = '/contacto';
 
