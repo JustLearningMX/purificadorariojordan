@@ -1,45 +1,40 @@
-// import estilosServicios from '../../../css/main/Servicios.module.css';
+import estilos from '../../../css/principal/Servicios.module.css';
+import { serviciosData } from '../../../data/ServiciosData.js';
 
 export function Servicios(){
     return (
-        <section>
-            <h2>Sección Servicios</h2>
-            <h1>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, illum.
-            Aliquid excepturi deserunt, mollitia totam esse cupiditate impedit quasi
-            ad repellat, veritatis, et ut placeat id temporibus tempora! Fugit,
-            deleniti.
-            </h1>
-            <h1>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, illum.
-            Aliquid excepturi deserunt, mollitia totam esse cupiditate impedit quasi
-            ad repellat, veritatis, et ut placeat id temporibus tempora! Fugit,
-            deleniti.
-            </h1>
-            <h1>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, illum.
-            Aliquid excepturi deserunt, mollitia totam esse cupiditate impedit quasi
-            ad repellat, veritatis, et ut placeat id temporibus tempora! Fugit,
-            deleniti.
-            </h1>
-            <h1>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, illum.
-            Aliquid excepturi deserunt, mollitia totam esse cupiditate impedit quasi
-            ad repellat, veritatis, et ut placeat id temporibus tempora! Fugit,
-            deleniti.
-            </h1>
-            <h1>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, illum.
-            Aliquid excepturi deserunt, mollitia totam esse cupiditate impedit quasi
-            ad repellat, veritatis, et ut placeat id temporibus tempora! Fugit,
-            deleniti.
-            </h1>
-            <h1>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, illum.
-            Aliquid excepturi deserunt, mollitia totam esse cupiditate impedit quasi
-            ad repellat, veritatis, et ut placeat id temporibus tempora! Fugit,
-            deleniti.
-            </h1>
+        <section className={estilos.mainContainer}>
+            {/* <p className={estilos.servicios__titulo}>
+                Nuestros servicios
+            </p> */}
+            {serviciosData.map((servicio, index) => {
+                return (
+                    <ServiciosComponente
+                        key={index}
+                        servicio={servicio}
+                    />
+                )
+            })}
         </section>
     );
+}
+
+function ServiciosComponente({servicio}) {
+    return (
+        <article className={estilos.servicioComponente}>
+            <div className={estilos.servicioComponente__container}>
+            
+                <div className={estilos.servicioComponente__titulo}>
+                    <p>
+                        {servicio.titulo}
+                    </p>
+                </div>
+                <div className={estilos.servicioComponente__info}>
+                    <p>
+                        {servicio.contenido}
+                    </p>
+                </div>
+            </div>
+        </article>
+    )
 }
