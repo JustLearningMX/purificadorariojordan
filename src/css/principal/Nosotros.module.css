@@ -28,14 +28,17 @@
 
 .parrafo{
     margin-top: 5px;
+    line-height: 15px;
 }
 
 /*****########*****/
 .articlePensamos{
     /* border: 1px solid green; */
-    margin: 2.5rem 0;
-    padding: .5rem;
+    /*margin-top: 2.2rem;
+    margin-bottom: 1rem; */
+    padding: 2rem .5rem;
     display: flex;
+    background: var(--second-bg-color);
 }
 
 .imagenesPensamosContainer{
@@ -106,15 +109,76 @@
 }
 
 .subtituloPensamos{
-    color: var(--second-a-text-color);
+    color: var(--second-text-color);
+    /* color: var(--second-a-text-color); */
     font-size: 1.2rem;
     font-weight: 500;
     margin-bottom: .5rem;
 }
 
 .parrafoPensamos{
-    color: var(--main-a-text-color);
-    font-size: .7rem;
+    color: var(--fondo_gris);
+    font-size: .8rem;
+    line-height: 16px;
+}
+
+.articleNuestrosValores {
+    padding: 1.5rem 0;
+}
+
+.CajaDeValorContainer {
+    /* border: 1px solid gold; */
+    padding: 2rem;
+    font-size: .8rem;
+    line-height: 20px;
+}
+
+.CajaDeValorContainer:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+.CajaDeValorContainer:nth-child(1) {
+    background-image: url('../../assets/nosotros/comercial.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.CajaDeValorContainer:nth-child(2) {
+    background-image: url('../../assets/nosotros/residencial.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.CajaDeValorContainer:nth-child(3) {
+    background-image: url('../../assets/nosotros/taller.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.CajaDeValorContainer:nth-child(4) {
+    background-image: url('../../assets/nosotros/personas.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.CajaDeValor__data {
+    padding: 1rem;
+    background-color: var(--main-bg-color);
+}
+
+
+.CajaDeValor__titulo {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: .2rem;
+    color: var(--second-a-text-color);
+    margin-bottom: .7rem;
+    padding-bottom: .4rem;
+    border-bottom: .14rem solid var(--main-a-text-color); 
 }
 
 
@@ -161,6 +225,7 @@ tablets --> 600px +
 
     .parrafoPensamos{
         font-size: 1rem;
+        line-height: 20px;
     }
 }
 
@@ -190,10 +255,13 @@ Laptops/Computadoras --> 1024px +
     
     .parrafo{
         margin-top: 10px;
+        line-height: 23px;
     }
 
-
     /*-------------------**/
+    .articlePensamos{
+        padding: 2rem 4rem;
+    }
 
     .imagenesPensamosContainer{
         width: 40%;
@@ -217,5 +285,45 @@ Laptops/Computadoras --> 1024px +
 
     .parrafoPensamos{
         font-size: 1.2rem;
+        line-height: 26px;
+        width: 600px;
+    }
+
+    /*#########*/
+
+    .articleNuestrosValores {
+        /* padding: 1.5rem 0; */
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+    }
+
+    .CajaDeValorContainer {
+        width: 550px;
+        height: 500px;
+        padding: 3rem;
+        font-size: 1rem;
+        line-height: 25px;
+    }
+
+    .CajaDeValorContainer:not(:last-child) {
+        margin-bottom: 0;
+    }
+
+    .CajaDeValor__data {
+        /* padding: 1rem;
+        background-color: var(--main-bg-color); */
+        height: 320px;
+    }
+
+
+    .CajaDeValor__titulo {
+        font-size: 1.3rem;
+        font-weight: 600;
+        /* color: var(--second-a-text-color); */
+        margin-bottom: 1rem;
+        padding-bottom: .7rem;
+        border-bottom: .2rem solid var(--main-a-text-color); 
     }
 }

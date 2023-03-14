@@ -3,12 +3,14 @@ import img1 from '../../../assets/landinPage/agua-naturaleza.jpg';
 import img2 from '../../../assets/landinPage/chico-bebiendo.jpg';
 import img3 from '../../../assets/landinPage/repartidor-y-clienta.png';
 import img4 from '../../../assets/landinPage/botella-acostada.jpg';
+import { nosotrosData } from '../../../data/NosotrosData.js';
 
 export function Nosotros(){
     return (
         <section className={estilos.sectionContainer}>
             <NosotrosCabecera />
             <NosotrosPensamos />
+            <NosotrosNuestrosValores />
         </section>
     );
 }
@@ -57,6 +59,46 @@ function NosotrosPensamos(){
                     cada gota pasa a través de un riguroso proceso para asegurarnos 
                     de que recibirás productos saludables a bajos costos.
                 </p>
+            </div>
+        </article>
+    );
+}
+
+function NosotrosNuestrosValores(){
+    return (
+        <div className={estilos.articleNuestrosValores}>
+            <CajaDeValor 
+                titulo={nosotrosData.mision.titulo}
+                contenido={nosotrosData.mision.contenido}
+            />
+            <CajaDeValor 
+                titulo={nosotrosData.vision.titulo}
+                contenido={nosotrosData.vision.contenido}
+            />
+            
+            <CajaDeValor 
+                titulo={nosotrosData.valores.titulo}
+                contenido={nosotrosData.valores.contenido}
+            />
+            
+            <CajaDeValor 
+                titulo={nosotrosData.factorHumano.titulo}
+                contenido={nosotrosData.factorHumano.contenido}
+            />
+        </div>
+    );
+}
+
+function CajaDeValor({titulo, contenido}) {
+    return (
+        <article className={estilos.CajaDeValorContainer}>
+            <div className={estilos.CajaDeValor__data}>
+                <div className={estilos.CajaDeValor__titulo}>
+                    {titulo}
+                </div>
+                <div className={estilos.CajaDeValor__info}>
+                    {contenido}
+                </div>
             </div>
         </article>
     );
