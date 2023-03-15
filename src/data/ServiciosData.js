@@ -5,7 +5,10 @@ export const serviciosData = [
         " Los procesos de purificación que llevamos a cabo en Purificadora Rio Jordan están " +
         " diseñados para eliminar los contaminantes y los microorganismos patógenos que pueden " +
         " estar presentes en el agua cruda, asegurando que el agua purificada sea segura saludable " +
-        " y deliciosa para el consumo humano. "
+        " y deliciosa para el consumo humano. Nuestra agua purificada es especialmente importante " +
+        " para las personas con sistemas inmunológicos debilitados, como los ancianos, los niños " +
+        " pequeños y las personas con enfermedades crónicas, quienes son más susceptibles a " +
+        " enfermedades causadas por el consumo de agua contaminada."
     },
     {
         titulo: "Lavado y Desinfeccion",

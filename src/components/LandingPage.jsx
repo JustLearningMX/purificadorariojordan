@@ -26,7 +26,7 @@ export function LandingPage() {
                 </div>
                 <figure>
                     <a 
-                        href="https://api.whatsapp.com/send?phone=528332887211&amp;text=Hola,%20buen%20d%C3%ADa,%20deseo%20m%C3%A1s%20informaci%C3%B3n" 
+                        href="https://api.whatsapp.com/send?phone=528332517340&amp;text=Hola,%20buen%20d%C3%ADa,%20deseo%20m%C3%A1s%20informaci%C3%B3n" 
                         target="_blank" 
                         rel="noreferrer"
                     >

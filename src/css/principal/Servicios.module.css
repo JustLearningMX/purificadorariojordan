@@ -79,16 +79,16 @@
         height: calc(100vh - 80px);
         width: 100%;
         padding: 3.5rem;
-        /* background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat; */
+    }
+
+    .servicioComponente:nth-child(5) {
+        background-size: cover;
     }
     
     .servicioComponente__container {
         padding: 1.5rem;
         width: 700px;
         height: 450px;
-        /* background-color: var(--main-bg-color); */
     }
     
     .servicioComponente__titulo {
